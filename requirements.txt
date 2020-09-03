@@ -1,0 +1,5 @@
+# 互換性確認 2020-08-08
+# さくらのレンタルサーバ - Python 3.8.5 on pyenv
+
+google-api-python-client
+oauth2client

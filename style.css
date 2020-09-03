@@ -1,0 +1,522 @@
+@charset "UTF-8";
+/* CSS Document */
+
+
+/* Reset CSS ========== */
+:root {
+    --System-BG-1: #ffffff;
+    --System-BG-2: #efefef;
+    --System-BG-3: #d1d1d1;
+    --Label-1: #000000;
+    --Label-2: #5d5d5d;
+    --Separator-1: #333;
+    --Separator-2: #c6c6c6;
+    --Accent-1: #068dc7;
+
+    --sans-serif: "Noto Sans JP", ui-sans-serif, "游ゴシック", "Yu Gothic", sans-serif;
+    --serif: "Noto Serif JP", ui-serif, "游明朝", "Yu Mincho", serif;
+}
+
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+	font-size: 62.5%;
+}
+
+body {
+    margin:0;
+	padding:0 0 30px;
+	text-size-adjust: 100%;
+	-webkit-text-size-adjust: 100%;
+    line-height:2;
+    position: relative;
+    min-height: 100vh;
+    background: var(--System-BG-3);
+    -webkit-print-color-adjust: exact;
+    color-adjust: exact;
+}
+
+div, object, iframe,
+h1, h2, h3, h4, h5, h6, p, a, blockquote, pre,
+abbr, address, cite, code,
+del, dfn, em, img, ins, kbd, q, samp,
+small, strong, sub, sup, var,
+b, i,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section, summary,
+time, mark, audio, video {
+	margin:0;
+	padding:0;
+	border:0;
+	font-family: var(--sans-serif);
+    font-size:1.4rem;
+    font-style: normal;
+    color: var(--Label-1);
+    text-decoration: none;
+    text-align: left;
+	vertical-align:baseline;
+	background:transparent;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+article,aside,details,figcaption,figure,
+footer,header,hgroup,menu,nav,section { 
+	display:block;
+}
+
+
+header,
+main > section,
+footer {
+    background: var(--System-BG-1);
+    margin: 20px auto;
+    padding: 40px;
+    max-width: 1000px;
+    min-height: 1414px;
+}
+
+@media print{
+    body {
+        background: none;
+        padding: 0;
+    }
+    header,
+    main > section,
+    footer {
+        background: none;
+        margin: 0;
+        padding: 10mm;
+        width: 1000px;
+        min-height: auto;
+    }
+    header,
+    main > section {
+        break-after: page;
+    }
+}
+
+
+ul {
+    list-style:none;
+}
+
+blockquote, q {
+    quotes:none;
+}
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+    content:'';
+    content:none;
+}
+
+h1, h2, h3, h4, h5, h6{
+	font-weight: bold;
+}
+
+i{
+	font-size: 0.8em;
+}
+
+img{
+	max-width: 100%;
+	height: auto;
+}
+
+/* change colours to suit your needs */
+ins {
+    background-color:#ff9;
+    color: var(--Label-1);
+    text-decoration:none;
+}
+
+/* change colours to suit your needs */
+mark {
+    background-color:#ff9;
+    color: var(--Label-1); 
+    font-style:italic;
+    font-weight:bold;
+}
+
+del {
+    text-decoration: line-through;
+}
+
+abbr[title], dfn[title] {
+    border-bottom:1px dotted;
+    cursor:help;
+}
+
+
+table {
+    border-collapse:collapse;
+    border-spacing:0;
+    margin-top: 30px;
+    width: 100%;
+    border-top: 2px solid var(--Separator-1);
+}
+table thead,
+table tbody,
+table tfoot {
+    border-bottom: 2px solid var(--Separator-1);
+}
+table th,
+table td {
+    padding: 6px;
+    line-height: 1em;
+}
+table th:not(:last-of-type),
+table td:not(:last-of-type) {
+    border-right: 1px solid var(--Separator-2);
+}
+table tr:not(:last-of-type) th,
+table tr:not(:last-of-type) td {
+    border-bottom: 1px solid var(--Separator-1);
+}
+table .active {
+    background: var(--System-BG-2);
+}
+table .small {
+    font-size: 0.8em;
+}
+table .rank {
+    width: 30px;
+    text-align: right;
+    word-break: keep-all !important;
+}
+
+
+/* change border colour to suit your needs */
+hr {
+    display:block;
+    height:1px;
+    border:0;   
+    border-top:1px solid var(--Separator-1);
+    margin:1em 0;
+    padding:0;
+}
+
+input, select {
+    vertical-align:middle;
+}
+
+
+.mainChart {
+    height: 200px;
+}
+
+
+/* ツールバー ========== */
+#toolbar {
+    background: #fff;
+    padding: 26px;
+    display: grid;
+    grid-template-columns: 1fr 36px;
+    align-items: center;
+    column-gap: 20px;
+    row-gap: 10px;
+}
+#toolbar h1 {
+    font-size: 2.4rem;
+    font-weight: normal;
+}
+#toolbar a {
+    width: 36px;
+    height: 36px;
+    border-radius: 6px;
+    display: grid;
+    place-items: center;
+    text-decoration: none;
+}
+#toolbar a:hover {
+    background: var(--System-BG-3);
+}
+#toolbar a i {
+    font-size: 1.8rem;
+}
+#toolbar form {
+    grid-column: 1 / 3;
+}
+#toolbar form select,
+#toolbar form input {
+    margin-right: 20px;
+}
+#legal-footer {
+    position: absolute;
+    bottom: 10px;
+    width: 100%;
+}
+#legal-footer p {
+    text-align: center;
+}
+#legal-footer p,
+#legal-footer p small {
+    color: var(--Label-2);
+}
+#legal-footer p,
+#legal-footer p small,
+#legal-footer p a {
+    font-size: 1.2rem;
+}
+@media print{
+    #toolbar, #legal-footer {
+        display: none;
+    }
+}
+#loader {
+    display: flex;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    justify-content: center;
+    align-items: center;
+    background: var(--System-BG-1);
+}
+#loader .fas {
+    font-size: 4rem;
+    color: var(--Label-2);
+    animation: 2s linear infinite rotation;
+}
+@keyframes rotation{
+    0%{ transform:rotate(0);}
+    100%{ transform:rotate(360deg); }
+}
+
+.notice {
+    margin-top: 32vh;
+    text-align: center;
+    color: var(--Label-2);
+}
+.notice i {
+    display: block;
+    margin-bottom: 14px;
+    text-align: center;
+    font-size: 42px;
+    color: var(--Label-2);
+}
+
+/* 表紙 ========== */
+header,
+footer {
+    height: 1414px;
+    display: flex;
+    flex-direction: column;
+}
+@media print{
+    header,
+    footer {
+        height: 370mm;
+    }
+}
+header .inner,
+footer .inner {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: center;
+}
+header small,
+footer small {
+    display: block;
+    text-align: right;
+    font-size: 1.2rem;
+}
+header .inner,
+header small,
+footer .inner,
+footer small {
+    border-top: 2px solid var(--Separator-1);
+}
+header .inner section {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+header .inner section h1 {
+    width: 660px;
+    font-size: 4rem;
+    line-height: 1em;
+    padding-bottom: 10px;
+    border-bottom: 3px solid var(--Separator-1);
+}
+header .inner section h1::first-line {
+    font-size: 0.6em;
+}
+header .inner section h1::after {
+    content: "";
+    display: block;
+    border-bottom: 1px solid var(--Separator-1);
+    position: relative;
+    top: 16px;
+}
+header .inner section h2,
+header .inner section h3,
+header .inner section p {
+    text-align: center;
+}
+header .inner section h2 {
+    margin-top: 100px;
+    font-size: 3rem;
+}
+header .inner section h3 {
+    margin-top: 50px;
+    font-size: 2.2rem;
+}
+header .inner img {
+    width: 250px;
+    margin-bottom: 20px;
+}
+footer p {
+    font-size: 2rem;
+    text-align: right;
+    font-family: var(--serif);
+}
+footer address{
+    margin-top: 100px;
+    padding: 30px;
+    border: 1px solid var(--Separator-1);
+}
+
+/* メイン共通 ========== */
+main .title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 2px solid var(--Separator-1);
+    margin-bottom: 10px;
+}
+main .title h2 {
+    font-size: 2rem;
+}
+#queries table th, #queries table td,
+#organic table th, #organic table td,
+#pages table th, #pages table td,
+#referrals table th, #referrals table td,
+#geo table th, #geo table td {
+    word-break: keep-all;
+}
+#queries table .title-col,
+#organic table .title-col,
+#pages table .title-col,
+#referrals table .title-col,
+#geo table .title-col {
+    word-break: break-all;
+}
+@media print{
+    .page-break {
+        break-before: page;
+    }
+}
+
+/* 検索キーワードランク ========== */
+#ranking .about {
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+}
+#ranking .about dt:first-of-type,
+#ranking .about dd:first-of-type {
+    font-weight: bold;
+}
+#ranking .about dd {
+    word-break: keep-all;
+}
+#ranking > ul {
+    margin-top: 30px;
+    padding-left: 30px;
+    list-style: circle;
+}
+
+/* 目次 ========== */
+#toc h3 {
+    margin-top: 20px;
+    font-size: 1.6rem;
+}
+#toc h3 i {
+    font-size: 3rem;
+    vertical-align: middle;
+    position: relative;
+    top: -2px;
+}
+#toc table {
+    margin-top: 10px;
+}
+#toc aside {
+    border-top: 1px solid var(--Separator-1);
+    margin-top: 30px;
+}
+#toc aside dl {
+    margin-top: 10px;
+    padding: 0 30px;
+}
+#toc aside dl dt {
+    font-weight: bold;
+}
+
+/* ユーザーサマリー ========== */
+#visitors .summaryChart {
+    display: grid;
+    margin-top: 20px;
+    grid-template-columns: 1fr 230px;
+    column-gap: 10px;
+}
+#visitors .miniChart {
+    display: grid;
+    grid-template-columns: repeat( auto-fill, minmax( 180px, 1fr ));
+    column-gap: 20px;
+    row-gap: 20px;
+}
+#visitors .miniChart section h3 {
+    font-weight: normal;
+}
+#visitors .miniChart section p {
+    font-size: 3rem;
+    line-height: 1em;
+}
+#visitors .miniChartWrapper {
+    height: 20px;
+}
+
+
+/* 設定 ========== */
+.settings form {
+    margin: 0 180px 60px;
+}
+.settings form fieldset {
+    margin: 30px 0;
+}
+.settings form input:not([type="submit"]),
+.settings form textarea {
+    display: block;
+    width: 670px;
+}
+.settings form textarea {
+    display: block;
+    width: 100%;
+    height: 10em;
+    resize: vertical;
+}
+.settings form legend {
+    font-size: 2.9rem;
+}
+.settings form label {
+    display: block;
+    margin-top: 20px;
+    font-weight: bold;
+}
+.settings form p {
+    color: var(--Label-2);
+}
