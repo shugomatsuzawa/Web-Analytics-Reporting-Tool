@@ -1,7 +1,13 @@
 <section id="geo">
     <div class="title">
         <h2>6. 地域</h2>
-        <p><?php echo $siteName ?></p>
+<?php
+if ( empty($siteName) ) {
+    echo '<p>' . $clientName . '</p>';
+} else {
+    echo '<p>' . $siteName . '（' . $clientName . '）</p>';
+}
+?>
     </div>
 <?php
 echo '<p><time datetime="' . $startDate . '">' . $startDateDisplay . '</time> - <time datetime="' . $endDate . '">' . $endDateDisplay . '</time></p>';

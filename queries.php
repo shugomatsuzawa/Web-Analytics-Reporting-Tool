@@ -1,7 +1,13 @@
 <section id="queries">
     <div class="title">
         <h2>2. 検索クエリ</h2>
-        <p><?php echo $siteName ?></p>
+<?php
+if ( empty($siteName) ) {
+    echo '<p>' . $clientName . '</p>';
+} else {
+    echo '<p>' . $siteName . '（' . $clientName . '）</p>';
+}
+?>
     </div>
     <p>Google検索：上位1,000件のランディングページ（日別）</p>
 <?php

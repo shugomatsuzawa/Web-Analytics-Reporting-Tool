@@ -1,7 +1,13 @@
 <section id="toc">
     <div class="title">
         <h2>アクセス解析 レポート（目次）</h2>
-        <p><?php echo $siteName ?></p>
+<?php
+if ( empty($siteName) ) {
+    echo '<p>' . $clientName . '</p>';
+} else {
+    echo '<p>' . $siteName . '（' . $clientName . '）</p>';
+}
+?>
     </div>
     <p>1ヶ月間に御社のWebサイトを閲覧したユーザー数・行動などをレポートしたものです。レポートの掲載内容は下記のとおりです。</p>
     <section>

@@ -1,11 +1,23 @@
 <section id="ranking">
     <div class="title">
         <h2>検索キーワードランク状況</h2>
-        <p><?php echo $siteName ?></p>
+<?php
+if ( empty($siteName) ) {
+    echo '<p>' . $clientName . '</p>';
+} else {
+    echo '<p>' . $siteName . '（' . $clientName . '）</p>';
+}
+?>
     </div>
     <dl class="about">
         <dt>サイト名</dt>
-        <dd><?php echo $siteName ?></dd>
+<?php
+if ( empty($siteName) ) {
+    echo '<dd>' . $clientName . '</dd>';
+} else {
+    echo '<dd>' . $siteName . '</dd>';
+}
+?>
         <dt>サイトURL</dt>
         <dd><?php echo $siteUrl ?></dd>
         <dt>設定キーワード</dt>

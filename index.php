@@ -217,7 +217,11 @@ if ( empty($programName) ) {
                 echo $mysqli->error;
             } else {
                 while( $sqlList = $sqlListResult->fetch_object() ) {
-                    echo '<option value="' . $sqlList->viewId . '_in_' . $sqlTableName . '">' . $sqlList->name . "</option>\n";
+                    if ( empty($sqlList->siteName) ) {
+                        echo '<option value="' . $sqlList->viewId . '_in_' . $sqlTableName . '">' . $sqlList->name . "</option>\n";
+                    } else {
+                        echo '<option value="' . $sqlList->viewId . '_in_' . $sqlTableName . '">' . $sqlList->siteName . '（' . $sqlList->name . "）</option>\n";
+                    }
                 }
             }
             echo "</optgroup>\n";
@@ -257,7 +261,8 @@ if ( empty($programName) ) {
             $sqlSearch = $sqlSearchResult->fetch_object();
 
             $viewId = $sqlSearch->viewId;
-            $siteName = $sqlSearch->name;
+            $clientName = $sqlSearch->name;
+            $siteName = $sqlSearch->siteName;
             $siteUrl = $sqlSearch->url;
             $siteKeyword = explode(",", $sqlSearch->keyword);
         }

@@ -1,9 +1,22 @@
+
 <header>
     <div class="inner">
         <section>
             <h1>Webサイト<br>アクセス解析レポート</h1>
-            <h2><?php echo $siteName ?> 御中</h2>
-            <p><?php echo $siteUrl ?></p>
+<?php
+if ( empty($siteName) ) {
+    echo <<<EOF
+        <h2>$clientName 御中</h2>
+        <p>$siteUrl</p>
+    EOF;
+} else {
+    echo <<<EOF
+        <h2>$clientName 御中</h2>
+        <h3>【{$siteName}】</h3>
+        <p>$siteUrl</p>
+    EOF;
+}
+?>
         </section>
         <?php echo $companyLogo; ?>
     </div>
