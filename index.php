@@ -6,6 +6,30 @@ ini_set('display_errors', "On");
 require_once __DIR__ . '/google-api-php-client/vendor/autoload.php';
 
 
+// Config 読込み
+$configFile = 'user/config.php';
+
+if ( file_exists($configFile) ) {
+    $config = require 'user/config.php';
+
+    $keyFileLocation = __DIR__ . '/' . $config['keyFile'];
+    if( empty($config['scKeyFile']) ) {
+        $scKeyFileLocation = $config['keyFile'];
+    } else {
+        $scKeyFileLocation = $config['scKeyFile'];
+    }
+    $sqlServer = $config['sqlServer'];
+    $sqlUsername = $config['sqlUsername'];
+    $sqlPassword = $config['sqlPassword'];
+    $sqlDbName = $config['sqlDbName'];
+    $pythonPath = $config['pythonPath'];
+    $programName = $config['programName'];
+    $companyName = $config['companyName'];
+    $companyLogo = $config['companyLogo'];
+    $companyAddress = $config['companyAddress'];
+}
+
+
 // メトリクス・オブジェクトを作成
 // ユーザー
 $users = new Google_Service_AnalyticsReporting_Metric();
@@ -111,7 +135,13 @@ $noOrder = '';
 <!DOCTYPE html>
 <html>
 <head>
-<title>Webサイト アクセス解析レポート</title>
+<?php
+if ( empty($programName) ) {
+    echo '<title>アクセス解析レポート作成ツール</title>';
+} else {
+    echo '<title>' . $programName . '</title>';
+}
+?>
 <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
 <meta name="robots" content="noindex,nofollow">
 <link rel="stylesheet" href="style.css">
@@ -139,9 +169,6 @@ function stopload(){
 
 <body>
 <?php
-// Config 読込み
-$configFile = 'user/config.php';
-
 if ( !file_exists($configFile) ): // Config 存在チェック（設定ファイルなし）
     echo <<<EOF
         <p class="notice">設定ファイルが見つかりませんでした。<br>
@@ -149,29 +176,18 @@ if ( !file_exists($configFile) ): // Config 存在チェック（設定ファイ
     EOF;
 
 else: // Config 存在チェック（設定ファイルあり）
-
-    $config = require 'user/config.php';
-
-    $keyFileLocation = __DIR__ . '/' . $config['keyFile'];
-    if( empty($config['scKeyFile']) ) {
-        $scKeyFileLocation = $config['keyFile'];
-    } else {
-        $scKeyFileLocation = $config['scKeyFile'];
-    }
-    $sqlServer = $config['sqlServer'];
-    $sqlUsername = $config['sqlUsername'];
-    $sqlPassword = $config['sqlPassword'];
-    $sqlDbName = $config['sqlDbName'];
-    $pythonPath = $config['pythonPath'];
-    $companyName = $config['companyName'];
-    $companyLogo = $config['companyLogo'];
-    $companyAddress = $config['companyAddress'];
 ?>
 <aside id="toolbar">
     <div id="loader">
         <i class="fas fa-circle-notch"></i>
     </div>
-    <h1>Webサイト アクセス解析レポート（PHP版）Beta</h1>
+<?php
+if ( empty($programName) ) {
+    echo '<h1>アクセス解析レポート作成ツール</h1>';
+} else {
+    echo '<h1>' . $programName . '</h1>';
+}
+?>
     <a href="settings.php" title="設定"><i class="fas fa-cog" aria-label="設定"></i></a>
 <?php
     // mysqliクラスのオブジェクトを作成
@@ -190,7 +206,7 @@ else: // Config 存在チェック（設定ファイルあり）
         <form action="index.php" method="get">
             <label for="view">ビュー：</label>
             <select name="view" id="view" required>
-                <option value="" disabled>--Please choose an option--</option>
+                <option value="" disabled>-- ビューを選択してください --</option>
         EOF;
         while( $sqlTable = $sqlTableResult->fetch_object() ) {
             $sqlTablesIn = 'Tables_in_' . $sqlDbName;
@@ -332,7 +348,7 @@ endif; // Config 存在チェック
 <aside id="legal-footer">
     <p>
         <a href="ThirdPartySoftwareLicense.txt" target="_blank" rel="noopener">サードパーティに関する通知 <i class="fas fa-external-link-alt"></i></a>&nbsp;|&nbsp;
-        <a href="https://github.com/shugomatsuzawa/Web-Analytics-Reporting-Tool" target="_blank" rel="noopener">Webサイト アクセス解析レポートについて <i class="fas fa-external-link-alt"></i></a>&nbsp;|&nbsp;
+        <a href="https://github.com/shugomatsuzawa/Web-Analytics-Reporting-Tool" target="_blank" rel="noopener">アクセス解析レポート作成ツールについて <i class="fas fa-external-link-alt"></i></a>&nbsp;|&nbsp;
         <small>バージョン 1.0 beta 1</small>
     </p>
 </aside>

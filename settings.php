@@ -18,6 +18,7 @@ if ( isset($_POST['keyFile']) && isset($_POST['sqlServer']) && isset($_POST['sql
 
     $config['pythonPath'] = $_POST['pythonPath'];
 
+    $config['programName'] = $_POST['programName'];
     $config['companyName'] = $_POST['companyName'];
     $config['companyLogo'] = $_POST['companyLogo'];
     $companyAddressRaw = $_POST['companyAddress'];
@@ -37,7 +38,13 @@ if ( file_exists($configFile) ) {
 <!DOCTYPE html>
 <html>
 <head>
-<title>Webサイト アクセス解析レポート</title>
+<?php
+if ( empty($config['programName']) ) {
+    echo '<title>設定 - アクセス解析レポート作成ツール</title>';
+} else {
+    echo '<title>設定 - ' . $config['programName'] . '</title>';
+}
+?>
 <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
 <meta name="robots" content="noindex,nofollow">
 <link rel="stylesheet" href="style.css">
@@ -99,6 +106,8 @@ function stopload(){
     </fieldset>
     <fieldset>
         <legend>発行者情報（会社情報）</legend>
+        <label for="programName">プログラム名（任意）:</label>
+        <input type="text" name="programName" id="programName" placeholder="アクセス解析レポート作成ツール" value="<?php echo $config['programName']; ?>">
         <label for="companyName">発行者名:</label>
         <input type="text" name="companyName" id="companyName" placeholder="○○ Co., Ltd." value="<?php echo $config['companyName']; ?>" required>
         <label for="companyName">発行者ロゴ&lt;img&gt;タグ:</label>
