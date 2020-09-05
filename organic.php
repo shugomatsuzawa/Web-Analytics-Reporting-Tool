@@ -1,7 +1,12 @@
 <section id="organic">
     <div class="title">
-        <h2>3. 検索キーワード</h2>
 <?php
+if ( !empty($pythonPath) && ($enableSC == 1) ) {
+    echo '<h2>3. 検索キーワード</h2>';
+} else {
+    echo '<h2>2. 検索キーワード</h2>';
+}
+
 if ( empty($siteName) ) {
     echo '<p>' . $clientName . '</p>';
 } else {

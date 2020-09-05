@@ -264,7 +264,10 @@ if ( empty($programName) ) {
             $clientName = $sqlSearch->name;
             $siteName = $sqlSearch->siteName;
             $siteUrl = $sqlSearch->url;
-            $siteKeyword = explode(",", $sqlSearch->keyword);
+            $enableSC = $sqlSearch->searchConsole;
+            if ( !empty($sqlSearch->keyword) ) {
+                $siteKeyword = explode(",", $sqlSearch->keyword);
+            }
         }
 
         // DB接続を閉じる
@@ -331,12 +334,12 @@ if ( empty($programName) ) {
 <?php include('firstPage.php'); ?>
 <main class="home">
 <?php
-        if ( !empty($pythonPath) && !empty($siteUrl) && !empty($siteKeyword) ) {
+        if ( !empty($pythonPath) && ($enableSC == 1) && !empty($siteKeyword) ) {
             include('ranking.php');
         }
         include('toc.php');
         include('visitors.php');
-        if ( !empty($pythonPath) && !empty($siteUrl) && !empty($siteKeyword) ) {
+        if ( !empty($pythonPath) && ($enableSC == 1) ) {
             include('queries.php');
         }
         include('organic.php');

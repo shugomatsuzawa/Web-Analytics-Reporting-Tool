@@ -47,6 +47,7 @@ viewId | int | PRI | 123456789
 name | varchar | | 〇〇株式会社
 siteName | varchar | | 通販サイト*
 url | varchar | | https://example.com
+searchConsole | tinyint(1) | | 1
 keyword | text | | キーワード,キーワード,キーワード,キーワード,キーワード
 
 *siteName は任意項目です。同じ顧客の複数サイトを管理するときに使えます。

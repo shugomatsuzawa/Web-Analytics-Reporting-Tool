@@ -1,7 +1,12 @@
 <section id="geo">
     <div class="title">
-        <h2>6. 地域</h2>
 <?php
+if ( !empty($pythonPath) && ($enableSC == 1) ) {
+    echo '<h2>6. 地域</h2>';
+} else {
+    echo '<h2>5. 地域</h2>';
+}
+
 if ( empty($siteName) ) {
     echo '<p>' . $clientName . '</p>';
 } else {

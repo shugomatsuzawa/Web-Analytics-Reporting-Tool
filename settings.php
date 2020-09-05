@@ -110,11 +110,11 @@ function stopload(){
         <input type="text" name="programName" id="programName" placeholder="アクセス解析レポート作成ツール" value="<?php echo $config['programName']; ?>">
         <label for="companyName">発行者名:</label>
         <input type="text" name="companyName" id="companyName" placeholder="○○ Co., Ltd." value="<?php echo $config['companyName']; ?>" required>
-        <label for="companyName">発行者ロゴ&lt;img&gt;タグ:</label>
+        <label for="companyName">発行者ロゴ&lt;img&gt;タグ（任意）:</label>
         <input type="text" name="companyLogo" id="companyLogo" placeholder='<img src="user/images/logo.svg" alt="○○ Co., Ltd." width="300" height="64">' value='<?php echo $config["companyLogo"]; ?>'>
-        <label for="companyAddress">発行者連絡先:</label>
+        <label for="companyAddress">発行者連絡先（任意）:</label>
         <p>レポート最終ページの、&lt;address&gt;HTML要素内に表示されます。HTMLタグを入力できます。</p>
-        <textarea name="companyAddress" id="companyAddress" placeholder='<strong>株式会社○○</strong><br>〒000-0000 住所が入ります<br>TEL:(03)1234-5678 FAX:(03)1234-5679<br>E-Mail:info@example.com<br>URL:https://example.com' required><?php echo $config['companyAddress']; ?></textarea>
+        <textarea name="companyAddress" id="companyAddress" placeholder='<strong>株式会社○○</strong><br>〒000-0000 住所が入ります<br>TEL:(03)1234-5678 FAX:(03)1234-5679<br>E-Mail:info@example.com<br>URL:https://example.com'><?php echo $config['companyAddress']; ?></textarea>
     </fieldset>
     <input type="submit" value="保存">
 </form>
