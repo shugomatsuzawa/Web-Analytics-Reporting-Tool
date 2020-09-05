@@ -308,7 +308,7 @@ else: // Config 存在チェック（設定ファイルあり）
 ?>
 </aside>
 <?php include('firstPage.php'); ?>
-<main>
+<main class="home">
 <?php
         if ( !empty($pythonPath) && !empty($siteUrl) && !empty($siteKeyword) ) {
             include('ranking.php');
@@ -332,7 +332,7 @@ endif; // Config 存在チェック
 <aside id="legal-footer">
     <p>
         <a href="ThirdPartySoftwareLicense.txt" target="_blank" rel="noopener">サードパーティに関する通知 <i class="fas fa-external-link-alt"></i></a>&nbsp;|&nbsp;
-        <a href="https://github.com/shugomatsuzawa/WebQuest_Analytics-Web" target="_blank" rel="noopener">Webサイト アクセス解析レポートについて <i class="fas fa-external-link-alt"></i></a>&nbsp;|&nbsp;
+        <a href="https://github.com/shugomatsuzawa/Web-Analytics-Reporting-Tool" target="_blank" rel="noopener">Webサイト アクセス解析レポートについて <i class="fas fa-external-link-alt"></i></a>&nbsp;|&nbsp;
         <small>バージョン 1.0 beta 1</small>
     </p>
 </aside>

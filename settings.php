@@ -71,7 +71,7 @@ function stopload(){
     <h1>設定</h1>
     <a href="index.php" title="ホームに戻る"><i class="fas fa-home" aria-label="ホームに戻る"></i></a>
 </aside>
-<main>
+<main class="settings">
 <form action="settings.php" method="post">
     <fieldset>
         <legend>Googleアナリティクス・サーチコンソールの設定</legend>

@@ -11,6 +11,7 @@ GoogleアナリティクスとGoogleサーチコンソールからデータを�
 cd ~/www #任意のWebサーバーディレクトリに移動してください。
 git clone https://github.com/shugomatsuzawa/Web-Analytics-Reporting-Tool.git
 ```
+顧客の重要な情報を扱いますので、このディレクトリにはBasic認証等の設定を推奨します。    
 ### 依存関係のインストール
 Python 3 のインストールが必要です。  
 プログラムのディレクトリに移動し、requirements.txt の内容をインストールします。

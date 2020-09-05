@@ -479,3 +479,21 @@ main .title h2 {
 }
 
 
+/* 設定 ========== */
+.settings form {
+    margin: 0 180px 60px;
+}
+.settings form fieldset {
+    margin: 30px 0;
+}
+.settings form input:not([type="submit"]),
+.settings form textarea {
+    display: block;
+    width: 670px;
+}
+.settings form legend {
+    font-size: 2.9rem;
+}
+.settings form p {
+    color: var(--Label-2);
+}
