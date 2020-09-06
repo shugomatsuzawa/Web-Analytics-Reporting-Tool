@@ -18,7 +18,7 @@ if ( empty($siteName) ) {
 }
 ?>
         </section>
-        <?php echo $companyLogo; ?>
+        <?php echo $publisherLogo; ?>
     </div>
-    <small>Copyright &copy; <?php echo date('Y') . ' ' . $companyName . '.'; ?> All Rights Reserved.</small>
+    <small>Copyright &copy; <?php echo date('Y') . ' ' . $publisherName . '.'; ?> All Rights Reserved.</small>
 </header>

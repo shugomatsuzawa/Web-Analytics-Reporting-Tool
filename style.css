@@ -79,10 +79,10 @@ header,
 main > section,
 footer {
     background: var(--System-BG-1);
-    padding: 40px;
     margin: 20px auto;
+    padding: 40px;
     max-width: 1000px;
-    min-height: calc(100vh - 104px);
+    min-height: 1414px;
 }
 
 @media print{
@@ -97,6 +97,7 @@ footer {
         margin: 0;
         padding: 10mm;
         width: 1000px;
+        min-height: auto;
     }
     header,
     main > section {
@@ -303,7 +304,7 @@ input, select {
 /* 表紙 ========== */
 header,
 footer {
-    height: calc(100vh - 104px);
+    height: 1414px;
     display: flex;
     flex-direction: column;
 }
@@ -496,8 +497,19 @@ main .title h2 {
     display: block;
     width: 670px;
 }
+.settings form textarea {
+    display: block;
+    width: 100%;
+    height: 10em;
+    resize: vertical;
+}
 .settings form legend {
     font-size: 2.9rem;
+}
+.settings form label {
+    display: block;
+    margin-top: 20px;
+    font-weight: bold;
 }
 .settings form p {
     color: var(--Label-2);

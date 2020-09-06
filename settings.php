@@ -6,7 +6,7 @@ ini_set('display_errors', "On");
 // Config パス
 $configFile = 'user/config.php';
 
-if ( isset($_POST['keyFile']) && isset($_POST['sqlServer']) && isset($_POST['sqlUsername']) && isset($_POST['sqlPassword']) && isset($_POST['sqlDbName']) && isset($_POST['pythonPath']) && isset($_POST['companyName']) ) {
+if ( isset($_POST['keyFile']) && isset($_POST['sqlServer']) && isset($_POST['sqlUsername']) && isset($_POST['sqlPassword']) && isset($_POST['sqlDbName']) && isset($_POST['publisherName']) ) {
     // config作成
     $config['keyFile'] = $_POST['keyFile'];
     $config['scKeyFile'] = $_POST['scKeyFile'];
@@ -19,10 +19,10 @@ if ( isset($_POST['keyFile']) && isset($_POST['sqlServer']) && isset($_POST['sql
     $config['pythonPath'] = $_POST['pythonPath'];
 
     $config['programName'] = $_POST['programName'];
-    $config['companyName'] = $_POST['companyName'];
-    $config['companyLogo'] = $_POST['companyLogo'];
-    $companyAddressRaw = $_POST['companyAddress'];
-    $config['companyAddress'] = str_replace('\n', '', $companyAddressRaw);
+    $config['publisherName'] = $_POST['publisherName'];
+    $config['publisherLogo'] = $_POST['publisherLogo'];
+    $publisherAddressRaw = $_POST['publisherAddress'];
+    $config['publisherAddress'] = str_replace('\n', '', $publisherAddressRaw);
 
     // configファイル上書き保存
     $configFile = 'user/config.php';
@@ -82,6 +82,13 @@ function stopload(){
 <form action="settings.php" method="post">
     <fieldset>
         <legend>Googleアナリティクス・サーチコンソールの設定</legend>
+        <p><a href="https://console.developers.google.com/apis/" target="_blank" rel="noopener">Google API コンソール <i class="fas fa-external-link-alt" aria-label="新しいタブで開く"></i></a>にアクセスし、次のAPIを有効にします。</p>
+        <ul>
+            <li>Analytics Reporting API</li>
+            <li>Google Search Console API</li>
+        </ul>
+        <p>サービスアカウントを取得し、使用するアナリティクス・サーチコンソールアカウントに登録します。</p>
+        <p>JSONキーファイルをサーバーにサップロードし、ファイルの場所を下記に記入します。</p>
         <label for="keyFile">Googleアナリティクス キーファイルへの相対パス：</label>
         <input type="text" name="keyFile" id="keyFile" inputmode="url" placeholder="user/key-files/my-project.json" value="<?php echo $config['keyFile']; ?>" required>
         <label for="scKeyFile">Googleサーチコンソール キーファイルへの相対パス（アナリティクスと共通の場合は空欄）：</label>
@@ -89,6 +96,20 @@ function stopload(){
     </fieldset>
     <fieldset>
         <legend>データベースの設定</legend>
+        <p>このプログラム専有のMySQLデータベースが必要です。<br>複数のテーブルを登録可能です。<br>カラムの例は次の通りです。</p>
+        <table>
+            <thead>
+                <tr><th>Field</th><th>Type</th><th>Key</th><th>説明</th><th>例</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>viewId</td><td>int</td><td>PRI</td><td>Google アナリティクスのビューID</td><td>123456789</td></tr>
+                <tr><td>name</td><td>varchar</td><td></td><td>顧客名</td><td>〇〇株式会社</td></tr>
+                <tr><td>siteName</td><td>varchar</td><td></td><td>サイト名（マルチサイトの場合に必要）</td><td>通販サイト</td></tr>
+                <tr><td>url</td><td>varchar</td><td></td><td>サイトのURL</td><td>https://example.com</td></tr>
+                <tr><td>searchConsole</td><td>tinyint(1)</td><td></td><td>サーチコンソールの使用（使用する場合は 1）</td><td>1</td></tr>
+                <tr><td>keyword</td><td>text</td><td></td><td>ランキングの設定キーワード（カンマ区切り）</td><td>キーワード,キーワード,キーワード,キーワード,キーワード</td></tr>
+            </tbody>
+        </table>
         <label for="sqlServer">サーバーアドレス：</label>
         <input type="text" name="sqlServer" id="sqlServer" inputmode="url" placeholder="mysql.example.com" value="<?php echo $config['sqlServer']; ?>" required>
         <label for="sqlUsername">ユーザー名：</label>
@@ -100,21 +121,23 @@ function stopload(){
     </fieldset>
     <fieldset>
         <legend>プログラムの設定</legend>
-        <label for="pythonPath">Pythonのパス：</label>
-        <p>サーバー上のPythonへの相対パスを記入します。Python 3.x系に対応しています。</p>
-        <input type="text" name="pythonPath" id="pythonPath" inputmode="url" placeholder="../../.pyenv/versions/3.8.5/bin/python" value="<?php echo $config['pythonPath']; ?>" required>
+        <label for="pythonPath">Pythonのパス（サーチコンソールを使用する場合必要）：</label>
+        <p>サーチコンソールを使用するには、Pythonが必要です。Python 3.8.x系に対応。<br>先にSSHでプログラムのディレクトリに移動し、requirements.txt の内容をインストールしてください。</p>
+        <code>pip install -r requirements.txt</code>
+        <p>サーバー上のPythonへの相対パスを記入します。</p>
+        <input type="text" name="pythonPath" id="pythonPath" inputmode="url" placeholder="../../.pyenv/versions/3.8.5/bin/python" value="<?php echo $config['pythonPath']; ?>">
     </fieldset>
     <fieldset>
         <legend>発行者情報（会社情報）</legend>
         <label for="programName">プログラム名（任意）:</label>
         <input type="text" name="programName" id="programName" placeholder="アクセス解析レポート作成ツール" value="<?php echo $config['programName']; ?>">
-        <label for="companyName">発行者名:</label>
-        <input type="text" name="companyName" id="companyName" placeholder="○○ Co., Ltd." value="<?php echo $config['companyName']; ?>" required>
-        <label for="companyName">発行者ロゴ&lt;img&gt;タグ（任意）:</label>
-        <input type="text" name="companyLogo" id="companyLogo" placeholder='<img src="user/images/logo.svg" alt="○○ Co., Ltd." width="300" height="64">' value='<?php echo $config["companyLogo"]; ?>'>
-        <label for="companyAddress">発行者連絡先（任意）:</label>
+        <label for="publisherName">発行者名:</label>
+        <input type="text" name="publisherName" id="publisherName" placeholder="○○ Co., Ltd." value="<?php echo $config['publisherName']; ?>" required>
+        <label for="publisherName">発行者ロゴ&lt;img&gt;タグ（任意）:</label>
+        <input type="text" name="publisherLogo" id="publisherLogo" placeholder='<img src="user/images/logo.svg" alt="○○ Co., Ltd." width="300" height="64">' value='<?php echo $config["publisherLogo"]; ?>'>
+        <label for="publisherAddress">発行者連絡先（任意）:</label>
         <p>レポート最終ページの、&lt;address&gt;HTML要素内に表示されます。HTMLタグを入力できます。</p>
-        <textarea name="companyAddress" id="companyAddress" placeholder='<strong>株式会社○○</strong><br>〒000-0000 住所が入ります<br>TEL:(03)1234-5678 FAX:(03)1234-5679<br>E-Mail:info@example.com<br>URL:https://example.com'><?php echo $config['companyAddress']; ?></textarea>
+        <textarea name="publisherAddress" id="publisherAddress" placeholder='<strong>株式会社○○</strong><br>〒000-0000 住所が入ります<br>TEL:(03)1234-5678 FAX:(03)1234-5679<br>E-Mail:info@example.com<br>URL:https://example.com'><?php echo $config['publisherAddress']; ?></textarea>
     </fieldset>
     <input type="submit" value="保存">
 </form>

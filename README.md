@@ -9,7 +9,7 @@ GoogleアナリティクスとGoogleサーチコンソールからデータを�
 サーバーにSSHで接続してください。  
 ```sh
 cd ~/www #任意のWebサーバーディレクトリに移動してください。
-git clone https://github.com/shugomatsuzawa/Web-Analytics-Reporting-Tool.git
+git clone git@github.com:shugomatsuzawa/Web-Analytics-Reporting-Tool.git
 ```
 顧客の重要な情報を扱いますので、このディレクトリにはBasic認証等の設定を推奨します。    
 ### 依存関係のインストール
@@ -41,16 +41,14 @@ JSONキーファイルをサーバーに保存し、設定にファイルの場�
 このプログラム専有のMySQLデータベースが必要です。  
 複数のテーブルを登録可能です。  
 カラムの例は次の通りです。
-Field | Type | Key | 例
--|-|-|-
-viewId | int | PRI | 123456789
-name | varchar | | 〇〇株式会社
-siteName | varchar | | 通販サイト*
-url | varchar | | https://example.com
-searchConsole | tinyint(1) | | 1
-keyword | text | | キーワード,キーワード,キーワード,キーワード,キーワード
-
-*siteName は任意項目です。同じ顧客の複数サイトを管理するときに使えます。
+Field | Type | Key | 説明 | 例
+-|-|-|-|-
+viewId | int | PRI | Google アナリティクスのビューID | 123456789
+name | varchar | | 顧客名 | 〇〇株式会社
+siteName | varchar | | サイト名（マルチサイトの場合に必要） | 通販サイト
+url | varchar | | サイトのURL | https://example.com
+searchConsole | tinyint(1) | | サーチコンソールの使用（使用する場合は 1） | 1
+keyword | text | | ランキングの設定キーワード（カンマ区切り） | キーワード,キーワード,キーワード,キーワード,キーワード
 
 設定に必要な情報を入力し、データベースを登録します。
 
