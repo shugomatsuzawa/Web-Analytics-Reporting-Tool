@@ -1,7 +1,12 @@
 <?php
-// エラーを出力する
+// エラー出力設定
 ini_set('display_errors', "On");
 
+
+$userDir = 'user';
+if( !file_exists($userDir) ) {
+    mkdir($userDir);
+}
 
 // Config パス
 $configFile = 'user/config.php';

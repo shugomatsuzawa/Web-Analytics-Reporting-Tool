@@ -1,5 +1,5 @@
 <?php
-// エラーを出力する
+// エラー出力設定
 ini_set('display_errors', "On");
 
 // Google API クライアントライブラリの読込み
@@ -168,15 +168,6 @@ function stopload(){
 </head>
 
 <body>
-<?php
-if ( !file_exists($configFile) ): // Config 存在チェック（設定ファイルなし）
-    echo <<<EOF
-        <p class="notice">設定ファイルが見つかりませんでした。<br>
-            <a href="settings.php">設定</a>から初期設定を行ってください。</p>
-    EOF;
-
-else: // Config 存在チェック（設定ファイルあり）
-?>
 <aside id="toolbar">
     <div id="loader">
         <i class="fas fa-circle-notch"></i>
@@ -190,168 +181,205 @@ if ( empty($programName) ) {
 ?>
     <a href="settings.php" title="設定"><i class="fas fa-cog" aria-label="設定"></i></a>
 <?php
+if ( !file_exists($configFile) || empty($keyFileLocation) || empty($sqlServer) || empty($sqlUsername) || empty($sqlPassword) || empty($sqlDbName) || empty($publisherName) ): // Config チェック（エラー）
+    echo <<<EOF
+        </aside>
+        <p class="notice"><i class="fas fa-exclamation-triangle" aria-label="警告"></i>設定ファイルにエラーが見つかりました。<br>
+            <a href="settings.php">設定</a>から初期設定を行ってください。</p>
+    EOF;
+
+else: // Config チェック（正常）
+
     // mysqliクラスのオブジェクトを作成
     $mysqli = new mysqli($sqlServer, $sqlUsername, $sqlPassword, $sqlDbName);
-    if ($mysqli->connect_error) {
-        echo $mysqli->connect_error;
-    } else {
-        $mysqli->set_charset("utf8");
-    }
-    // 選択フォーム
-    $sqlTableResult = $mysqli->query("SHOW TABLES FROM $sqlDbName");
-    if (!$sqlTableResult) {
-        echo $mysqli->error;
-    } else {
-        echo <<<EOF
-        <form action="index.php" method="get">
-            <label for="view">ビュー：</label>
-            <select name="view" id="view" required>
-                <option value="" disabled>-- ビューを選択してください --</option>
-        EOF;
-        while( $sqlTable = $sqlTableResult->fetch_object() ) {
-            $sqlTablesIn = 'Tables_in_' . $sqlDbName;
-            $sqlTableName = $sqlTable->$sqlTablesIn;
-            echo '<optgroup label="' . $sqlTableName . '">' . "\n";
-            $sqlListResult = $mysqli->query("SELECT * FROM $sqlTableName");
-            if (!$sqlListResult) {
-                echo $mysqli->error;
-            } else {
-                while( $sqlList = $sqlListResult->fetch_object() ) {
-                    if ( empty($sqlList->siteName) ) {
-                        echo '<option value="' . $sqlList->viewId . '_in_' . $sqlTableName . '">' . $sqlList->name . "</option>\n";
-                    } else {
-                        echo '<option value="' . $sqlList->viewId . '_in_' . $sqlTableName . '">' . $sqlList->siteName . '（' . $sqlList->name . "）</option>\n";
-                    }
-                }
-            }
-            echo "</optgroup>\n";
-        }
-        echo <<<EOF
-            </select>
-            <label for="startDate">期間の開始日：</label>
-        EOF;
-        echo '<input type="date" name="startDate" id="startDate" placeholder="YYYY-MM-DD" value="' . $_GET['startDate'] . '" required>' . "\n";
-        echo '<label for="endDate">期間の終了日：</label>' . "\n";
-        echo '<input type="date" name="endDate" id="endDate" placeholder="YYYY-MM-DD" value="' . $_GET['endDate'] . '" required>' . "\n";
-        echo <<<EOF
-            <input type="submit" value="適用">
-        </form>
-        EOF;
-    }
 
-    if(!isset($_GET['view']) || !isset($_GET['startDate']) || !isset($_GET['endDate'])): // 選択フォーム入力判定（未入力）
-
+    if ($mysqli->connect_error): // DB接続チェック（エラー）
+        $sqlConnectError = $mysqli->connect_error;
         echo <<<EOF
             </aside>
-            <p class="notice">ビュー未選択</p>
+            <p class="notice"><i class="fas fa-exclamation-triangle" aria-label="警告"></i>エラー<br>
+                $sqlConnectError</p>
         EOF;
 
-        // DB接続を閉じる
-        $mysqli->close();
+    else: // DB接続チェック（正常）
+        $mysqli->set_charset("utf8");
 
-    else: // 選択フォーム入力判定（入力あり）
+        // 選択フォーム
+        $sqlTableResult = $mysqli->query("SHOW TABLES FROM $sqlDbName");
 
-        $viewSelect = explode("_in_", $_GET['view']);
+        if (!$sqlTableResult): // テーブルチェック（エラー）
+            $sqlTableError = $mysqli->error;
+            echo <<<EOF
+                </aside>
+                <p class="notice"><i class="fas fa-exclamation-triangle" aria-label="警告"></i>エラー<br>
+                    $sqlTableError</p>
+            EOF;
 
-        // DB検索
-        $sqlSearchResult = $mysqli->query("SELECT * FROM $viewSelect[1] WHERE viewId = $viewSelect[0]");
-        if (!$sqlSearchResult) {
-            echo $mysqli->error;
-        } else {
-            $sqlSearch = $sqlSearchResult->fetch_object();
+        elseif ( ($sqlTableResult->num_rows) == 0 ): // テーブルチェック（テーブルなし）
+            echo <<<EOF
+                </aside>
+                <p class="notice"><i class="fas fa-exclamation-triangle" aria-label="警告"></i>テーブルが見つかりませんでした。</p>
+            EOF;
 
-            $viewId = $sqlSearch->viewId;
-            $clientName = $sqlSearch->name;
-            $siteName = $sqlSearch->siteName;
-            $siteUrl = $sqlSearch->url;
-            $enableSC = $sqlSearch->searchConsole;
-            if ( !empty($sqlSearch->keyword) ) {
-                $siteKeyword = explode(",", $sqlSearch->keyword);
+        else: // テーブルチェック（正常）
+            echo <<<EOF
+            <form action="index.php" method="get">
+                <label for="view">ビュー：</label>
+                <select name="view" id="view" required>
+                    <option value="" disabled>-- ビューを選択してください --</option>
+            EOF;
+            while ( $sqlTable = $sqlTableResult->fetch_object() ) {
+                $sqlTablesIn = 'Tables_in_' . $sqlDbName;
+                $sqlTableName = $sqlTable->$sqlTablesIn;
+                echo '<optgroup label="' . $sqlTableName . '">' . "\n";
+                $sqlListResult = $mysqli->query("SELECT * FROM $sqlTableName");
+                if (!$sqlListResult) {
+                    $sqlListError = $mysqli->error;
+                    echo '<option value="" disabled>エラー - ' . $sqlListError . "</option>\n";
+                } elseif ( ($sqlListResult->num_rows) == 0 ) {
+                    echo '<option value="" disabled>ビューがありません</option>' . "\n";
+                } else {
+                    while( $sqlList = $sqlListResult->fetch_object() ) {
+                        if ( empty($sqlList->siteName) ) {
+                            echo '<option value="' . $sqlList->viewId . '_in_' . $sqlTableName . '">' . $sqlList->name . "</option>\n";
+                        } else {
+                            echo '<option value="' . $sqlList->viewId . '_in_' . $sqlTableName . '">' . $sqlList->siteName . '（' . $sqlList->name . "）</option>\n";
+                        }
+                    }
+                }
+                echo "</optgroup>\n";
             }
-        }
+            echo <<<EOF
+                </select>
+                <label for="startDate">期間の開始日：</label>
+            EOF;
+            echo '<input type="date" name="startDate" id="startDate" placeholder="YYYY-MM-DD" value="' . $_GET['startDate'] . '" required>' . "\n";
+            echo '<label for="endDate">期間の終了日：</label>' . "\n";
+            echo '<input type="date" name="endDate" id="endDate" placeholder="YYYY-MM-DD" value="' . $_GET['endDate'] . '" required>' . "\n";
+            echo <<<EOF
+                <input type="submit" value="適用">
+            </form>
+            EOF;
 
-        // DB接続を閉じる
-        $mysqli->close();
-
-        $startDate = $_GET['startDate'];
-        $endDate = $_GET['endDate'];
-        $startDateDisplay = date('Y/m/d',strtotime($startDate));
-        $endDateDisplay = date('Y/m/d',strtotime($endDate));
-
-
-        // Analytics Reporting API V4サービスオブジェクトを初期化します。
-        function initializeAnalytics($KEY_FILE_LOCATION)
-        {
-            // Create and configure a new client object.
-            $client = new Google_Client();
-            $client->setApplicationName("Hello Analytics Reporting");
-            $client->setAuthConfig($KEY_FILE_LOCATION);
-            $client->setScopes(['https://www.googleapis.com/auth/analytics.readonly']);
-            $analytics = new Google_Service_AnalyticsReporting($client);
-
-            return $analytics;
-        }
-
-        // Analytics Reporting API V4をクエリします。
-        $analytics = initializeAnalytics($keyFileLocation);
-        function getReport($analytics, $VIEW_ID, $startDate, $endDate, $metrics, $dimensions, $orderName) {
-            // DateRangeオブジェクトを作成します。
-            $dateRange = new Google_Service_AnalyticsReporting_DateRange();
-            $dateRange->setStartDate($startDate);
-            $dateRange->setEndDate($endDate);
-
-            // Create sort order
-            $orderBy = new Google_Service_AnalyticsReporting_OrderBy();
-            $orderBy->setFieldName($orderName);
-            $orderBy->setSortOrder('DESCENDING');
-
-            // ReportRequestオブジェクトを作成します。
-            $request = new Google_Service_AnalyticsReporting_ReportRequest();
-            $request->setViewId($VIEW_ID);
-            $request->setDateRanges($dateRange);
-            $request->setDimensions($dimensions);
-            $request->setMetrics($metrics);
-            if ( !empty($orderName) ) { $request->setOrderBys($orderBy); }
-
-            $body = new Google_Service_AnalyticsReporting_GetReportsRequest();
-            $body->setReportRequests( array( $request) );
-            return $analytics->reports->batchGet( $body );
-        }
-
-
-        // グラフ共通
-        // ユーザー
-        $usersChartMetrics = array($users);
-        $usersChartDimensions = array($date);
-        $usersChartResponse = getReport($analytics, $viewId, $startDate, $endDate, $usersChartMetrics, $usersChartDimensions, $noOrder);
-
-        // ページビュー数
-        $pageviewsChartMetrics = array($pageviews);
-        $pageviewsChartDimensions = array($date);
-        $pageviewsChartResponse = getReport($analytics, $viewId, $startDate, $endDate, $pageviewsChartMetrics, $pageviewsChartDimensions, $noOrder);
 ?>
 </aside>
+<?php
+            if(!isset($_GET['view']) || !isset($_GET['startDate']) || !isset($_GET['endDate'])): // 選択フォーム入力判定（未入力）
+
+                echo '<p class="notice"><i class="fas fa-info-circle" aria-label="情報"></i>ビュー未選択</p>';
+
+                // DB接続を閉じる
+                $mysqli->close();
+
+            else: // 選択フォーム入力判定（入力あり）
+
+                $viewSelect = explode("_in_", $_GET['view']);
+
+                // DB検索
+                $sqlSearchResult = $mysqli->query("SELECT * FROM $viewSelect[1] WHERE viewId = $viewSelect[0]");
+                if (!$sqlSearchResult) {
+                    echo $mysqli->error;
+                } else {
+                    $sqlSearch = $sqlSearchResult->fetch_object();
+
+                    $viewId = $sqlSearch->viewId;
+                    $clientName = $sqlSearch->name;
+                    $siteName = $sqlSearch->siteName;
+                    $siteUrl = $sqlSearch->url;
+                    $enableSC = $sqlSearch->searchConsole;
+                    if ( !empty($sqlSearch->keyword) ) {
+                        $siteKeyword = explode(",", $sqlSearch->keyword);
+                    }
+                }
+
+                // DB接続を閉じる
+                $mysqli->close();
+
+                $startDate = $_GET['startDate'];
+                $endDate = $_GET['endDate'];
+                $startDateDisplay = date('Y/m/d',strtotime($startDate));
+                $endDateDisplay = date('Y/m/d',strtotime($endDate));
+
+
+                // Analytics Reporting API V4サービスオブジェクトを初期化します。
+                function initializeAnalytics($KEY_FILE_LOCATION)
+                {
+                    // Create and configure a new client object.
+                    $client = new Google_Client();
+                    $client->setApplicationName("Hello Analytics Reporting");
+                    $client->setAuthConfig($KEY_FILE_LOCATION);
+                    $client->setScopes(['https://www.googleapis.com/auth/analytics.readonly']);
+                    $analytics = new Google_Service_AnalyticsReporting($client);
+
+                    return $analytics;
+                }
+
+                // Analytics Reporting API V4をクエリします。
+                $analytics = initializeAnalytics($keyFileLocation);
+                function getReport($analytics, $VIEW_ID, $startDate, $endDate, $metrics, $dimensions, $orderName) {
+                    // DateRangeオブジェクトを作成します。
+                    $dateRange = new Google_Service_AnalyticsReporting_DateRange();
+                    $dateRange->setStartDate($startDate);
+                    $dateRange->setEndDate($endDate);
+
+                    // Create sort order
+                    $orderBy = new Google_Service_AnalyticsReporting_OrderBy();
+                    $orderBy->setFieldName($orderName);
+                    $orderBy->setSortOrder('DESCENDING');
+
+                    // ReportRequestオブジェクトを作成します。
+                    $request = new Google_Service_AnalyticsReporting_ReportRequest();
+                    $request->setViewId($VIEW_ID);
+                    $request->setDateRanges($dateRange);
+                    $request->setDimensions($dimensions);
+                    $request->setMetrics($metrics);
+                    if ( !empty($orderName) ) { $request->setOrderBys($orderBy); }
+
+                    $body = new Google_Service_AnalyticsReporting_GetReportsRequest();
+                    $body->setReportRequests( array( $request) );
+                    return $analytics->reports->batchGet( $body );
+                }
+
+
+                // グラフ共通
+                // ユーザー
+                $usersChartMetrics = array($users);
+                $usersChartDimensions = array($date);
+                $usersChartResponse = getReport($analytics, $viewId, $startDate, $endDate, $usersChartMetrics, $usersChartDimensions, $noOrder);
+
+                // ページビュー数
+                $pageviewsChartMetrics = array($pageviews);
+                $pageviewsChartDimensions = array($date);
+                $pageviewsChartResponse = getReport($analytics, $viewId, $startDate, $endDate, $pageviewsChartMetrics, $pageviewsChartDimensions, $noOrder);
+
+                //SC共通
+                $queryCmd = "$pythonPath sc.py $scKeyFileLocation $siteUrl $startDate $endDate";
+                $queryResponseRaw = shell_exec($queryCmd);
+                $queryResponse = json_decode($queryResponseRaw,true);
+?>
 <?php include('firstPage.php'); ?>
 <main class="home">
 <?php
-        if ( !empty($pythonPath) && ($enableSC == 1) && !empty($siteKeyword) ) {
-            include('ranking.php');
-        }
-        include('toc.php');
-        include('visitors.php');
-        if ( !empty($pythonPath) && ($enableSC == 1) ) {
-            include('queries.php');
-        }
-        include('organic.php');
-        include('pages.php');
-        include('referrals.php');
-        include('geo.php');
+                if ( !empty($pythonPath) && ($enableSC == 1) && !empty($siteKeyword) ) {
+                    include('ranking.php');
+                }
+                include('toc.php');
+                include('visitors.php');
+                if ( !empty($pythonPath) && ($enableSC == 1) ) {
+                    include('queries.php');
+                }
+                include('organic.php');
+                include('pages.php');
+                include('referrals.php');
+                include('geo.php');
 ?>
 </main>
 <?php
-        include('lastPage.php');
-    endif; // 選択フォーム入力判定
-endif; // Config 存在チェック
+                include('lastPage.php');
+            endif; // 選択フォーム入力判定
+        endif; // テーブルチェック
+    endif; // DB接続チェック
+endif; // Config チェック
 ?>
 <aside id="legal-footer">
     <p>

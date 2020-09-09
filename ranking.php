@@ -26,10 +26,6 @@ if ( empty($siteName) ) {
         <dd><?php echo '<time datetime="' . $startDate . '">' . $startDateDisplay . '</time> - <time datetime="' . $endDate . '">' . $endDateDisplay . '</time>'; ?></dd>
     </dl>
 <?php
-$queryCmd = "$pythonPath sc.py $scKeyFileLocation $siteUrl $startDate $endDate";
-$queryResponseRaw = shell_exec($queryCmd);
-$queryResponse = json_decode($queryResponseRaw,true);
-
 function rankingResults($reports, $siteKeyword) {
     echo <<<EOF
     <table>
