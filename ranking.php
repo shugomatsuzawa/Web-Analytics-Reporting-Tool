@@ -32,10 +32,7 @@ function rankingResults($reports, $siteKeyword) {
         <thead>
             <tr>
                 <th>検索語</th>
-                <th>Yahoo順位</th>
-                <th>Yahooヒット件数</th>
                 <th>Google順位</th>
-                <th>Googleヒット件数</th>
             </tr>
         </thead>
         <tbody>
@@ -62,10 +59,7 @@ function rankingResults($reports, $siteKeyword) {
         echo <<<EOF
         <tr>
             <td>$title</td>
-            <td>-</td>
-            <td>-</td>
             <td>$position</td>
-            <td>-</td>
         </tr>
         EOF;
     }
@@ -74,11 +68,7 @@ function rankingResults($reports, $siteKeyword) {
 rankingResults($queryResponse, $siteKeyword);
 ?>
     <ul>
-        <li>このページは、Google・Yahoo検索で上記キーワードにて検索した際の順位・ヒット件数を表しています。
-            <ul>
-                <li><strong>ヒット件数</strong>・・・検索結果ページの上部に「約○○○件」のように表示される数値です。参考情報としてご利用ください。<br>上記数値は純粋な数値を抽出しており、実際にお手持ちのPCなどで検索して表示される件数はキャッシュの影響があり この数値と多少の誤差が生じる場合がございます。</li>
-            </ul>
-        </li>
+        <li>このページは、Google検索で上記キーワードにて検索した際の順位を表しています。</li>
         <li>順位の欄に「-」が表示されている項目は、100位以下となります。</li>
         <li>お調べするキーワードなどの変更がございましたらお気軽にお申し付けください。</li>
     </ul>

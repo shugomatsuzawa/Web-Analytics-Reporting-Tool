@@ -129,8 +129,8 @@ function stopload(){
         <label for="pythonPath">Pythonのパス（サーチコンソールを使用する場合必要）：</label>
         <p>サーチコンソールを使用するには、Pythonが必要です。Python 3.8.x系に対応。<br>先にSSHでプログラムのディレクトリに移動し、requirements.txt の内容をインストールしてください。</p>
         <code>pip install -r requirements.txt</code>
-        <p>サーバー上のPythonへの相対パスを記入します。</p>
-        <input type="text" name="pythonPath" id="pythonPath" inputmode="url" placeholder="../../.pyenv/versions/3.8.5/bin/python" value="<?php echo $config['pythonPath']; ?>">
+        <p>サーバー上のPythonへのパスを記入します。</p>
+        <input type="text" name="pythonPath" id="pythonPath" inputmode="url" placeholder="/home/username/.pyenv/versions/3.8.5/bin/python" value="<?php echo $config['pythonPath']; ?>">
     </fieldset>
     <fieldset>
         <legend>発行者情報（会社情報）</legend>

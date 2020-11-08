@@ -260,11 +260,10 @@ else: // Config チェック（正常）
                 <input type="submit" value="適用">
             </form>
             EOF;
-
 ?>
 </aside>
 <?php
-            if(!isset($_GET['view']) || !isset($_GET['startDate']) || !isset($_GET['endDate'])): // 選択フォーム入力判定（未入力）
+            if (!isset($_GET['view']) || !isset($_GET['startDate']) || !isset($_GET['endDate'])): // 選択フォーム入力判定（未入力）
 
                 echo '<p class="notice"><i class="fas fa-info-circle" aria-label="情報"></i>ビュー未選択</p>';
 
@@ -278,7 +277,11 @@ else: // Config チェック（正常）
                 // DB検索
                 $sqlSearchResult = $mysqli->query("SELECT * FROM $viewSelect[1] WHERE viewId = $viewSelect[0]");
                 if (!$sqlSearchResult) {
-                    echo $mysqli->error;
+                    $sqlSearchError = $mysqli->error;
+                    echo <<<EOF
+                        <p class="notice"><i class="fas fa-exclamation-triangle" aria-label="警告"></i>エラー<br>
+                            $sqlSearchError</p>
+                    EOF;
                 } else {
                     $sqlSearch = $sqlSearchResult->fetch_object();
 
@@ -297,85 +300,93 @@ else: // Config チェック（正常）
 
                 $startDate = $_GET['startDate'];
                 $endDate = $_GET['endDate'];
-                $startDateDisplay = date('Y/m/d',strtotime($startDate));
-                $endDateDisplay = date('Y/m/d',strtotime($endDate));
+
+                if ( empty($viewId) || empty($clientName) || empty($siteUrl) ): // 入力内容チェック（データエラー）
+                    echo '<p class="notice"><i class="fas fa-exclamation-triangle" aria-label="警告"></i>正しくないデータベース形式</p>';
+
+                elseif ( !strptime($startDate, '%Y-%m-%d') || !strptime($endDate, '%Y-%m-%d') ): // 入力内容チェック（日付エラー）
+                    echo '<p class="notice"><i class="fas fa-exclamation-triangle" aria-label="警告"></i>正しくない日付形式</p>';
+                
+                else: // 入力内容チェック（正常）
+                    $startDateDisplay = date('Y/m/d',strtotime($startDate));
+                    $endDateDisplay = date('Y/m/d',strtotime($endDate));
+
+                    // Analytics Reporting API V4サービスオブジェクトを初期化します。
+                    function initializeAnalytics($KEY_FILE_LOCATION)
+                    {
+                        // Create and configure a new client object.
+                        $client = new Google_Client();
+                        $client->setApplicationName("Hello Analytics Reporting");
+                        $client->setAuthConfig($KEY_FILE_LOCATION);
+                        $client->setScopes(['https://www.googleapis.com/auth/analytics.readonly']);
+                        $analytics = new Google_Service_AnalyticsReporting($client);
+
+                        return $analytics;
+                    }
+
+                    // Analytics Reporting API V4をクエリします。
+                    $analytics = initializeAnalytics($keyFileLocation);
+                    function getReport($analytics, $VIEW_ID, $startDate, $endDate, $metrics, $dimensions, $orderName) {
+                        // DateRangeオブジェクトを作成します。
+                        $dateRange = new Google_Service_AnalyticsReporting_DateRange();
+                        $dateRange->setStartDate($startDate);
+                        $dateRange->setEndDate($endDate);
+
+                        // Create sort order
+                        $orderBy = new Google_Service_AnalyticsReporting_OrderBy();
+                        $orderBy->setFieldName($orderName);
+                        $orderBy->setSortOrder('DESCENDING');
+
+                        // ReportRequestオブジェクトを作成します。
+                        $request = new Google_Service_AnalyticsReporting_ReportRequest();
+                        $request->setViewId($VIEW_ID);
+                        $request->setDateRanges($dateRange);
+                        $request->setDimensions($dimensions);
+                        $request->setMetrics($metrics);
+                        if ( !empty($orderName) ) { $request->setOrderBys($orderBy); }
+
+                        $body = new Google_Service_AnalyticsReporting_GetReportsRequest();
+                        $body->setReportRequests( array( $request) );
+                        return $analytics->reports->batchGet( $body );
+                    }
 
 
-                // Analytics Reporting API V4サービスオブジェクトを初期化します。
-                function initializeAnalytics($KEY_FILE_LOCATION)
-                {
-                    // Create and configure a new client object.
-                    $client = new Google_Client();
-                    $client->setApplicationName("Hello Analytics Reporting");
-                    $client->setAuthConfig($KEY_FILE_LOCATION);
-                    $client->setScopes(['https://www.googleapis.com/auth/analytics.readonly']);
-                    $analytics = new Google_Service_AnalyticsReporting($client);
+                    // グラフ共通
+                    // ユーザー
+                    $usersChartMetrics = array($users);
+                    $usersChartDimensions = array($date);
+                    $usersChartResponse = getReport($analytics, $viewId, $startDate, $endDate, $usersChartMetrics, $usersChartDimensions, $noOrder);
 
-                    return $analytics;
-                }
+                    // ページビュー数
+                    $pageviewsChartMetrics = array($pageviews);
+                    $pageviewsChartDimensions = array($date);
+                    $pageviewsChartResponse = getReport($analytics, $viewId, $startDate, $endDate, $pageviewsChartMetrics, $pageviewsChartDimensions, $noOrder);
 
-                // Analytics Reporting API V4をクエリします。
-                $analytics = initializeAnalytics($keyFileLocation);
-                function getReport($analytics, $VIEW_ID, $startDate, $endDate, $metrics, $dimensions, $orderName) {
-                    // DateRangeオブジェクトを作成します。
-                    $dateRange = new Google_Service_AnalyticsReporting_DateRange();
-                    $dateRange->setStartDate($startDate);
-                    $dateRange->setEndDate($endDate);
-
-                    // Create sort order
-                    $orderBy = new Google_Service_AnalyticsReporting_OrderBy();
-                    $orderBy->setFieldName($orderName);
-                    $orderBy->setSortOrder('DESCENDING');
-
-                    // ReportRequestオブジェクトを作成します。
-                    $request = new Google_Service_AnalyticsReporting_ReportRequest();
-                    $request->setViewId($VIEW_ID);
-                    $request->setDateRanges($dateRange);
-                    $request->setDimensions($dimensions);
-                    $request->setMetrics($metrics);
-                    if ( !empty($orderName) ) { $request->setOrderBys($orderBy); }
-
-                    $body = new Google_Service_AnalyticsReporting_GetReportsRequest();
-                    $body->setReportRequests( array( $request) );
-                    return $analytics->reports->batchGet( $body );
-                }
-
-
-                // グラフ共通
-                // ユーザー
-                $usersChartMetrics = array($users);
-                $usersChartDimensions = array($date);
-                $usersChartResponse = getReport($analytics, $viewId, $startDate, $endDate, $usersChartMetrics, $usersChartDimensions, $noOrder);
-
-                // ページビュー数
-                $pageviewsChartMetrics = array($pageviews);
-                $pageviewsChartDimensions = array($date);
-                $pageviewsChartResponse = getReport($analytics, $viewId, $startDate, $endDate, $pageviewsChartMetrics, $pageviewsChartDimensions, $noOrder);
-
-                //SC共通
-                $queryCmd = "$pythonPath sc.py $scKeyFileLocation $siteUrl $startDate $endDate";
-                $queryResponseRaw = shell_exec($queryCmd);
-                $queryResponse = json_decode($queryResponseRaw,true);
+                    //SC共通
+                    $queryCmd = "$pythonPath sc.py $scKeyFileLocation $siteUrl $startDate $endDate";
+                    $queryResponseRaw = shell_exec($queryCmd);
+                    $queryResponse = json_decode($queryResponseRaw,true);
 ?>
 <?php include('firstPage.php'); ?>
 <main class="home">
 <?php
-                if ( !empty($pythonPath) && ($enableSC == 1) && !empty($siteKeyword) ) {
-                    include('ranking.php');
-                }
-                include('toc.php');
-                include('visitors.php');
-                if ( !empty($pythonPath) && ($enableSC == 1) ) {
-                    include('queries.php');
-                }
-                include('organic.php');
-                include('pages.php');
-                include('referrals.php');
-                include('geo.php');
+                    if ( !empty($pythonPath) && ($enableSC == 1) && !empty($siteKeyword) ) {
+                        include('ranking.php');
+                    }
+                    include('toc.php');
+                    include('visitors.php');
+                    if ( !empty($pythonPath) && ($enableSC == 1) ) {
+                        include('queries.php');
+                    }
+                    include('organic.php');
+                    include('pages.php');
+                    include('referrals.php');
+                    include('geo.php');
 ?>
 </main>
 <?php
-                include('lastPage.php');
+                    include('lastPage.php');
+                endif; // 入力内容チェック
             endif; // 選択フォーム入力判定
         endif; // テーブルチェック
     endif; // DB接続チェック
