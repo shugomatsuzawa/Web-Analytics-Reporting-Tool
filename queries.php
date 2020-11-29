@@ -65,41 +65,52 @@ queryChart($queryChartResponse);
 function queryResults($reports) {
     $rows = $reports['rows'];
 
-    for ($index = 0; $index < count($rows); $index++) {
-        $totalClicksArray[$index] = $rows[$index]['clicks'];
-        $totalImpressionsArray[$index] = $rows[$index]['impressions'];
-        $totalCtrArray[$index] = $rows[$index]['ctr'];
-        $totalPositionArray[$index] = $rows[$index]['position'];
-    }
-    $totalClicksRaw = array_sum($totalClicksArray);
-    $totalImpressionsRaw = array_sum($totalImpressionsArray);
-    $totalCtrRaw = array_sum($totalCtrArray) / count($rows);
-    $totalPositionRaw = array_sum($totalPositionArray) / count($rows);
+    if ( $rows == !0 ) {
+        for ($index = 0; $index < count($rows); $index++) {
+            $totalClicksArray[$index] = $rows[$index]['clicks'];
+            $totalImpressionsArray[$index] = $rows[$index]['impressions'];
+            $totalCtrArray[$index] = $rows[$index]['ctr'];
+            $totalPositionArray[$index] = $rows[$index]['position'];
+        }
+        $totalClicksRaw = array_sum($totalClicksArray);
+        $totalImpressionsRaw = array_sum($totalImpressionsArray);
+        $totalCtrRaw = array_sum($totalCtrArray) / count($rows);
+        $totalPositionRaw = array_sum($totalPositionArray) / count($rows);
 
-    $totalClicks = number_format($totalClicksRaw);
-    $totalImpressions = number_format($totalImpressionsRaw);
-    $totalCtr = round($totalCtrRaw, 2);
-    $totalPosition = round($totalPositionRaw, 2);
+        $totalClicks = number_format($totalClicksRaw);
+        $totalImpressions = number_format($totalImpressionsRaw);
+        $totalCtr = round($totalCtrRaw, 2);
+        $totalPosition = round($totalPositionRaw, 2);
 
-    if ( $totalClicksRaw == 0 ) {
+        if ( $totalClicksRaw == 0 ) {
+            $totalClicks_percentage = 0;
+        } else {
+            $totalClicks_percentage = round($totalClicksRaw / $totalClicksRaw * 100, 2);
+        }
+        if ( $totalImpressionsRaw == 0 ) {
+            $totalImpressions_percentage = 0;
+        } else {
+            $totalImpressions_percentage = round($totalImpressionsRaw / $totalImpressionsRaw * 100, 2);
+        }
+        if ( $totalCtrRaw == 0 ) {
+            $totalCtr_avgPercentage = 0;
+        } else {
+            $totalCtr_avgPercentage = round($totalCtrRaw / $totalCtrRaw * 100 - 100, 2);
+        }
+        if ( $totalPositionRaw == 0 ) {
+            $totalPosition_avgPercentage = 0;
+        } else {
+            $totalPosition_avgPercentage = round($totalPositionRaw / $totalPositionRaw * 100 - 100, 2);
+        }
+    } else {
+        $totalClicks = 0;
         $totalClicks_percentage = 0;
-    } else {
-        $totalClicks_percentage = round($totalClicksRaw / $totalClicksRaw * 100, 2);
-    }
-    if ( $totalImpressionsRaw == 0 ) {
+        $totalImpressions = 0;
         $totalImpressions_percentage = 0;
-    } else {
-        $totalImpressions_percentage = round($totalImpressionsRaw / $totalImpressionsRaw * 100, 2);
-    }
-    if ( $totalCtrRaw == 0 ) {
+        $totalCtr = 0;
         $totalCtr_avgPercentage = 0;
-    } else {
-        $totalCtr_avgPercentage = round($totalCtrRaw / $totalCtrRaw * 100 - 100, 2);
-    }
-    if ( $totalPositionRaw == 0 ) {
+        $totalPosition = 0;
         $totalPosition_avgPercentage = 0;
-    } else {
-        $totalPosition_avgPercentage = round($totalPositionRaw / $totalPositionRaw * 100 - 100, 2);
     }
 
     echo <<<EOF
@@ -128,41 +139,43 @@ function queryResults($reports) {
         <tbody>
     EOF;
 
-    for ($index = 0; $index < min( count($rows), 25); $index++) {
-        $rank = $index + 1;
-        $title = $rows[$index]['keys'][0];
+    if ( $rows == !0 ) {
+        for ($index = 0; $index < min( count($rows), 25); $index++) {
+            $rank = $index + 1;
+            $title = $rows[$index]['keys'][0];
 
-        $clicksRaw = $rows[$index]['clicks'];
-        $impressionsRaw = $rows[$index]['impressions'];
-        $ctrRaw = $rows[$index]['ctr'];
-        $positionRaw = $rows[$index]['position'];
+            $clicksRaw = $rows[$index]['clicks'];
+            $impressionsRaw = $rows[$index]['impressions'];
+            $ctrRaw = $rows[$index]['ctr'];
+            $positionRaw = $rows[$index]['position'];
 
-        $clicks = number_format($clicksRaw);
-        $impressions = number_format($impressionsRaw);
-        $ctr = round($ctrRaw, 2);
-        $position = round($positionRaw, 2);
+            $clicks = number_format($clicksRaw);
+            $impressions = number_format($impressionsRaw);
+            $ctr = round($ctrRaw, 2);
+            $position = round($positionRaw, 2);
 
-        if ( $totalClicksRaw == 0 ) {
-            $clicks_percentage = 0;
-        } else {
-            $clicks_percentage = round($clicksRaw / $totalClicksRaw * 100, 2);
+            if ( $totalClicksRaw == 0 ) {
+                $clicks_percentage = 0;
+            } else {
+                $clicks_percentage = round($clicksRaw / $totalClicksRaw * 100, 2);
+            }
+            if ( $totalImpressionsRaw == 0 ) {
+                $impressions_percentage = 0;
+            } else {
+                $impressions_percentage = round($impressionsRaw / $totalImpressionsRaw * 100, 2);
+            }
+
+            echo <<<EOF
+            <tr>
+                <td class="rank">$rank</td>
+                <td class="title-col">$title</td>
+                <td>$clicks<br><span class="small">({$clicks_percentage}%)</span></td>
+                <td>$impressions<br><span class="small">({$impressions_percentage}%)</span></td>
+                <td>{$ctr}%</td>
+                <td>$position</td>
+            </tr>
+            EOF;
         }
-        if ( $totalImpressionsRaw == 0 ) {
-            $impressions_percentage = 0;
-        } else {
-            $impressions_percentage = round($impressionsRaw / $totalImpressionsRaw * 100, 2);
-        }
-
-        echo <<<EOF
-        <tr>
-            <td class="rank">$rank</td>
-            <td class="title-col">$title</td>
-            <td>$clicks<br><span class="small">({$clicks_percentage}%)</span></td>
-            <td>$impressions<br><span class="small">({$impressions_percentage}%)</span></td>
-            <td>{$ctr}%</td>
-            <td>$position</td>
-        </tr>
-        EOF;
     }
     echo '</tbody></table>';
 }
