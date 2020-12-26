@@ -3,7 +3,7 @@
 ini_set('display_errors', "On");
 
 // Google API クライアントライブラリの読込み
-require_once __DIR__ . '/google-api-php-client/vendor/autoload.php';
+require_once __DIR__ . '/vendor/autoload.php';
 
 
 // Config 読込み

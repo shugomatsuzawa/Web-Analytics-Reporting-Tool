@@ -1,0 +1,12 @@
+{
+    "name": "shugo/web-analytics-reporting-tool",
+    "require": {
+        "google/apiclient": "^2.8"
+    },
+    "authors": [
+        {
+            "name": "shugomatsuzawa",
+            "email": "contact@shugomatsuzawa.com"
+        }
+    ]
+}
