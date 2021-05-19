@@ -21,7 +21,11 @@ class Google_Service_Bigquery_JobStatistics2 extends Google_Collection
   public $billingTier;
   public $cacheHit;
   public $ddlAffectedRowAccessPolicyCount;
+  protected $ddlDestinationTableType = 'Google_Service_Bigquery_TableReference';
+  protected $ddlDestinationTableDataType = '';
   public $ddlOperationPerformed;
+  protected $ddlTargetDatasetType = 'Google_Service_Bigquery_DatasetReference';
+  protected $ddlTargetDatasetDataType = '';
   protected $ddlTargetRoutineType = 'Google_Service_Bigquery_RoutineReference';
   protected $ddlTargetRoutineDataType = '';
   protected $ddlTargetRowAccessPolicyType = 'Google_Service_Bigquery_RowAccessPolicyReference';
@@ -79,6 +83,20 @@ class Google_Service_Bigquery_JobStatistics2 extends Google_Collection
   {
     return $this->ddlAffectedRowAccessPolicyCount;
   }
+  /**
+   * @param Google_Service_Bigquery_TableReference
+   */
+  public function setDdlDestinationTable(Google_Service_Bigquery_TableReference $ddlDestinationTable)
+  {
+    $this->ddlDestinationTable = $ddlDestinationTable;
+  }
+  /**
+   * @return Google_Service_Bigquery_TableReference
+   */
+  public function getDdlDestinationTable()
+  {
+    return $this->ddlDestinationTable;
+  }
   public function setDdlOperationPerformed($ddlOperationPerformed)
   {
     $this->ddlOperationPerformed = $ddlOperationPerformed;
@@ -86,6 +104,20 @@ class Google_Service_Bigquery_JobStatistics2 extends Google_Collection
   public function getDdlOperationPerformed()
   {
     return $this->ddlOperationPerformed;
+  }
+  /**
+   * @param Google_Service_Bigquery_DatasetReference
+   */
+  public function setDdlTargetDataset(Google_Service_Bigquery_DatasetReference $ddlTargetDataset)
+  {
+    $this->ddlTargetDataset = $ddlTargetDataset;
+  }
+  /**
+   * @return Google_Service_Bigquery_DatasetReference
+   */
+  public function getDdlTargetDataset()
+  {
+    return $this->ddlTargetDataset;
   }
   /**
    * @param Google_Service_Bigquery_RoutineReference

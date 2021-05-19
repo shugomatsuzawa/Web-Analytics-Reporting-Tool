@@ -15,44 +15,32 @@
  * the License.
  */
 
-class Google_Service_AdSense_Account extends Google_Collection
+class Google_Service_Adsense_Account extends Google_Collection
 {
-  protected $collection_key = 'subAccounts';
-  protected $internal_gapi_mappings = array(
-        "creationTime" => "creation_time",
-  );
-  public $creationTime;
-  public $id;
-  public $kind;
+  protected $collection_key = 'pendingTasks';
+  public $createTime;
+  public $displayName;
   public $name;
+  public $pendingTasks;
   public $premium;
-  protected $subAccountsType = 'Google_Service_AdSense_Account';
-  protected $subAccountsDataType = 'array';
-  public $timezone;
+  protected $timeZoneType = 'Google_Service_Adsense_TimeZone';
+  protected $timeZoneDataType = '';
 
-  public function setCreationTime($creationTime)
+  public function setCreateTime($createTime)
   {
-    $this->creationTime = $creationTime;
+    $this->createTime = $createTime;
   }
-  public function getCreationTime()
+  public function getCreateTime()
   {
-    return $this->creationTime;
+    return $this->createTime;
   }
-  public function setId($id)
+  public function setDisplayName($displayName)
   {
-    $this->id = $id;
+    $this->displayName = $displayName;
   }
-  public function getId()
+  public function getDisplayName()
   {
-    return $this->id;
-  }
-  public function setKind($kind)
-  {
-    $this->kind = $kind;
-  }
-  public function getKind()
-  {
-    return $this->kind;
+    return $this->displayName;
   }
   public function setName($name)
   {
@@ -61,6 +49,14 @@ class Google_Service_AdSense_Account extends Google_Collection
   public function getName()
   {
     return $this->name;
+  }
+  public function setPendingTasks($pendingTasks)
+  {
+    $this->pendingTasks = $pendingTasks;
+  }
+  public function getPendingTasks()
+  {
+    return $this->pendingTasks;
   }
   public function setPremium($premium)
   {
@@ -71,25 +67,17 @@ class Google_Service_AdSense_Account extends Google_Collection
     return $this->premium;
   }
   /**
-   * @param Google_Service_AdSense_Account[]
+   * @param Google_Service_Adsense_TimeZone
    */
-  public function setSubAccounts($subAccounts)
+  public function setTimeZone(Google_Service_Adsense_TimeZone $timeZone)
   {
-    $this->subAccounts = $subAccounts;
+    $this->timeZone = $timeZone;
   }
   /**
-   * @return Google_Service_AdSense_Account[]
+   * @return Google_Service_Adsense_TimeZone
    */
-  public function getSubAccounts()
+  public function getTimeZone()
   {
-    return $this->subAccounts;
-  }
-  public function setTimezone($timezone)
-  {
-    $this->timezone = $timezone;
-  }
-  public function getTimezone()
-  {
-    return $this->timezone;
+    return $this->timeZone;
   }
 }

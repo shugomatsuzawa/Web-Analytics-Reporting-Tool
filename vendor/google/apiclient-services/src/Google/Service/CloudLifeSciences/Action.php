@@ -19,6 +19,7 @@ class Google_Service_CloudLifeSciences_Action extends Google_Collection
 {
   protected $collection_key = 'mounts';
   public $alwaysRun;
+  public $blockExternalNetwork;
   public $commands;
   public $containerName;
   protected $credentialsType = 'Google_Service_CloudLifeSciences_Secret';
@@ -26,6 +27,8 @@ class Google_Service_CloudLifeSciences_Action extends Google_Collection
   public $disableImagePrefetch;
   public $disableStandardErrorCapture;
   public $enableFuse;
+  protected $encryptedEnvironmentType = 'Google_Service_CloudLifeSciences_Secret';
+  protected $encryptedEnvironmentDataType = '';
   public $entrypoint;
   public $environment;
   public $ignoreExitStatus;
@@ -46,6 +49,14 @@ class Google_Service_CloudLifeSciences_Action extends Google_Collection
   public function getAlwaysRun()
   {
     return $this->alwaysRun;
+  }
+  public function setBlockExternalNetwork($blockExternalNetwork)
+  {
+    $this->blockExternalNetwork = $blockExternalNetwork;
+  }
+  public function getBlockExternalNetwork()
+  {
+    return $this->blockExternalNetwork;
   }
   public function setCommands($commands)
   {
@@ -100,6 +111,20 @@ class Google_Service_CloudLifeSciences_Action extends Google_Collection
   public function getEnableFuse()
   {
     return $this->enableFuse;
+  }
+  /**
+   * @param Google_Service_CloudLifeSciences_Secret
+   */
+  public function setEncryptedEnvironment(Google_Service_CloudLifeSciences_Secret $encryptedEnvironment)
+  {
+    $this->encryptedEnvironment = $encryptedEnvironment;
+  }
+  /**
+   * @return Google_Service_CloudLifeSciences_Secret
+   */
+  public function getEncryptedEnvironment()
+  {
+    return $this->encryptedEnvironment;
   }
   public function setEntrypoint($entrypoint)
   {

@@ -30,13 +30,14 @@
  */
 class Google_Service_PubsubLite extends Google_Service
 {
-  /** View and manage your data across Google Cloud Platform services. */
+  /** See, edit, configure, and delete your Google Cloud Platform data. */
   const CLOUD_PLATFORM =
       "https://www.googleapis.com/auth/cloud-platform";
 
   public $admin_projects_locations_subscriptions;
   public $admin_projects_locations_topics;
   public $admin_projects_locations_topics_subscriptions;
+  public $cursor_projects_locations_subscriptions;
   public $cursor_projects_locations_subscriptions_cursors;
   public $topicStats_projects_locations_topics;
 
@@ -69,6 +70,10 @@ class Google_Service_PubsubLite extends Google_Service
                   'location' => 'path',
                   'type' => 'string',
                   'required' => true,
+                ),
+                'skipBacklog' => array(
+                  'location' => 'query',
+                  'type' => 'boolean',
                 ),
                 'subscriptionId' => array(
                   'location' => 'query',
@@ -245,6 +250,26 @@ class Google_Service_PubsubLite extends Google_Service
           )
         )
     );
+    $this->cursor_projects_locations_subscriptions = new Google_Service_PubsubLite_Resource_CursorProjectsLocationsSubscriptions(
+        $this,
+        $this->serviceName,
+        'subscriptions',
+        array(
+          'methods' => array(
+            'commitCursor' => array(
+              'path' => 'v1/cursor/{+subscription}:commitCursor',
+              'httpMethod' => 'POST',
+              'parameters' => array(
+                'subscription' => array(
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ),
+              ),
+            ),
+          )
+        )
+    );
     $this->cursor_projects_locations_subscriptions_cursors = new Google_Service_PubsubLite_Resource_CursorProjectsLocationsSubscriptionsCursors(
         $this,
         $this->serviceName,
@@ -279,7 +304,17 @@ class Google_Service_PubsubLite extends Google_Service
         'topics',
         array(
           'methods' => array(
-            'computeMessageStats' => array(
+            'computeHeadCursor' => array(
+              'path' => 'v1/topicStats/{+topic}:computeHeadCursor',
+              'httpMethod' => 'POST',
+              'parameters' => array(
+                'topic' => array(
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ),
+              ),
+            ),'computeMessageStats' => array(
               'path' => 'v1/topicStats/{+topic}:computeMessageStats',
               'httpMethod' => 'POST',
               'parameters' => array(

@@ -51,8 +51,10 @@ class Google_Service_Directory_ChromeOsDevice extends Google_Collection
   public $orgUnitPath;
   public $osVersion;
   public $platformVersion;
-  protected $recentUsersType = 'Google_Service_Directory_RecentUsers';
+  protected $recentUsersType = 'Google_Service_Directory_ChromeOsDeviceRecentUsers';
   protected $recentUsersDataType = 'array';
+  protected $screenshotFilesType = 'Google_Service_Directory_ChromeOsDeviceScreenshotFiles';
+  protected $screenshotFilesDataType = 'array';
   public $serialNumber;
   public $status;
   public $supportEndDate;
@@ -318,18 +320,32 @@ class Google_Service_Directory_ChromeOsDevice extends Google_Collection
     return $this->platformVersion;
   }
   /**
-   * @param Google_Service_Directory_RecentUsers[]
+   * @param Google_Service_Directory_ChromeOsDeviceRecentUsers[]
    */
   public function setRecentUsers($recentUsers)
   {
     $this->recentUsers = $recentUsers;
   }
   /**
-   * @return Google_Service_Directory_RecentUsers[]
+   * @return Google_Service_Directory_ChromeOsDeviceRecentUsers[]
    */
   public function getRecentUsers()
   {
     return $this->recentUsers;
+  }
+  /**
+   * @param Google_Service_Directory_ChromeOsDeviceScreenshotFiles[]
+   */
+  public function setScreenshotFiles($screenshotFiles)
+  {
+    $this->screenshotFiles = $screenshotFiles;
+  }
+  /**
+   * @return Google_Service_Directory_ChromeOsDeviceScreenshotFiles[]
+   */
+  public function getScreenshotFiles()
+  {
+    return $this->screenshotFiles;
   }
   public function setSerialNumber($serialNumber)
   {

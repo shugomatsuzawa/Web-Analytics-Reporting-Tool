@@ -15,34 +15,34 @@
  * the License.
  */
 
-class Google_Service_AdSense_UrlChannel extends Google_Model
+class Google_Service_Adsense_UrlChannel extends Google_Model
 {
-  public $id;
-  public $kind;
-  public $urlPattern;
+  public $name;
+  public $reportingDimensionId;
+  public $uriPattern;
 
-  public function setId($id)
+  public function setName($name)
   {
-    $this->id = $id;
+    $this->name = $name;
   }
-  public function getId()
+  public function getName()
   {
-    return $this->id;
+    return $this->name;
   }
-  public function setKind($kind)
+  public function setReportingDimensionId($reportingDimensionId)
   {
-    $this->kind = $kind;
+    $this->reportingDimensionId = $reportingDimensionId;
   }
-  public function getKind()
+  public function getReportingDimensionId()
   {
-    return $this->kind;
+    return $this->reportingDimensionId;
   }
-  public function setUrlPattern($urlPattern)
+  public function setUriPattern($uriPattern)
   {
-    $this->urlPattern = $urlPattern;
+    $this->uriPattern = $uriPattern;
   }
-  public function getUrlPattern()
+  public function getUriPattern()
   {
-    return $this->urlPattern;
+    return $this->uriPattern;
   }
 }

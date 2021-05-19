@@ -19,46 +19,52 @@
  * The "adclients" collection of methods.
  * Typical usage is:
  *  <code>
- *   $adsenseService = new Google_Service_AdSense(...);
+ *   $adsenseService = new Google_Service_Adsense(...);
  *   $adclients = $adsenseService->adclients;
  *  </code>
  */
-class Google_Service_AdSense_Resource_AccountsAdclients extends Google_Service_Resource
+class Google_Service_Adsense_Resource_AccountsAdclients extends Google_Service_Resource
 {
   /**
-   * Get Auto ad code for a given ad client. (adclients.getAdCode)
+   * Gets the AdSense code for a given ad client. This returns what was previously
+   * known as the 'auto ad code'. This is only supported for ad clients with a
+   * product_code of AFC. For more information, see [About the AdSense
+   * code](https://support.google.com/adsense/answer/9274634).
+   * (adclients.getAdcode)
    *
-   * @param string $accountId Account which contains the ad client.
-   * @param string $adClientId Ad client to get the code for.
+   * @param string $name Required. Name of the ad client for which to get the
+   * adcode. Format: accounts/{account}/adclients/{adclient}
    * @param array $optParams Optional parameters.
-   *
-   * @opt_param string tagPartner Tag partner to include in the ad code snippet.
-   * @return Google_Service_AdSense_AdCode
+   * @return Google_Service_Adsense_AdClientAdCode
    */
-  public function getAdCode($accountId, $adClientId, $optParams = array())
+  public function getAdcode($name, $optParams = array())
   {
-    $params = array('accountId' => $accountId, 'adClientId' => $adClientId);
+    $params = array('name' => $name);
     $params = array_merge($params, $optParams);
-    return $this->call('getAdCode', array($params), "Google_Service_AdSense_AdCode");
+    return $this->call('getAdcode', array($params), "Google_Service_Adsense_AdClientAdCode");
   }
   /**
-   * List all ad clients in the specified account.
+   * Lists all the ad clients available in an account.
    * (adclients.listAccountsAdclients)
    *
-   * @param string $accountId Account for which to list ad clients.
+   * @param string $parent Required. The account which owns the collection of ad
+   * clients. Format: accounts/{account}
    * @param array $optParams Optional parameters.
    *
-   * @opt_param int maxResults The maximum number of ad clients to include in the
-   * response, used for paging.
-   * @opt_param string pageToken A continuation token, used to page through ad
-   * clients. To retrieve the next page, set this parameter to the value of
-   * "nextPageToken" from the previous response.
-   * @return Google_Service_AdSense_AdClients
+   * @opt_param int pageSize The maximum number of ad clients to include in the
+   * response, used for paging. If unspecified, at most 10000 ad clients will be
+   * returned. The maximum value is 10000; values above 10000 will be coerced to
+   * 10000.
+   * @opt_param string pageToken A page token, received from a previous
+   * `ListAdClients` call. Provide this to retrieve the subsequent page. When
+   * paginating, all other parameters provided to `ListAdClients` must match the
+   * call that provided the page token.
+   * @return Google_Service_Adsense_ListAdClientsResponse
    */
-  public function listAccountsAdclients($accountId, $optParams = array())
+  public function listAccountsAdclients($parent, $optParams = array())
   {
-    $params = array('accountId' => $accountId);
+    $params = array('parent' => $parent);
     $params = array_merge($params, $optParams);
-    return $this->call('list', array($params), "Google_Service_AdSense_AdClients");
+    return $this->call('list', array($params), "Google_Service_Adsense_ListAdClientsResponse");
   }
 }

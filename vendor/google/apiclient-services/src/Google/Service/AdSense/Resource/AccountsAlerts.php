@@ -19,42 +19,30 @@
  * The "alerts" collection of methods.
  * Typical usage is:
  *  <code>
- *   $adsenseService = new Google_Service_AdSense(...);
+ *   $adsenseService = new Google_Service_Adsense(...);
  *   $alerts = $adsenseService->alerts;
  *  </code>
  */
-class Google_Service_AdSense_Resource_AccountsAlerts extends Google_Service_Resource
+class Google_Service_Adsense_Resource_AccountsAlerts extends Google_Service_Resource
 {
   /**
-   * Dismiss (delete) the specified alert from the specified publisher AdSense
-   * account. (alerts.delete)
+   * Lists all the alerts available in an account. (alerts.listAccountsAlerts)
    *
-   * @param string $accountId Account which contains the ad unit.
-   * @param string $alertId Alert to delete.
-   * @param array $optParams Optional parameters.
-   */
-  public function delete($accountId, $alertId, $optParams = array())
-  {
-    $params = array('accountId' => $accountId, 'alertId' => $alertId);
-    $params = array_merge($params, $optParams);
-    return $this->call('delete', array($params));
-  }
-  /**
-   * List the alerts for the specified AdSense account.
-   * (alerts.listAccountsAlerts)
-   *
-   * @param string $accountId Account for which to retrieve the alerts.
+   * @param string $parent Required. The account which owns the collection of
+   * alerts. Format: accounts/{account}
    * @param array $optParams Optional parameters.
    *
-   * @opt_param string locale The locale to use for translating alert messages.
-   * The account locale will be used if this is not supplied. The AdSense default
-   * (English) will be used if the supplied locale is invalid or unsupported.
-   * @return Google_Service_AdSense_Alerts
+   * @opt_param string languageCode The language to use for translating alert
+   * messages. If unspecified, this defaults to the user's display language. If
+   * the given language is not supported, alerts will be returned in English. The
+   * language is specified as an [IETF BCP-47 language
+   * code](https://en.wikipedia.org/wiki/IETF_language_tag).
+   * @return Google_Service_Adsense_ListAlertsResponse
    */
-  public function listAccountsAlerts($accountId, $optParams = array())
+  public function listAccountsAlerts($parent, $optParams = array())
   {
-    $params = array('accountId' => $accountId);
+    $params = array('parent' => $parent);
     $params = array_merge($params, $optParams);
-    return $this->call('list', array($params), "Google_Service_AdSense_Alerts");
+    return $this->call('list', array($params), "Google_Service_Adsense_ListAlertsResponse");
   }
 }

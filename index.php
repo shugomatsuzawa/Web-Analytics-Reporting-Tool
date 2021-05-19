@@ -135,6 +135,10 @@ $noOrder = '';
 <!DOCTYPE html>
 <html>
 <head>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+<meta name="robots" content="noindex,nofollow">
+<meta name="format-detection" content="telephone=no">
+<meta name="color-scheme" content="light">
 <?php
 if ( empty($programName) ) {
     echo '<title>アクセス解析レポート作成ツール</title>';
@@ -142,8 +146,6 @@ if ( empty($programName) ) {
     echo '<title>' . $programName . '</title>';
 }
 ?>
-<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
-<meta name="robots" content="noindex,nofollow">
 <link rel="stylesheet" href="style.css">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=Noto+Serif+JP:wght@500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css">
@@ -266,6 +268,13 @@ else: // Config チェック（正常）
             if (!isset($_GET['view']) || !isset($_GET['startDate']) || !isset($_GET['endDate'])): // 選択フォーム入力判定（未入力）
 
                 echo '<p class="notice"><i class="fas fa-info-circle" aria-label="情報"></i>ビュー未選択</p>';
+
+                // DB接続を閉じる
+                $mysqli->close();
+
+            elseif (strtotime($_GET['startDate']) > strtotime($_GET['endDate'])): // 選択フォーム入力判定（日付無効）
+
+                echo '<p class="notice"><i class="fas fa-info-circle" aria-label="情報"></i>日付が無効です</p>';
 
                 // DB接続を閉じる
                 $mysqli->close();
@@ -396,7 +405,7 @@ endif; // Config チェック
     <p>
         <a href="ThirdPartySoftwareLicense.txt" target="_blank" rel="noopener">サードパーティに関する通知 <i class="fas fa-external-link-alt" aria-label="新しいタブで開く"></i></a>&nbsp;|&nbsp;
         <a href="https://github.com/shugomatsuzawa/Web-Analytics-Reporting-Tool" target="_blank" rel="noopener">アクセス解析レポート作成ツールについて <i class="fas fa-external-link-alt" aria-label="新しいタブで開く"></i></a>&nbsp;|&nbsp;
-        <small>バージョン 1.0 beta 1</small>
+        <small>バージョン 1.1 beta 1</small>
     </p>
 </aside>
 </body>

@@ -15,38 +15,19 @@
  * the License.
  */
 
-class Google_Service_AdSense_CustomChannel extends Google_Model
+class Google_Service_Adsense_CustomChannel extends Google_Model
 {
-  public $code;
-  public $id;
-  public $kind;
+  public $displayName;
   public $name;
-  protected $targetingInfoType = 'Google_Service_AdSense_CustomChannelTargetingInfo';
-  protected $targetingInfoDataType = '';
+  public $reportingDimensionId;
 
-  public function setCode($code)
+  public function setDisplayName($displayName)
   {
-    $this->code = $code;
+    $this->displayName = $displayName;
   }
-  public function getCode()
+  public function getDisplayName()
   {
-    return $this->code;
-  }
-  public function setId($id)
-  {
-    $this->id = $id;
-  }
-  public function getId()
-  {
-    return $this->id;
-  }
-  public function setKind($kind)
-  {
-    $this->kind = $kind;
-  }
-  public function getKind()
-  {
-    return $this->kind;
+    return $this->displayName;
   }
   public function setName($name)
   {
@@ -56,18 +37,12 @@ class Google_Service_AdSense_CustomChannel extends Google_Model
   {
     return $this->name;
   }
-  /**
-   * @param Google_Service_AdSense_CustomChannelTargetingInfo
-   */
-  public function setTargetingInfo(Google_Service_AdSense_CustomChannelTargetingInfo $targetingInfo)
+  public function setReportingDimensionId($reportingDimensionId)
   {
-    $this->targetingInfo = $targetingInfo;
+    $this->reportingDimensionId = $reportingDimensionId;
   }
-  /**
-   * @return Google_Service_AdSense_CustomChannelTargetingInfo
-   */
-  public function getTargetingInfo()
+  public function getReportingDimensionId()
   {
-    return $this->targetingInfo;
+    return $this->reportingDimensionId;
   }
 }

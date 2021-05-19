@@ -15,102 +15,36 @@
  * the License.
  */
 
-class Google_Service_AdSense_AdUnit extends Google_Model
+class Google_Service_Adsense_AdUnit extends Google_Model
 {
-  public $code;
-  protected $contentAdsSettingsType = 'Google_Service_AdSense_AdUnitContentAdsSettings';
+  protected $contentAdsSettingsType = 'Google_Service_Adsense_ContentAdsSettings';
   protected $contentAdsSettingsDataType = '';
-  protected $customStyleType = 'Google_Service_AdSense_AdStyle';
-  protected $customStyleDataType = '';
-  protected $feedAdsSettingsType = 'Google_Service_AdSense_AdUnitFeedAdsSettings';
-  protected $feedAdsSettingsDataType = '';
-  public $id;
-  public $kind;
-  protected $mobileContentAdsSettingsType = 'Google_Service_AdSense_AdUnitMobileContentAdsSettings';
-  protected $mobileContentAdsSettingsDataType = '';
+  public $displayName;
   public $name;
-  public $savedStyleId;
-  public $status;
+  public $reportingDimensionId;
+  public $state;
 
-  public function setCode($code)
-  {
-    $this->code = $code;
-  }
-  public function getCode()
-  {
-    return $this->code;
-  }
   /**
-   * @param Google_Service_AdSense_AdUnitContentAdsSettings
+   * @param Google_Service_Adsense_ContentAdsSettings
    */
-  public function setContentAdsSettings(Google_Service_AdSense_AdUnitContentAdsSettings $contentAdsSettings)
+  public function setContentAdsSettings(Google_Service_Adsense_ContentAdsSettings $contentAdsSettings)
   {
     $this->contentAdsSettings = $contentAdsSettings;
   }
   /**
-   * @return Google_Service_AdSense_AdUnitContentAdsSettings
+   * @return Google_Service_Adsense_ContentAdsSettings
    */
   public function getContentAdsSettings()
   {
     return $this->contentAdsSettings;
   }
-  /**
-   * @param Google_Service_AdSense_AdStyle
-   */
-  public function setCustomStyle(Google_Service_AdSense_AdStyle $customStyle)
+  public function setDisplayName($displayName)
   {
-    $this->customStyle = $customStyle;
+    $this->displayName = $displayName;
   }
-  /**
-   * @return Google_Service_AdSense_AdStyle
-   */
-  public function getCustomStyle()
+  public function getDisplayName()
   {
-    return $this->customStyle;
-  }
-  /**
-   * @param Google_Service_AdSense_AdUnitFeedAdsSettings
-   */
-  public function setFeedAdsSettings(Google_Service_AdSense_AdUnitFeedAdsSettings $feedAdsSettings)
-  {
-    $this->feedAdsSettings = $feedAdsSettings;
-  }
-  /**
-   * @return Google_Service_AdSense_AdUnitFeedAdsSettings
-   */
-  public function getFeedAdsSettings()
-  {
-    return $this->feedAdsSettings;
-  }
-  public function setId($id)
-  {
-    $this->id = $id;
-  }
-  public function getId()
-  {
-    return $this->id;
-  }
-  public function setKind($kind)
-  {
-    $this->kind = $kind;
-  }
-  public function getKind()
-  {
-    return $this->kind;
-  }
-  /**
-   * @param Google_Service_AdSense_AdUnitMobileContentAdsSettings
-   */
-  public function setMobileContentAdsSettings(Google_Service_AdSense_AdUnitMobileContentAdsSettings $mobileContentAdsSettings)
-  {
-    $this->mobileContentAdsSettings = $mobileContentAdsSettings;
-  }
-  /**
-   * @return Google_Service_AdSense_AdUnitMobileContentAdsSettings
-   */
-  public function getMobileContentAdsSettings()
-  {
-    return $this->mobileContentAdsSettings;
+    return $this->displayName;
   }
   public function setName($name)
   {
@@ -120,20 +54,20 @@ class Google_Service_AdSense_AdUnit extends Google_Model
   {
     return $this->name;
   }
-  public function setSavedStyleId($savedStyleId)
+  public function setReportingDimensionId($reportingDimensionId)
   {
-    $this->savedStyleId = $savedStyleId;
+    $this->reportingDimensionId = $reportingDimensionId;
   }
-  public function getSavedStyleId()
+  public function getReportingDimensionId()
   {
-    return $this->savedStyleId;
+    return $this->reportingDimensionId;
   }
-  public function setStatus($status)
+  public function setState($state)
   {
-    $this->status = $status;
+    $this->state = $state;
   }
-  public function getStatus()
+  public function getState()
   {
-    return $this->status;
+    return $this->state;
   }
 }

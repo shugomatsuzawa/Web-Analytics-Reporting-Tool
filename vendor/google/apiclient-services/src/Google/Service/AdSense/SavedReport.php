@@ -15,28 +15,11 @@
  * the License.
  */
 
-class Google_Service_AdSense_SavedReport extends Google_Model
+class Google_Service_Adsense_SavedReport extends Google_Model
 {
-  public $id;
-  public $kind;
   public $name;
+  public $title;
 
-  public function setId($id)
-  {
-    $this->id = $id;
-  }
-  public function getId()
-  {
-    return $this->id;
-  }
-  public function setKind($kind)
-  {
-    $this->kind = $kind;
-  }
-  public function getKind()
-  {
-    return $this->kind;
-  }
   public function setName($name)
   {
     $this->name = $name;
@@ -44,5 +27,13 @@ class Google_Service_AdSense_SavedReport extends Google_Model
   public function getName()
   {
     return $this->name;
+  }
+  public function setTitle($title)
+  {
+    $this->title = $title;
+  }
+  public function getTitle()
+  {
+    return $this->title;
   }
 }
