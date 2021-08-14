@@ -360,6 +360,32 @@ else: // Config チェック（正常）
                     }
 
 
+                    // Search Console APIサービスオブジェクトを初期化します。
+                    function initializeSc($KEY_FILE_LOCATION)
+                    {
+                        // Create and configure a new client object.
+                        $client = new Google_Client();
+                        $client->setApplicationName("Search Console Reporting");
+                        $client->setAuthConfig($KEY_FILE_LOCATION);
+                        $client->setScopes(['https://www.googleapis.com/auth/webmasters.readonly']);
+                        $searchConsole = new Google_Service_Webmasters($client);
+
+                        return $searchConsole->searchanalytics;
+                    }
+
+                    // Search Console APIをクエリします。
+                    $searchConsole = initializeSc($scKeyFileLocation);
+                    function getSc($searchConsole, $siteUrl, $startDate, $endDate, $dimensions) {
+                        $request = new Google_Service_Webmasters_SearchAnalyticsQueryRequest;
+                        $request->setStartDate($startDate);
+                        $request->setEndDate($endDate);
+                        $request->setDimensions($dimensions);
+                        $request->setRowLimit(365);
+
+                        return $searchConsole->query($siteUrl, $request);
+                    }
+
+
                     // グラフ共通
                     // ユーザー
                     $usersChartMetrics = array($users);
@@ -370,11 +396,6 @@ else: // Config チェック（正常）
                     $pageviewsChartMetrics = array($pageviews);
                     $pageviewsChartDimensions = array($date);
                     $pageviewsChartResponse = getReport($analytics, $viewId, $startDate, $endDate, $pageviewsChartMetrics, $pageviewsChartDimensions, $noOrder);
-
-                    //SC共通
-                    $queryCmd = "$pythonPath sc.py $scKeyFileLocation $siteUrl $startDate $endDate";
-                    $queryResponseRaw = shell_exec($queryCmd);
-                    $queryResponse = json_decode($queryResponseRaw,true);
 ?>
 <?php include('firstPage.php'); ?>
 <main class="home">

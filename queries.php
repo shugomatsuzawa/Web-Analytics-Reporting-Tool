@@ -14,9 +14,8 @@ if ( empty($siteName) ) {
 echo '<p><time datetime="' . $startDate . '">' . $startDateDisplay . '</time> - <time datetime="' . $endDate . '">' . $endDateDisplay . '</time></p>';
 ?>
 <?php
-$queryChartCmd = "$pythonPath scChart.py $scKeyFileLocation $siteUrl $startDate $endDate";
-$queryChartResponseRaw = shell_exec($queryChartCmd);
-$queryChartResponse = json_decode($queryChartResponseRaw,true);
+$queryChartDimensions = array('date');
+$queryChartResponse = getSc($searchConsole, $siteUrl, $startDate, $endDate, $queryChartDimensions);
 
 function queryChart($reports) {
     $rows = $reports['rows'];
@@ -62,6 +61,9 @@ function queryChart($reports) {
 queryChart($queryChartResponse);
 ?>
 <?php
+$queryDimensions = array('query');
+$queryResponse = getSc($searchConsole, $siteUrl, $startDate, $endDate, $queryDimensions);
+
 function queryResults($reports) {
     $rows = $reports['rows'];
 
