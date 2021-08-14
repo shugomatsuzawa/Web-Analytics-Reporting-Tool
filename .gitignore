@@ -1,6 +1,6 @@
 .DS_Store
+vendor/
 
 user/config.php
-
 user/key-files/
 user/images/
