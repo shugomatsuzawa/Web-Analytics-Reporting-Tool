@@ -21,8 +21,6 @@ if ( isset($_POST['keyFile']) && isset($_POST['sqlServer']) && isset($_POST['sql
     $config['sqlPassword'] = $_POST['sqlPassword'];
     $config['sqlDbName'] = $_POST['sqlDbName'];
 
-    $config['pythonPath'] = $_POST['pythonPath'];
-
     $config['programName'] = $_POST['programName'];
     $config['publisherName'] = $_POST['publisherName'];
     $config['publisherLogo'] = $_POST['publisherLogo'];
@@ -125,14 +123,6 @@ function stopload(){
         <input type="text" name="sqlDbName" id="sqlDbName" placeholder="analytics_report" value="<?php echo $config['sqlDbName']; ?>" required>
     </fieldset>
     <fieldset>
-        <legend>プログラムの設定</legend>
-        <label for="pythonPath">Pythonのパス（サーチコンソールを使用する場合必要）：</label>
-        <p>サーチコンソールを使用するには、Pythonが必要です。Python 3.8.x系に対応。<br>先にSSHでプログラムのディレクトリに移動し、requirements.txt の内容をインストールしてください。</p>
-        <code>pip install -r requirements.txt</code>
-        <p>サーバー上のPythonへのパスを記入します。</p>
-        <input type="text" name="pythonPath" id="pythonPath" inputmode="url" placeholder="/home/username/.pyenv/versions/3.8.5/bin/python" value="<?php echo $config['pythonPath']; ?>">
-    </fieldset>
-    <fieldset>
         <legend>発行者情報（会社情報）</legend>
         <label for="programName">プログラム名（任意）:</label>
         <input type="text" name="programName" id="programName" placeholder="アクセス解析レポート作成ツール" value="<?php echo $config['programName']; ?>">
@@ -147,12 +137,6 @@ function stopload(){
     <input type="submit" value="保存">
 </form>
 </main>
-<aside id="legal-footer">
-    <p>
-        <a href="ThirdPartySoftwareLicense.txt" target="_blank" rel="noopener">サードパーティに関する通知 <i class="fas fa-external-link-alt"></i></a>&nbsp;|&nbsp;
-        <a href="https://github.com/shugomatsuzawa/Web-Analytics-Reporting-Tool" target="_blank" rel="noopener">Webサイト アクセス解析レポートについて <i class="fas fa-external-link-alt"></i></a>&nbsp;|&nbsp;
-        <small>バージョン 1.0 beta 1</small>
-    </p>
-</aside>
+<?php include('footer.php'); ?>
 </body>
 </html>

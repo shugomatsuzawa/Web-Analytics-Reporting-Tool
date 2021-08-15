@@ -1,7 +1,7 @@
 <section id="referrals">
     <div class="title">
 <?php
-if ( !empty($pythonPath) && ($enableSC == 1) ) {
+if ( $enableSC == 1 ) {
     echo '<h2>5. 参照元サイト</h2>';
 } else {
     echo '<h2>4. 参照元サイト</h2>';

@@ -48,6 +48,7 @@ if ( empty($siteName) ) {
             </tbody>
         </table>
     </section>
+    <?php if ( $enableSC == 1 ): ?>
     <section>
         <h3>2.検索クエリ</h3>
         <p>ユーザーが Google で検索したクエリ文字列（キーワード）の検索結果の一覧です。</p>
@@ -82,8 +83,9 @@ if ( empty($siteName) ) {
             </tbody>
         </table>
     </section>
+    <?php endif; ?>
     <section>
-        <h3>3.検索キーワード</h3>
+        <h3><?php if ( $enableSC == 1 ) { echo '3'; } else { echo '2'; } ?>.検索キーワード</h3>
         <p>当サイトのアクセスにおいて、参照元（検索エンジン、ブックマーク、SNS、参照サイト等）で使われたキーワードの一覧です。</p>
         <table>
             <thead>
@@ -122,7 +124,7 @@ if ( empty($siteName) ) {
         <p>※コンバージョンデータを表示するためには、あらかじめ目標を設定することが必要です。</p>
     </section>
     <section>
-        <h3>4.参照ページ</h3>
+        <h3><?php if ( $enableSC == 1 ) { echo '4'; } else { echo '3'; } ?>.参照ページ</h3>
         <p>ページ毎のアクセス数の概要です。</p>
         <table>
             <thead>
@@ -164,7 +166,7 @@ if ( empty($siteName) ) {
         </table>
     </section>
     <section class="page-break">
-        <h3>5.参照元サイト</h3>
+        <h3><?php if ( $enableSC == 1 ) { echo '5'; } else { echo '4'; } ?>.参照元サイト</h3>
         <p>当サイトへの流入元、たとえば検索エンジン（Google など）やドメイン（example.com）の一覧です。</p>
         <table>
             <thead>
@@ -190,14 +192,14 @@ if ( empty($siteName) ) {
         </table>
     </section>
     <section>
-        <h3>6.地域/ユーザー分布</h3>
+        <h3><?php if ( $enableSC == 1 ) { echo '6'; } else { echo '5'; } ?>.地域/ユーザー分布</h3>
         <p>どの地域からのアクセスが多いかを表示しています。</p>
     </section>
     <aside>
         <h3><i class="far fa-question-circle" aria-hidden="true"></i>&nbsp;レポート内の英文表記 (not provided) (not set) について</h3>
         <dl>
             <dt>(not provided)</dt>
-            <dd>「3.検索キーワード」のレポートに現れます。GoogleやYahoo等の検索エンジンがHTTPS（SSL通信）で暗号化され、検索キーワードが取れないためです。 尚、「2.検索クエリ」レポートは、検索解析専用のGoogle Search Consoleと連携しているので、Google検索のデータのみですが、ユーザの検索キーワードの傾向を確認することができます。</dd>
+            <dd><?php if ( $enableSC == 1 ) { echo '「3.検索キーワード」のレポートに現れます。GoogleやYahoo等の検索エンジンがHTTPS（SSL通信）で暗号化され、検索キーワードが取れないためです。 尚、「2.検索クエリ」レポートは、検索解析専用のGoogle Search Consoleと連携しているので、Google検索のデータのみですが、ユーザの検索キーワードの傾向を確認することができます。'; } else { echo '「2.検索キーワード」のレポートに現れます。GoogleやYahoo等の検索エンジンがHTTPS（SSL通信）で暗号化され、検索キーワードが取れないためです。'; } ?></dd>
             <dt>(not set)</dt>
             <dd>リダイレクトによって参照元の情報が取得できなかった等、Googleアナリティクスの各レポート上の項目が何らかの事情によりデータを取得できなかった時に表示されます。従って、検索キーワードに限らず、各レポートのどの項目も(not set)となる可能性があります。</dd>
         </dl>

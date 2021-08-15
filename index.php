@@ -400,12 +400,12 @@ else: // Config チェック（正常）
 <?php include('firstPage.php'); ?>
 <main class="home">
 <?php
-                    if ( !empty($pythonPath) && ($enableSC == 1) && !empty($siteKeyword) ) {
+                    if ( $enableSC == 1 && !empty($siteKeyword) ) {
                         include('ranking.php');
                     }
                     include('toc.php');
                     include('visitors.php');
-                    if ( !empty($pythonPath) && ($enableSC == 1) ) {
+                    if ( $enableSC == 1 ) {
                         include('queries.php');
                     }
                     include('organic.php');
@@ -421,13 +421,7 @@ else: // Config チェック（正常）
         endif; // テーブルチェック
     endif; // DB接続チェック
 endif; // Config チェック
+include('footer.php');
 ?>
-<aside id="legal-footer">
-    <p>
-        <a href="ThirdPartySoftwareLicense.txt" target="_blank" rel="noopener">サードパーティに関する通知 <i class="fas fa-external-link-alt" aria-label="新しいタブで開く"></i></a>&nbsp;|&nbsp;
-        <a href="https://github.com/shugomatsuzawa/Web-Analytics-Reporting-Tool" target="_blank" rel="noopener">アクセス解析レポート作成ツールについて <i class="fas fa-external-link-alt" aria-label="新しいタブで開く"></i></a>&nbsp;|&nbsp;
-        <small>バージョン 1.1 beta 1</small>
-    </p>
-</aside>
 </body>
 </html>

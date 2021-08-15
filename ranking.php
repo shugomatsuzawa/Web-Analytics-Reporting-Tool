@@ -26,6 +26,9 @@ if ( empty($siteName) ) {
         <dd><?php echo '<time datetime="' . $startDate . '">' . $startDateDisplay . '</time> - <time datetime="' . $endDate . '">' . $endDateDisplay . '</time>'; ?></dd>
     </dl>
 <?php
+$rankingDimensions = array('query');
+$rankingResponse = getSc($searchConsole, $siteUrl, $startDate, $endDate, $queryDimensions);
+
 function rankingResults($reports, $siteKeyword) {
     echo <<<EOF
     <table>
@@ -65,7 +68,7 @@ function rankingResults($reports, $siteKeyword) {
     }
     echo '</tbody></table>';
 }
-rankingResults($queryResponse, $siteKeyword);
+rankingResults($rankingResponse, $siteKeyword);
 ?>
     <ul>
         <li>このページは、Google検索で上記キーワードにて検索した際の順位を表しています。</li>

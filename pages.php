@@ -1,7 +1,7 @@
 <section id="pages">
     <div class="title">
 <?php
-if ( !empty($pythonPath) && ($enableSC == 1) ) {
+if ( $enableSC == 1 ) {
     echo '<h2>4. 参照ページ</h2>';
 } else {
     echo '<h2>3. 参照ページ</h2>';

@@ -7,29 +7,42 @@ GoogleアナリティクスとGoogleサーチコンソールからデータを�
 新しい Google アナリティクス 4 プロパティでは使用できません。**
 
 ## インストール
-### ファイルのコピー
+### 新規のインストールの場合
 プログラムのファイルをサーバーにコピーします。  
-サーバーにSSHで接続してください。  
-```sh
+まずサーバーにSSHで接続してください。  
+```bash
 cd ~/www #任意のWebサーバーディレクトリに移動してください。
 git clone git@github.com:shugomatsuzawa/Web-Analytics-Reporting-Tool.git
 ```
-顧客の重要な情報を扱いますので、このディレクトリにはBasic認証等の設定を推奨します。    
-### 依存関係のインストール
-Python 3 のインストールが必要です。  
-プログラムのディレクトリに移動し、requirements.txt の内容をインストールします。
-```sh
-pip install -r requirements.txt
+複数のGoogleアカウントを使用するなどの理由で、複数のプログラムをインストールする場合は、ディレクトリをリネームします。  
+```bash
+mv Web-Analytics-Reporting-Tool/ 任意の名前/
 ```
-
-サーバー上のPythonのパスを設定に入力します。
-
-#### さくらのレンタルサーバを使用する場合
-2020年8月現在、さくらのレンタルサーバで Python 3 や pip を使用することはできません。  
-さくらのレンタルサーバにユーザーの Python 環境を構築するには、pyenv を使う方法が最も安定して使用することができます。  
-**参考**
-- [【python】sakuraサーバー上でpythonを使ってtwitter投稿するまでの話](https://qiita.com/ninoko1995/items/0fc8ab26178da0fc0ae5)
-- [[サクラレンタルサーバー] (初心者向け) PythonとpyenvとFlaskの環境構築方法。| cshの場合](https://qiita.com/peace098beat/items/de9fdadfc4128e99bca6)
+顧客の重要な情報を扱いますので、このディレクトリにはBasic認証等の設定を推奨します。  
+### アップデートの場合
+古いプログラムディレクトリの名前を変更しておきます。  
+```bash
+# 例
+cd ~/www
+mv Web-Analytics-Reporting-Tool/ Web-Analytics-Reporting-Tool-old/
+```
+ファイルをダウンロードします。  
+必要な場合はディレクトリをリネームします。  
+```bash
+git clone git@github.com:shugomatsuzawa/Web-Analytics-Reporting-Tool.git
+```
+ユーザーディレクトリをコピーします。  
+Basic認証を設定している場合は、```.htaccess```、```.htpasswd```もコピーしておきます。  
+```bash
+# 例
+cp -r Web-Analytics-Reporting-Tool-old/user/ Web-Analytics-Reporting-Tool/
+cp -fa Web-Analytics-Reporting-Tool-old/.htaccess Web-Analytics-Reporting-Tool-old/.htpasswd Web-Analytics-Reporting-Tool
+```
+問題なければ古いディレクトリを削除します。  
+```bash
+# 例
+rm -r Web-Analytics-Reporting-Tool-old
+```
 
 ### 認証情報の追加
 [Google API コンソール](https://console.developers.google.com/apis/)にアクセスし、次のAPIを有効にします。
@@ -57,5 +70,4 @@ keyword | text | | ランキングの設定キーワード（カンマ区切り�
 
 ## ヘルプと連絡先
 ### 製作者
-- [松沢 柊吾（WebQuest）](https://github.com/shugomatsuzawa)
-- [miyasan-git](https://github.com/miyasan-git)
+- [松沢 柊吾](https://github.com/shugomatsuzawa)

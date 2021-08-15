@@ -1,7 +1,7 @@
 <section id="organic">
     <div class="title">
 <?php
-if ( !empty($pythonPath) && ($enableSC == 1) ) {
+if ( $enableSC == 1 ) {
     echo '<h2>3. 検索キーワード</h2>';
 } else {
     echo '<h2>2. 検索キーワード</h2>';
