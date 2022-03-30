@@ -19,42 +19,99 @@ namespace Google\Service\SecretManager;
 
 class SecretVersion extends \Google\Model
 {
+  /**
+   * @var bool
+   */
+  public $clientSpecifiedPayloadChecksum;
+  /**
+   * @var string
+   */
   public $createTime;
+  /**
+   * @var string
+   */
   public $destroyTime;
+  /**
+   * @var string
+   */
   public $etag;
+  /**
+   * @var string
+   */
   public $name;
   protected $replicationStatusType = ReplicationStatus::class;
   protected $replicationStatusDataType = '';
+  /**
+   * @var string
+   */
   public $state;
 
+  /**
+   * @param bool
+   */
+  public function setClientSpecifiedPayloadChecksum($clientSpecifiedPayloadChecksum)
+  {
+    $this->clientSpecifiedPayloadChecksum = $clientSpecifiedPayloadChecksum;
+  }
+  /**
+   * @return bool
+   */
+  public function getClientSpecifiedPayloadChecksum()
+  {
+    return $this->clientSpecifiedPayloadChecksum;
+  }
+  /**
+   * @param string
+   */
   public function setCreateTime($createTime)
   {
     $this->createTime = $createTime;
   }
+  /**
+   * @return string
+   */
   public function getCreateTime()
   {
     return $this->createTime;
   }
+  /**
+   * @param string
+   */
   public function setDestroyTime($destroyTime)
   {
     $this->destroyTime = $destroyTime;
   }
+  /**
+   * @return string
+   */
   public function getDestroyTime()
   {
     return $this->destroyTime;
   }
+  /**
+   * @param string
+   */
   public function setEtag($etag)
   {
     $this->etag = $etag;
   }
+  /**
+   * @return string
+   */
   public function getEtag()
   {
     return $this->etag;
   }
+  /**
+   * @param string
+   */
   public function setName($name)
   {
     $this->name = $name;
   }
+  /**
+   * @return string
+   */
   public function getName()
   {
     return $this->name;
@@ -73,10 +130,16 @@ class SecretVersion extends \Google\Model
   {
     return $this->replicationStatus;
   }
+  /**
+   * @param string
+   */
   public function setState($state)
   {
     $this->state = $state;
   }
+  /**
+   * @return string
+   */
   public function getState()
   {
     return $this->state;

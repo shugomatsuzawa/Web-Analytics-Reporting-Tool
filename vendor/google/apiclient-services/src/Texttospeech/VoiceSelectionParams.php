@@ -19,30 +19,73 @@ namespace Google\Service\Texttospeech;
 
 class VoiceSelectionParams extends \Google\Model
 {
+  protected $customVoiceType = CustomVoiceParams::class;
+  protected $customVoiceDataType = '';
+  /**
+   * @var string
+   */
   public $languageCode;
+  /**
+   * @var string
+   */
   public $name;
+  /**
+   * @var string
+   */
   public $ssmlGender;
 
+  /**
+   * @param CustomVoiceParams
+   */
+  public function setCustomVoice(CustomVoiceParams $customVoice)
+  {
+    $this->customVoice = $customVoice;
+  }
+  /**
+   * @return CustomVoiceParams
+   */
+  public function getCustomVoice()
+  {
+    return $this->customVoice;
+  }
+  /**
+   * @param string
+   */
   public function setLanguageCode($languageCode)
   {
     $this->languageCode = $languageCode;
   }
+  /**
+   * @return string
+   */
   public function getLanguageCode()
   {
     return $this->languageCode;
   }
+  /**
+   * @param string
+   */
   public function setName($name)
   {
     $this->name = $name;
   }
+  /**
+   * @return string
+   */
   public function getName()
   {
     return $this->name;
   }
+  /**
+   * @param string
+   */
   public function setSsmlGender($ssmlGender)
   {
     $this->ssmlGender = $ssmlGender;
   }
+  /**
+   * @return string
+   */
   public function getSsmlGender()
   {
     return $this->ssmlGender;

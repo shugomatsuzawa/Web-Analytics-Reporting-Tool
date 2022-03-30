@@ -19,14 +19,13 @@ namespace Google\Service\Bigquery;
 
 class DatasetAccessEntry extends \Google\Collection
 {
-  protected $collection_key = 'target_types';
-  protected $internal_gapi_mappings = [
-        "targetTypes" => "target_types",
-  ];
+  protected $collection_key = 'targetTypes';
   protected $datasetType = DatasetReference::class;
   protected $datasetDataType = '';
-  protected $targetTypesType = DatasetAccessEntryTargetTypes::class;
-  protected $targetTypesDataType = 'array';
+  /**
+   * @var string[]
+   */
+  public $targetTypes;
 
   /**
    * @param DatasetReference
@@ -43,14 +42,14 @@ class DatasetAccessEntry extends \Google\Collection
     return $this->dataset;
   }
   /**
-   * @param DatasetAccessEntryTargetTypes[]
+   * @param string[]
    */
   public function setTargetTypes($targetTypes)
   {
     $this->targetTypes = $targetTypes;
   }
   /**
-   * @return DatasetAccessEntryTargetTypes[]
+   * @return string[]
    */
   public function getTargetTypes()
   {

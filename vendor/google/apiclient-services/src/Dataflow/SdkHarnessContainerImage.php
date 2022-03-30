@@ -17,32 +17,78 @@
 
 namespace Google\Service\Dataflow;
 
-class SdkHarnessContainerImage extends \Google\Model
+class SdkHarnessContainerImage extends \Google\Collection
 {
+  protected $collection_key = 'capabilities';
+  /**
+   * @var string[]
+   */
+  public $capabilities;
+  /**
+   * @var string
+   */
   public $containerImage;
+  /**
+   * @var string
+   */
   public $environmentId;
+  /**
+   * @var bool
+   */
   public $useSingleCorePerContainer;
 
+  /**
+   * @param string[]
+   */
+  public function setCapabilities($capabilities)
+  {
+    $this->capabilities = $capabilities;
+  }
+  /**
+   * @return string[]
+   */
+  public function getCapabilities()
+  {
+    return $this->capabilities;
+  }
+  /**
+   * @param string
+   */
   public function setContainerImage($containerImage)
   {
     $this->containerImage = $containerImage;
   }
+  /**
+   * @return string
+   */
   public function getContainerImage()
   {
     return $this->containerImage;
   }
+  /**
+   * @param string
+   */
   public function setEnvironmentId($environmentId)
   {
     $this->environmentId = $environmentId;
   }
+  /**
+   * @return string
+   */
   public function getEnvironmentId()
   {
     return $this->environmentId;
   }
+  /**
+   * @param bool
+   */
   public function setUseSingleCorePerContainer($useSingleCorePerContainer)
   {
     $this->useSingleCorePerContainer = $useSingleCorePerContainer;
   }
+  /**
+   * @return bool
+   */
   public function getUseSingleCorePerContainer()
   {
     return $this->useSingleCorePerContainer;

@@ -19,24 +19,60 @@ namespace Google\Service\Vault;
 
 class MailExportOptions extends \Google\Model
 {
+  /**
+   * @var string
+   */
   public $exportFormat;
+  /**
+   * @var bool
+   */
   public $showConfidentialModeContent;
+  /**
+   * @var bool
+   */
+  public $useNewExport;
 
+  /**
+   * @param string
+   */
   public function setExportFormat($exportFormat)
   {
     $this->exportFormat = $exportFormat;
   }
+  /**
+   * @return string
+   */
   public function getExportFormat()
   {
     return $this->exportFormat;
   }
+  /**
+   * @param bool
+   */
   public function setShowConfidentialModeContent($showConfidentialModeContent)
   {
     $this->showConfidentialModeContent = $showConfidentialModeContent;
   }
+  /**
+   * @return bool
+   */
   public function getShowConfidentialModeContent()
   {
     return $this->showConfidentialModeContent;
+  }
+  /**
+   * @param bool
+   */
+  public function setUseNewExport($useNewExport)
+  {
+    $this->useNewExport = $useNewExport;
+  }
+  /**
+   * @return bool
+   */
+  public function getUseNewExport()
+  {
+    return $this->useNewExport;
   }
 }
 

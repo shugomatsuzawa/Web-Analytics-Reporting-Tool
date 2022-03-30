@@ -20,57 +20,163 @@ namespace Google\Service\ShoppingContent;
 class ShoppingAdsProgramStatusRegionStatus extends \Google\Collection
 {
   protected $collection_key = 'reviewIssues';
+  /**
+   * @var string
+   */
   public $disapprovalDate;
+  /**
+   * @var string
+   */
   public $eligibilityStatus;
-  public $ineligibilityReason;
+  /**
+   * @var string[]
+   */
+  public $onboardingIssues;
+  /**
+   * @var string[]
+   */
   public $regionCodes;
+  /**
+   * @var string
+   */
   public $reviewEligibilityStatus;
+  /**
+   * @var string
+   */
+  public $reviewIneligibilityReason;
+  /**
+   * @var string
+   */
+  public $reviewIneligibilityReasonDescription;
+  protected $reviewIneligibilityReasonDetailsType = ShoppingAdsProgramStatusReviewIneligibilityReasonDetails::class;
+  protected $reviewIneligibilityReasonDetailsDataType = '';
+  /**
+   * @var string[]
+   */
   public $reviewIssues;
 
+  /**
+   * @param string
+   */
   public function setDisapprovalDate($disapprovalDate)
   {
     $this->disapprovalDate = $disapprovalDate;
   }
+  /**
+   * @return string
+   */
   public function getDisapprovalDate()
   {
     return $this->disapprovalDate;
   }
+  /**
+   * @param string
+   */
   public function setEligibilityStatus($eligibilityStatus)
   {
     $this->eligibilityStatus = $eligibilityStatus;
   }
+  /**
+   * @return string
+   */
   public function getEligibilityStatus()
   {
     return $this->eligibilityStatus;
   }
-  public function setIneligibilityReason($ineligibilityReason)
+  /**
+   * @param string[]
+   */
+  public function setOnboardingIssues($onboardingIssues)
   {
-    $this->ineligibilityReason = $ineligibilityReason;
+    $this->onboardingIssues = $onboardingIssues;
   }
-  public function getIneligibilityReason()
+  /**
+   * @return string[]
+   */
+  public function getOnboardingIssues()
   {
-    return $this->ineligibilityReason;
+    return $this->onboardingIssues;
   }
+  /**
+   * @param string[]
+   */
   public function setRegionCodes($regionCodes)
   {
     $this->regionCodes = $regionCodes;
   }
+  /**
+   * @return string[]
+   */
   public function getRegionCodes()
   {
     return $this->regionCodes;
   }
+  /**
+   * @param string
+   */
   public function setReviewEligibilityStatus($reviewEligibilityStatus)
   {
     $this->reviewEligibilityStatus = $reviewEligibilityStatus;
   }
+  /**
+   * @return string
+   */
   public function getReviewEligibilityStatus()
   {
     return $this->reviewEligibilityStatus;
   }
+  /**
+   * @param string
+   */
+  public function setReviewIneligibilityReason($reviewIneligibilityReason)
+  {
+    $this->reviewIneligibilityReason = $reviewIneligibilityReason;
+  }
+  /**
+   * @return string
+   */
+  public function getReviewIneligibilityReason()
+  {
+    return $this->reviewIneligibilityReason;
+  }
+  /**
+   * @param string
+   */
+  public function setReviewIneligibilityReasonDescription($reviewIneligibilityReasonDescription)
+  {
+    $this->reviewIneligibilityReasonDescription = $reviewIneligibilityReasonDescription;
+  }
+  /**
+   * @return string
+   */
+  public function getReviewIneligibilityReasonDescription()
+  {
+    return $this->reviewIneligibilityReasonDescription;
+  }
+  /**
+   * @param ShoppingAdsProgramStatusReviewIneligibilityReasonDetails
+   */
+  public function setReviewIneligibilityReasonDetails(ShoppingAdsProgramStatusReviewIneligibilityReasonDetails $reviewIneligibilityReasonDetails)
+  {
+    $this->reviewIneligibilityReasonDetails = $reviewIneligibilityReasonDetails;
+  }
+  /**
+   * @return ShoppingAdsProgramStatusReviewIneligibilityReasonDetails
+   */
+  public function getReviewIneligibilityReasonDetails()
+  {
+    return $this->reviewIneligibilityReasonDetails;
+  }
+  /**
+   * @param string[]
+   */
   public function setReviewIssues($reviewIssues)
   {
     $this->reviewIssues = $reviewIssues;
   }
+  /**
+   * @return string[]
+   */
   public function getReviewIssues()
   {
     return $this->reviewIssues;

@@ -19,12 +19,39 @@ namespace Google\Service\AIPlatformNotebooks;
 
 class UpgradeInstanceInternalRequest extends \Google\Model
 {
+  /**
+   * @var string
+   */
+  public $type;
+  /**
+   * @var string
+   */
   public $vmId;
 
+  /**
+   * @param string
+   */
+  public function setType($type)
+  {
+    $this->type = $type;
+  }
+  /**
+   * @return string
+   */
+  public function getType()
+  {
+    return $this->type;
+  }
+  /**
+   * @param string
+   */
   public function setVmId($vmId)
   {
     $this->vmId = $vmId;
   }
+  /**
+   * @return string
+   */
   public function getVmId()
   {
     return $this->vmId;

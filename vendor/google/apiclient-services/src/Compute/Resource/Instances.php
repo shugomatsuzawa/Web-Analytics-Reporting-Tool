@@ -129,20 +129,24 @@ class Instances extends \Google\Service\Resource
    * @param array $optParams Optional parameters.
    *
    * @opt_param string filter A filter expression that filters resources listed in
-   * the response. The expression must specify the field name, a comparison
-   * operator, and the value that you want to use for filtering. The value must be
-   * a string, a number, or a boolean. The comparison operator must be either `=`,
-   * `!=`, `>`, or `<`. For example, if you are filtering Compute Engine
-   * instances, you can exclude instances named `example-instance` by specifying
-   * `name != example-instance`. You can also filter nested fields. For example,
-   * you could specify `scheduling.automaticRestart = false` to include instances
-   * only if they are not scheduled for automatic restarts. You can use filtering
-   * on nested fields to filter based on resource labels. To filter on multiple
-   * expressions, provide each separate expression within parentheses. For
-   * example: ``` (scheduling.automaticRestart = true) (cpuPlatform = "Intel
-   * Skylake") ``` By default, each expression is an `AND` expression. However,
-   * you can include `AND` and `OR` expressions explicitly. For example: ```
-   * (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND
+   * the response. The expression must specify the field name, an operator, and
+   * the value that you want to use for filtering. The value must be a string, a
+   * number, or a boolean. The operator must be either `=`, `!=`, `>`, `<`, `<=`,
+   * `>=` or `:`. For example, if you are filtering Compute Engine instances, you
+   * can exclude instances named `example-instance` by specifying `name !=
+   * example-instance`. The `:` operator can be used with string fields to match
+   * substrings. For non-string fields it is equivalent to the `=` operator. The
+   * `:*` comparison can be used to test whether a key has been defined. For
+   * example, to find all objects with `owner` label use: ``` labels.owner:* ```
+   * You can also filter nested fields. For example, you could specify
+   * `scheduling.automaticRestart = false` to include instances only if they are
+   * not scheduled for automatic restarts. You can use filtering on nested fields
+   * to filter based on resource labels. To filter on multiple expressions,
+   * provide each separate expression within parentheses. For example: ```
+   * (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake") ``` By
+   * default, each expression is an `AND` expression. However, you can include
+   * `AND` and `OR` expressions explicitly. For example: ``` (cpuPlatform = "Intel
+   * Skylake") OR (cpuPlatform = "Intel Broadwell") AND
    * (scheduling.automaticRestart = true) ```
    * @opt_param bool includeAllScopes Indicates whether every visible scope for
    * each scope type (zone, region, global) should be included in the response.
@@ -481,6 +485,13 @@ class Instances extends \Google\Service\Resource
    * /global/instanceTemplates/instanceTemplate -
    * projects/project/global/instanceTemplates/instanceTemplate -
    * global/instanceTemplates/instanceTemplate
+   * @opt_param string sourceMachineImage Specifies the machine image to use to
+   * create the instance. This field is optional. It can be a full or partial URL.
+   * For example, the following are all valid URLs to a machine image: -
+   * https://www.googleapis.com/compute/v1/projects/project/global/global
+   * /machineImages/machineImage -
+   * projects/project/global/global/machineImages/machineImage -
+   * global/machineImages/machineImage
    * @return Operation
    */
   public function insert($project, $zone, Instance $postBody, $optParams = [])
@@ -498,20 +509,24 @@ class Instances extends \Google\Service\Resource
    * @param array $optParams Optional parameters.
    *
    * @opt_param string filter A filter expression that filters resources listed in
-   * the response. The expression must specify the field name, a comparison
-   * operator, and the value that you want to use for filtering. The value must be
-   * a string, a number, or a boolean. The comparison operator must be either `=`,
-   * `!=`, `>`, or `<`. For example, if you are filtering Compute Engine
-   * instances, you can exclude instances named `example-instance` by specifying
-   * `name != example-instance`. You can also filter nested fields. For example,
-   * you could specify `scheduling.automaticRestart = false` to include instances
-   * only if they are not scheduled for automatic restarts. You can use filtering
-   * on nested fields to filter based on resource labels. To filter on multiple
-   * expressions, provide each separate expression within parentheses. For
-   * example: ``` (scheduling.automaticRestart = true) (cpuPlatform = "Intel
-   * Skylake") ``` By default, each expression is an `AND` expression. However,
-   * you can include `AND` and `OR` expressions explicitly. For example: ```
-   * (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND
+   * the response. The expression must specify the field name, an operator, and
+   * the value that you want to use for filtering. The value must be a string, a
+   * number, or a boolean. The operator must be either `=`, `!=`, `>`, `<`, `<=`,
+   * `>=` or `:`. For example, if you are filtering Compute Engine instances, you
+   * can exclude instances named `example-instance` by specifying `name !=
+   * example-instance`. The `:` operator can be used with string fields to match
+   * substrings. For non-string fields it is equivalent to the `=` operator. The
+   * `:*` comparison can be used to test whether a key has been defined. For
+   * example, to find all objects with `owner` label use: ``` labels.owner:* ```
+   * You can also filter nested fields. For example, you could specify
+   * `scheduling.automaticRestart = false` to include instances only if they are
+   * not scheduled for automatic restarts. You can use filtering on nested fields
+   * to filter based on resource labels. To filter on multiple expressions,
+   * provide each separate expression within parentheses. For example: ```
+   * (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake") ``` By
+   * default, each expression is an `AND` expression. However, you can include
+   * `AND` and `OR` expressions explicitly. For example: ``` (cpuPlatform = "Intel
+   * Skylake") OR (cpuPlatform = "Intel Broadwell") AND
    * (scheduling.automaticRestart = true) ```
    * @opt_param string maxResults The maximum number of results per page that
    * should be returned. If the number of available results is larger than
@@ -554,20 +569,24 @@ class Instances extends \Google\Service\Resource
    * @param array $optParams Optional parameters.
    *
    * @opt_param string filter A filter expression that filters resources listed in
-   * the response. The expression must specify the field name, a comparison
-   * operator, and the value that you want to use for filtering. The value must be
-   * a string, a number, or a boolean. The comparison operator must be either `=`,
-   * `!=`, `>`, or `<`. For example, if you are filtering Compute Engine
-   * instances, you can exclude instances named `example-instance` by specifying
-   * `name != example-instance`. You can also filter nested fields. For example,
-   * you could specify `scheduling.automaticRestart = false` to include instances
-   * only if they are not scheduled for automatic restarts. You can use filtering
-   * on nested fields to filter based on resource labels. To filter on multiple
-   * expressions, provide each separate expression within parentheses. For
-   * example: ``` (scheduling.automaticRestart = true) (cpuPlatform = "Intel
-   * Skylake") ``` By default, each expression is an `AND` expression. However,
-   * you can include `AND` and `OR` expressions explicitly. For example: ```
-   * (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND
+   * the response. The expression must specify the field name, an operator, and
+   * the value that you want to use for filtering. The value must be a string, a
+   * number, or a boolean. The operator must be either `=`, `!=`, `>`, `<`, `<=`,
+   * `>=` or `:`. For example, if you are filtering Compute Engine instances, you
+   * can exclude instances named `example-instance` by specifying `name !=
+   * example-instance`. The `:` operator can be used with string fields to match
+   * substrings. For non-string fields it is equivalent to the `=` operator. The
+   * `:*` comparison can be used to test whether a key has been defined. For
+   * example, to find all objects with `owner` label use: ``` labels.owner:* ```
+   * You can also filter nested fields. For example, you could specify
+   * `scheduling.automaticRestart = false` to include instances only if they are
+   * not scheduled for automatic restarts. You can use filtering on nested fields
+   * to filter based on resource labels. To filter on multiple expressions,
+   * provide each separate expression within parentheses. For example: ```
+   * (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake") ``` By
+   * default, each expression is an `AND` expression. However, you can include
+   * `AND` and `OR` expressions explicitly. For example: ``` (cpuPlatform = "Intel
+   * Skylake") OR (cpuPlatform = "Intel Broadwell") AND
    * (scheduling.automaticRestart = true) ```
    * @opt_param string maxResults The maximum number of results per page that
    * should be returned. If the number of available results is larger than
@@ -625,7 +644,7 @@ class Instances extends \Google\Service\Resource
     return $this->call('removeResourcePolicies', [$params], Operation::class);
   }
   /**
-   * Performs a reset on the instance. This is a hard reset the VM does not do a
+   * Performs a reset on the instance. This is a hard reset. The VM does not do a
    * graceful shutdown. For more information, see Resetting an instance.
    * (instances.reset)
    *
@@ -651,6 +670,33 @@ class Instances extends \Google\Service\Resource
     $params = ['project' => $project, 'zone' => $zone, 'instance' => $instance];
     $params = array_merge($params, $optParams);
     return $this->call('reset', [$params], Operation::class);
+  }
+  /**
+   * Resumes an instance that was suspended using the instances().suspend method.
+   * (instances.resume)
+   *
+   * @param string $project Project ID for this request.
+   * @param string $zone The name of the zone for this request.
+   * @param string $instance Name of the instance resource to resume.
+   * @param array $optParams Optional parameters.
+   *
+   * @opt_param string requestId An optional request ID to identify requests.
+   * Specify a unique request ID so that if you must retry your request, the
+   * server will know to ignore the request if it has already been completed. For
+   * example, consider a situation where you make an initial request and the
+   * request times out. If you make the request again with the same request ID,
+   * the server can check if original operation with the same request ID was
+   * received, and if so, will ignore the second request. This prevents clients
+   * from accidentally creating duplicate commitments. The request ID must be a
+   * valid UUID with the exception that zero UUID is not supported (
+   * 00000000-0000-0000-0000-000000000000).
+   * @return Operation
+   */
+  public function resume($project, $zone, $instance, $optParams = [])
+  {
+    $params = ['project' => $project, 'zone' => $zone, 'instance' => $instance];
+    $params = array_merge($params, $optParams);
+    return $this->call('resume', [$params], Operation::class);
   }
   /**
    * Sends diagnostic interrupt to the instance.
@@ -887,8 +933,9 @@ class Instances extends \Google\Service\Resource
   /**
    * Sets an instance's scheduling options. You can only call this method on a
    * stopped instance, that is, a VM instance that is in a `TERMINATED` state. See
-   * Instance Life Cycle for more information on the possible instance states.
-   * (instances.setScheduling)
+   * Instance Life Cycle for more information on the possible instance states. For
+   * more information about setting scheduling options for a VM, see Set VM
+   * availability policies. (instances.setScheduling)
    *
    * @param string $project Project ID for this request.
    * @param string $zone The name of the zone for this request.
@@ -1002,8 +1049,8 @@ class Instances extends \Google\Service\Resource
     return $this->call('setTags', [$params], Operation::class);
   }
   /**
-   * Simulates a maintenance event on the instance.
-   * (instances.simulateMaintenanceEvent)
+   * Simulates a host maintenance event on a VM. For more information, see
+   * Simulate a host maintenance event. (instances.simulateMaintenanceEvent)
    *
    * @param string $project Project ID for this request.
    * @param string $zone The name of the zone for this request.
@@ -1102,6 +1149,38 @@ class Instances extends \Google\Service\Resource
     $params = ['project' => $project, 'zone' => $zone, 'instance' => $instance];
     $params = array_merge($params, $optParams);
     return $this->call('stop', [$params], Operation::class);
+  }
+  /**
+   * This method suspends a running instance, saving its state to persistent
+   * storage, and allows you to resume the instance at a later time. Suspended
+   * instances have no compute costs (cores or RAM), and incur only storage
+   * charges for the saved VM memory and localSSD data. Any charged resources the
+   * virtual machine was using, such as persistent disks and static IP addresses,
+   * will continue to be charged while the instance is suspended. For more
+   * information, see Suspending and resuming an instance. (instances.suspend)
+   *
+   * @param string $project Project ID for this request.
+   * @param string $zone The name of the zone for this request.
+   * @param string $instance Name of the instance resource to suspend.
+   * @param array $optParams Optional parameters.
+   *
+   * @opt_param string requestId An optional request ID to identify requests.
+   * Specify a unique request ID so that if you must retry your request, the
+   * server will know to ignore the request if it has already been completed. For
+   * example, consider a situation where you make an initial request and the
+   * request times out. If you make the request again with the same request ID,
+   * the server can check if original operation with the same request ID was
+   * received, and if so, will ignore the second request. This prevents clients
+   * from accidentally creating duplicate commitments. The request ID must be a
+   * valid UUID with the exception that zero UUID is not supported (
+   * 00000000-0000-0000-0000-000000000000).
+   * @return Operation
+   */
+  public function suspend($project, $zone, $instance, $optParams = [])
+  {
+    $params = ['project' => $project, 'zone' => $zone, 'instance' => $instance];
+    $params = array_merge($params, $optParams);
+    return $this->call('suspend', [$params], Operation::class);
   }
   /**
    * Returns permissions that a caller has on the specified resource.

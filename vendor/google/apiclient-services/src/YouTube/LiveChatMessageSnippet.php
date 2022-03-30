@@ -19,20 +19,39 @@ namespace Google\Service\YouTube;
 
 class LiveChatMessageSnippet extends \Google\Model
 {
+  /**
+   * @var string
+   */
   public $authorChannelId;
+  /**
+   * @var string
+   */
   public $displayMessage;
   protected $fanFundingEventDetailsType = LiveChatFanFundingEventDetails::class;
   protected $fanFundingEventDetailsDataType = '';
+  protected $giftMembershipReceivedDetailsType = LiveChatGiftMembershipReceivedDetails::class;
+  protected $giftMembershipReceivedDetailsDataType = '';
+  /**
+   * @var bool
+   */
   public $hasDisplayContent;
+  /**
+   * @var string
+   */
   public $liveChatId;
   protected $memberMilestoneChatDetailsType = LiveChatMemberMilestoneChatDetails::class;
   protected $memberMilestoneChatDetailsDataType = '';
+  protected $membershipGiftingDetailsType = LiveChatMembershipGiftingDetails::class;
+  protected $membershipGiftingDetailsDataType = '';
   protected $messageDeletedDetailsType = LiveChatMessageDeletedDetails::class;
   protected $messageDeletedDetailsDataType = '';
   protected $messageRetractedDetailsType = LiveChatMessageRetractedDetails::class;
   protected $messageRetractedDetailsDataType = '';
   protected $newSponsorDetailsType = LiveChatNewSponsorDetails::class;
   protected $newSponsorDetailsDataType = '';
+  /**
+   * @var string
+   */
   public $publishedAt;
   protected $superChatDetailsType = LiveChatSuperChatDetails::class;
   protected $superChatDetailsDataType = '';
@@ -40,22 +59,37 @@ class LiveChatMessageSnippet extends \Google\Model
   protected $superStickerDetailsDataType = '';
   protected $textMessageDetailsType = LiveChatTextMessageDetails::class;
   protected $textMessageDetailsDataType = '';
+  /**
+   * @var string
+   */
   public $type;
   protected $userBannedDetailsType = LiveChatUserBannedMessageDetails::class;
   protected $userBannedDetailsDataType = '';
 
+  /**
+   * @param string
+   */
   public function setAuthorChannelId($authorChannelId)
   {
     $this->authorChannelId = $authorChannelId;
   }
+  /**
+   * @return string
+   */
   public function getAuthorChannelId()
   {
     return $this->authorChannelId;
   }
+  /**
+   * @param string
+   */
   public function setDisplayMessage($displayMessage)
   {
     $this->displayMessage = $displayMessage;
   }
+  /**
+   * @return string
+   */
   public function getDisplayMessage()
   {
     return $this->displayMessage;
@@ -74,18 +108,44 @@ class LiveChatMessageSnippet extends \Google\Model
   {
     return $this->fanFundingEventDetails;
   }
+  /**
+   * @param LiveChatGiftMembershipReceivedDetails
+   */
+  public function setGiftMembershipReceivedDetails(LiveChatGiftMembershipReceivedDetails $giftMembershipReceivedDetails)
+  {
+    $this->giftMembershipReceivedDetails = $giftMembershipReceivedDetails;
+  }
+  /**
+   * @return LiveChatGiftMembershipReceivedDetails
+   */
+  public function getGiftMembershipReceivedDetails()
+  {
+    return $this->giftMembershipReceivedDetails;
+  }
+  /**
+   * @param bool
+   */
   public function setHasDisplayContent($hasDisplayContent)
   {
     $this->hasDisplayContent = $hasDisplayContent;
   }
+  /**
+   * @return bool
+   */
   public function getHasDisplayContent()
   {
     return $this->hasDisplayContent;
   }
+  /**
+   * @param string
+   */
   public function setLiveChatId($liveChatId)
   {
     $this->liveChatId = $liveChatId;
   }
+  /**
+   * @return string
+   */
   public function getLiveChatId()
   {
     return $this->liveChatId;
@@ -103,6 +163,20 @@ class LiveChatMessageSnippet extends \Google\Model
   public function getMemberMilestoneChatDetails()
   {
     return $this->memberMilestoneChatDetails;
+  }
+  /**
+   * @param LiveChatMembershipGiftingDetails
+   */
+  public function setMembershipGiftingDetails(LiveChatMembershipGiftingDetails $membershipGiftingDetails)
+  {
+    $this->membershipGiftingDetails = $membershipGiftingDetails;
+  }
+  /**
+   * @return LiveChatMembershipGiftingDetails
+   */
+  public function getMembershipGiftingDetails()
+  {
+    return $this->membershipGiftingDetails;
   }
   /**
    * @param LiveChatMessageDeletedDetails
@@ -146,10 +220,16 @@ class LiveChatMessageSnippet extends \Google\Model
   {
     return $this->newSponsorDetails;
   }
+  /**
+   * @param string
+   */
   public function setPublishedAt($publishedAt)
   {
     $this->publishedAt = $publishedAt;
   }
+  /**
+   * @return string
+   */
   public function getPublishedAt()
   {
     return $this->publishedAt;
@@ -196,10 +276,16 @@ class LiveChatMessageSnippet extends \Google\Model
   {
     return $this->textMessageDetails;
   }
+  /**
+   * @param string
+   */
   public function setType($type)
   {
     $this->type = $type;
   }
+  /**
+   * @return string
+   */
   public function getType()
   {
     return $this->type;

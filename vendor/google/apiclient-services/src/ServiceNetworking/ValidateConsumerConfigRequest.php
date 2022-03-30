@@ -19,17 +19,47 @@ namespace Google\Service\ServiceNetworking;
 
 class ValidateConsumerConfigRequest extends \Google\Model
 {
+  /**
+   * @var bool
+   */
+  public $checkServiceNetworkingUsePermission;
+  /**
+   * @var string
+   */
   public $consumerNetwork;
   protected $consumerProjectType = ConsumerProject::class;
   protected $consumerProjectDataType = '';
   protected $rangeReservationType = RangeReservation::class;
   protected $rangeReservationDataType = '';
+  /**
+   * @var bool
+   */
   public $validateNetwork;
 
+  /**
+   * @param bool
+   */
+  public function setCheckServiceNetworkingUsePermission($checkServiceNetworkingUsePermission)
+  {
+    $this->checkServiceNetworkingUsePermission = $checkServiceNetworkingUsePermission;
+  }
+  /**
+   * @return bool
+   */
+  public function getCheckServiceNetworkingUsePermission()
+  {
+    return $this->checkServiceNetworkingUsePermission;
+  }
+  /**
+   * @param string
+   */
   public function setConsumerNetwork($consumerNetwork)
   {
     $this->consumerNetwork = $consumerNetwork;
   }
+  /**
+   * @return string
+   */
   public function getConsumerNetwork()
   {
     return $this->consumerNetwork;
@@ -62,10 +92,16 @@ class ValidateConsumerConfigRequest extends \Google\Model
   {
     return $this->rangeReservation;
   }
+  /**
+   * @param bool
+   */
   public function setValidateNetwork($validateNetwork)
   {
     $this->validateNetwork = $validateNetwork;
   }
+  /**
+   * @return bool
+   */
   public function getValidateNetwork()
   {
     return $this->validateNetwork;

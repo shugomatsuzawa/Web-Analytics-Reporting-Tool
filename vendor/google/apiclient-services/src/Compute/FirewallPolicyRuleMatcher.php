@@ -19,16 +19,30 @@ namespace Google\Service\Compute;
 
 class FirewallPolicyRuleMatcher extends \Google\Collection
 {
-  protected $collection_key = 'srcIpRanges';
+  protected $collection_key = 'srcSecureTags';
+  /**
+   * @var string[]
+   */
   public $destIpRanges;
   protected $layer4ConfigsType = FirewallPolicyRuleMatcherLayer4Config::class;
   protected $layer4ConfigsDataType = 'array';
+  /**
+   * @var string[]
+   */
   public $srcIpRanges;
+  protected $srcSecureTagsType = FirewallPolicyRuleSecureTag::class;
+  protected $srcSecureTagsDataType = 'array';
 
+  /**
+   * @param string[]
+   */
   public function setDestIpRanges($destIpRanges)
   {
     $this->destIpRanges = $destIpRanges;
   }
+  /**
+   * @return string[]
+   */
   public function getDestIpRanges()
   {
     return $this->destIpRanges;
@@ -47,13 +61,33 @@ class FirewallPolicyRuleMatcher extends \Google\Collection
   {
     return $this->layer4Configs;
   }
+  /**
+   * @param string[]
+   */
   public function setSrcIpRanges($srcIpRanges)
   {
     $this->srcIpRanges = $srcIpRanges;
   }
+  /**
+   * @return string[]
+   */
   public function getSrcIpRanges()
   {
     return $this->srcIpRanges;
+  }
+  /**
+   * @param FirewallPolicyRuleSecureTag[]
+   */
+  public function setSrcSecureTags($srcSecureTags)
+  {
+    $this->srcSecureTags = $srcSecureTags;
+  }
+  /**
+   * @return FirewallPolicyRuleSecureTag[]
+   */
+  public function getSrcSecureTags()
+  {
+    return $this->srcSecureTags;
   }
 }
 

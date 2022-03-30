@@ -309,6 +309,10 @@ class AIPlatformNotebooks extends \Google\Service
                   'type' => 'string',
                   'required' => true,
                 ],
+                'type' => [
+                  'location' => 'query',
+                  'type' => 'string',
+                ],
               ],
             ],'list' => [
               'path' => 'v1/{+parent}/instances',
@@ -448,6 +452,16 @@ class AIPlatformNotebooks extends \Google\Service
                   'required' => true,
                 ],
               ],
+            ],'updateMetadataItems' => [
+              'path' => 'v1/{+name}:updateMetadataItems',
+              'httpMethod' => 'PATCH',
+              'parameters' => [
+                'name' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+              ],
             ],'updateShieldedInstanceConfig' => [
               'path' => 'v1/{+name}:updateShieldedInstanceConfig',
               'httpMethod' => 'PATCH',
@@ -559,6 +573,10 @@ class AIPlatformNotebooks extends \Google\Service
                   'type' => 'string',
                   'required' => true,
                 ],
+                'requestId' => [
+                  'location' => 'query',
+                  'type' => 'string',
+                ],
                 'runtimeId' => [
                   'location' => 'query',
                   'type' => 'string',
@@ -572,6 +590,10 @@ class AIPlatformNotebooks extends \Google\Service
                   'location' => 'path',
                   'type' => 'string',
                   'required' => true,
+                ],
+                'requestId' => [
+                  'location' => 'query',
+                  'type' => 'string',
                 ],
               ],
             ],'get' => [
@@ -614,6 +636,16 @@ class AIPlatformNotebooks extends \Google\Service
                 'pageToken' => [
                   'location' => 'query',
                   'type' => 'string',
+                ],
+              ],
+            ],'refreshRuntimeTokenInternal' => [
+              'path' => 'v1/{+name}:refreshRuntimeTokenInternal',
+              'httpMethod' => 'POST',
+              'parameters' => [
+                'name' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
                 ],
               ],
             ],'reportEvent' => [

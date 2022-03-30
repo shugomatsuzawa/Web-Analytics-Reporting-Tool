@@ -20,6 +20,8 @@ namespace Google\Service\AIPlatformNotebooks\Resource;
 use Google\Service\AIPlatformNotebooks\ListRuntimesResponse;
 use Google\Service\AIPlatformNotebooks\Operation;
 use Google\Service\AIPlatformNotebooks\Policy;
+use Google\Service\AIPlatformNotebooks\RefreshRuntimeTokenInternalRequest;
+use Google\Service\AIPlatformNotebooks\RefreshRuntimeTokenInternalResponse;
 use Google\Service\AIPlatformNotebooks\ReportRuntimeEventRequest;
 use Google\Service\AIPlatformNotebooks\ResetRuntimeRequest;
 use Google\Service\AIPlatformNotebooks\Runtime;
@@ -48,6 +50,7 @@ class ProjectsLocationsRuntimes extends \Google\Service\Resource
    * @param Runtime $postBody
    * @param array $optParams Optional parameters.
    *
+   * @opt_param string requestId Idempotent request UUID.
    * @opt_param string runtimeId Required. User-defined unique ID of this Runtime.
    * @return Operation
    */
@@ -63,6 +66,8 @@ class ProjectsLocationsRuntimes extends \Google\Service\Resource
    * @param string $name Required. Format:
    * `projects/{project_id}/locations/{location}/runtimes/{runtime_id}`
    * @param array $optParams Optional parameters.
+   *
+   * @opt_param string requestId Idempotent request UUID.
    * @return Operation
    */
   public function delete($name, $optParams = [])
@@ -95,12 +100,16 @@ class ProjectsLocationsRuntimes extends \Google\Service\Resource
    * field.
    * @param array $optParams Optional parameters.
    *
-   * @opt_param int options.requestedPolicyVersion Optional. The policy format
-   * version to be returned. Valid values are 0, 1, and 3. Requests specifying an
-   * invalid value will be rejected. Requests for policies with any conditional
-   * bindings must specify version 3. Policies without any conditional bindings
-   * may specify any valid value or leave the field unset. To learn which
-   * resources support conditions in their IAM policies, see the [IAM
+   * @opt_param int options.requestedPolicyVersion Optional. The maximum policy
+   * version that will be used to format the policy. Valid values are 0, 1, and 3.
+   * Requests specifying an invalid value will be rejected. Requests for policies
+   * with any conditional role bindings must specify version 3. Policies with no
+   * conditional role bindings may specify any valid value or leave the field
+   * unset. The policy in the response might use the policy version that you
+   * specified, or it might use a lower policy version. For example, if you
+   * specify version 3, but the policy has no conditional role bindings, the
+   * response uses version 1. To learn which resources support conditions in their
+   * IAM policies, see the [IAM
    * documentation](https://cloud.google.com/iam/help/conditions/resource-
    * policies).
    * @return Policy
@@ -129,6 +138,23 @@ class ProjectsLocationsRuntimes extends \Google\Service\Resource
     $params = ['parent' => $parent];
     $params = array_merge($params, $optParams);
     return $this->call('list', [$params], ListRuntimesResponse::class);
+  }
+  /**
+   * Gets an access token for the consumer service account that the customer
+   * attached to the runtime. Only accessible from the tenant instance.
+   * (runtimes.refreshRuntimeTokenInternal)
+   *
+   * @param string $name Required. Format:
+   * `projects/{project_id}/locations/{location}/runtimes/{runtime_id}`
+   * @param RefreshRuntimeTokenInternalRequest $postBody
+   * @param array $optParams Optional parameters.
+   * @return RefreshRuntimeTokenInternalResponse
+   */
+  public function refreshRuntimeTokenInternal($name, RefreshRuntimeTokenInternalRequest $postBody, $optParams = [])
+  {
+    $params = ['name' => $name, 'postBody' => $postBody];
+    $params = array_merge($params, $optParams);
+    return $this->call('refreshRuntimeTokenInternal', [$params], RefreshRuntimeTokenInternalResponse::class);
   }
   /**
    * Report and process a runtime event. (runtimes.reportEvent)

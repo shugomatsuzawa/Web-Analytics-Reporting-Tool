@@ -19,48 +19,111 @@ namespace Google\Service\FirebaseManagement;
 
 class AndroidApp extends \Google\Model
 {
+  /**
+   * @var string
+   */
+  public $apiKeyId;
+  /**
+   * @var string
+   */
   public $appId;
+  /**
+   * @var string
+   */
   public $displayName;
+  /**
+   * @var string
+   */
   public $name;
+  /**
+   * @var string
+   */
   public $packageName;
+  /**
+   * @var string
+   */
   public $projectId;
 
+  /**
+   * @param string
+   */
+  public function setApiKeyId($apiKeyId)
+  {
+    $this->apiKeyId = $apiKeyId;
+  }
+  /**
+   * @return string
+   */
+  public function getApiKeyId()
+  {
+    return $this->apiKeyId;
+  }
+  /**
+   * @param string
+   */
   public function setAppId($appId)
   {
     $this->appId = $appId;
   }
+  /**
+   * @return string
+   */
   public function getAppId()
   {
     return $this->appId;
   }
+  /**
+   * @param string
+   */
   public function setDisplayName($displayName)
   {
     $this->displayName = $displayName;
   }
+  /**
+   * @return string
+   */
   public function getDisplayName()
   {
     return $this->displayName;
   }
+  /**
+   * @param string
+   */
   public function setName($name)
   {
     $this->name = $name;
   }
+  /**
+   * @return string
+   */
   public function getName()
   {
     return $this->name;
   }
+  /**
+   * @param string
+   */
   public function setPackageName($packageName)
   {
     $this->packageName = $packageName;
   }
+  /**
+   * @return string
+   */
   public function getPackageName()
   {
     return $this->packageName;
   }
+  /**
+   * @param string
+   */
   public function setProjectId($projectId)
   {
     $this->projectId = $projectId;
   }
+  /**
+   * @return string
+   */
   public function getProjectId()
   {
     return $this->projectId;

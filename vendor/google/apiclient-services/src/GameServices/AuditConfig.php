@@ -19,10 +19,12 @@ namespace Google\Service\GameServices;
 
 class AuditConfig extends \Google\Collection
 {
-  protected $collection_key = 'exemptedMembers';
+  protected $collection_key = 'auditLogConfigs';
   protected $auditLogConfigsType = AuditLogConfig::class;
   protected $auditLogConfigsDataType = 'array';
-  public $exemptedMembers;
+  /**
+   * @var string
+   */
   public $service;
 
   /**
@@ -39,18 +41,16 @@ class AuditConfig extends \Google\Collection
   {
     return $this->auditLogConfigs;
   }
-  public function setExemptedMembers($exemptedMembers)
-  {
-    $this->exemptedMembers = $exemptedMembers;
-  }
-  public function getExemptedMembers()
-  {
-    return $this->exemptedMembers;
-  }
+  /**
+   * @param string
+   */
   public function setService($service)
   {
     $this->service = $service;
   }
+  /**
+   * @return string
+   */
   public function getService()
   {
     return $this->service;

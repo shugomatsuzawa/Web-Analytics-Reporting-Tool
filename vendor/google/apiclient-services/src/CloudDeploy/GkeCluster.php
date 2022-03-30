@@ -19,15 +19,42 @@ namespace Google\Service\CloudDeploy;
 
 class GkeCluster extends \Google\Model
 {
+  /**
+   * @var string
+   */
   public $cluster;
+  /**
+   * @var bool
+   */
+  public $internalIp;
 
+  /**
+   * @param string
+   */
   public function setCluster($cluster)
   {
     $this->cluster = $cluster;
   }
+  /**
+   * @return string
+   */
   public function getCluster()
   {
     return $this->cluster;
+  }
+  /**
+   * @param bool
+   */
+  public function setInternalIp($internalIp)
+  {
+    $this->internalIp = $internalIp;
+  }
+  /**
+   * @return bool
+   */
+  public function getInternalIp()
+  {
+    return $this->internalIp;
   }
 }
 

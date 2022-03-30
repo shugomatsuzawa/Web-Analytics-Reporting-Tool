@@ -19,24 +19,78 @@ namespace Google\Service\SQLAdmin;
 
 class SqlServerAuditConfig extends \Google\Model
 {
+  /**
+   * @var string
+   */
   public $bucket;
+  /**
+   * @var string
+   */
   public $kind;
+  /**
+   * @var string
+   */
+  public $retentionInterval;
+  /**
+   * @var string
+   */
+  public $uploadInterval;
 
+  /**
+   * @param string
+   */
   public function setBucket($bucket)
   {
     $this->bucket = $bucket;
   }
+  /**
+   * @return string
+   */
   public function getBucket()
   {
     return $this->bucket;
   }
+  /**
+   * @param string
+   */
   public function setKind($kind)
   {
     $this->kind = $kind;
   }
+  /**
+   * @return string
+   */
   public function getKind()
   {
     return $this->kind;
+  }
+  /**
+   * @param string
+   */
+  public function setRetentionInterval($retentionInterval)
+  {
+    $this->retentionInterval = $retentionInterval;
+  }
+  /**
+   * @return string
+   */
+  public function getRetentionInterval()
+  {
+    return $this->retentionInterval;
+  }
+  /**
+   * @param string
+   */
+  public function setUploadInterval($uploadInterval)
+  {
+    $this->uploadInterval = $uploadInterval;
+  }
+  /**
+   * @return string
+   */
+  public function getUploadInterval()
+  {
+    return $this->uploadInterval;
   }
 }
 

@@ -50,8 +50,8 @@ class TransferJobs extends \Google\Service\Resource
    * Gets a transfer job. (transferJobs.get)
    *
    * @param string $jobName Required. The job to get.
-   * @param string $projectId Required. The ID of the Google Cloud Platform
-   * Console project that owns the job.
+   * @param string $projectId Required. The ID of the Google Cloud project that
+   * owns the job.
    * @param array $optParams Optional parameters.
    * @return TransferJob
    */
@@ -103,7 +103,7 @@ class TransferJobs extends \Google\Service\Resource
   /**
    * Attempts to start a new TransferOperation for the current TransferJob. A
    * TransferJob has a maximum of one active TransferOperation. If this method is
-   * called while a TransferOperation is active, an error wil be returned.
+   * called while a TransferOperation is active, an error will be returned.
    * (transferJobs.run)
    *
    * @param string $jobName Required. The name of the transfer job.

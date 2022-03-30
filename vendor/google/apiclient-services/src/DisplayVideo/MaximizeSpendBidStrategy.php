@@ -19,33 +19,78 @@ namespace Google\Service\DisplayVideo;
 
 class MaximizeSpendBidStrategy extends \Google\Model
 {
+  /**
+   * @var string
+   */
   public $customBiddingAlgorithmId;
+  /**
+   * @var string
+   */
   public $maxAverageCpmBidAmountMicros;
+  /**
+   * @var string
+   */
   public $performanceGoalType;
+  /**
+   * @var bool
+   */
+  public $raiseBidForDeals;
 
+  /**
+   * @param string
+   */
   public function setCustomBiddingAlgorithmId($customBiddingAlgorithmId)
   {
     $this->customBiddingAlgorithmId = $customBiddingAlgorithmId;
   }
+  /**
+   * @return string
+   */
   public function getCustomBiddingAlgorithmId()
   {
     return $this->customBiddingAlgorithmId;
   }
+  /**
+   * @param string
+   */
   public function setMaxAverageCpmBidAmountMicros($maxAverageCpmBidAmountMicros)
   {
     $this->maxAverageCpmBidAmountMicros = $maxAverageCpmBidAmountMicros;
   }
+  /**
+   * @return string
+   */
   public function getMaxAverageCpmBidAmountMicros()
   {
     return $this->maxAverageCpmBidAmountMicros;
   }
+  /**
+   * @param string
+   */
   public function setPerformanceGoalType($performanceGoalType)
   {
     $this->performanceGoalType = $performanceGoalType;
   }
+  /**
+   * @return string
+   */
   public function getPerformanceGoalType()
   {
     return $this->performanceGoalType;
+  }
+  /**
+   * @param bool
+   */
+  public function setRaiseBidForDeals($raiseBidForDeals)
+  {
+    $this->raiseBidForDeals = $raiseBidForDeals;
+  }
+  /**
+   * @return bool
+   */
+  public function getRaiseBidForDeals()
+  {
+    return $this->raiseBidForDeals;
   }
 }
 

@@ -19,24 +19,76 @@ namespace Google\Service\DataCatalog;
 
 class GoogleCloudDatacatalogV1DataSource extends \Google\Model
 {
+  /**
+   * @var string
+   */
   public $resource;
+  /**
+   * @var string
+   */
   public $service;
+  /**
+   * @var string
+   */
+  public $sourceEntry;
+  protected $storagePropertiesType = GoogleCloudDatacatalogV1StorageProperties::class;
+  protected $storagePropertiesDataType = '';
 
+  /**
+   * @param string
+   */
   public function setResource($resource)
   {
     $this->resource = $resource;
   }
+  /**
+   * @return string
+   */
   public function getResource()
   {
     return $this->resource;
   }
+  /**
+   * @param string
+   */
   public function setService($service)
   {
     $this->service = $service;
   }
+  /**
+   * @return string
+   */
   public function getService()
   {
     return $this->service;
+  }
+  /**
+   * @param string
+   */
+  public function setSourceEntry($sourceEntry)
+  {
+    $this->sourceEntry = $sourceEntry;
+  }
+  /**
+   * @return string
+   */
+  public function getSourceEntry()
+  {
+    return $this->sourceEntry;
+  }
+  /**
+   * @param GoogleCloudDatacatalogV1StorageProperties
+   */
+  public function setStorageProperties(GoogleCloudDatacatalogV1StorageProperties $storageProperties)
+  {
+    $this->storageProperties = $storageProperties;
+  }
+  /**
+   * @return GoogleCloudDatacatalogV1StorageProperties
+   */
+  public function getStorageProperties()
+  {
+    return $this->storageProperties;
   }
 }
 

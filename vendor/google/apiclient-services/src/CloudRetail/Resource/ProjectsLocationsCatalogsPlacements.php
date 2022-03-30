@@ -36,9 +36,10 @@ class ProjectsLocationsCatalogsPlacements extends \Google\Service\Resource
    * Makes a recommendation prediction. (placements.predict)
    *
    * @param string $placement Required. Full resource name of the format:
-   * {name=projects/locations/global/catalogs/default_catalog/placements} The ID
-   * of the Recommendations AI placement. Before you can request predictions from
-   * your model, you must create at least one placement for it. For more
+   * {name=projects/locations/global/catalogs/default_catalog/placements} or
+   * {name=projects/locations/global/catalogs/default_catalog/servingConfigs} The
+   * ID of the Recommendations AI placement. Before you can request predictions
+   * from your model, you must create at least one placement for it. For more
    * information, see [Managing placements](https://cloud.google.com/retail
    * /recommendations-ai/docs/manage-placements). The full list of available
    * placements can be seen at https://console.cloud.google.com/recommendation/cat
@@ -61,9 +62,10 @@ class ProjectsLocationsCatalogsPlacements extends \Google\Service\Resource
    *
    * @param string $placement Required. The resource name of the search engine
    * placement, such as `projects/locations/global/catalogs/default_catalog/placem
-   * ents/default_search`. This field is used to identify the serving
-   * configuration name and the set of models that will be used to make the
-   * search.
+   * ents/default_search` or `projects/locations/global/catalogs/default_catalog/s
+   * ervingConfigs/default_serving_config` This field is used to identify the
+   * serving configuration name and the set of models that will be used to make
+   * the search.
    * @param GoogleCloudRetailV2SearchRequest $postBody
    * @param array $optParams Optional parameters.
    * @return GoogleCloudRetailV2SearchResponse

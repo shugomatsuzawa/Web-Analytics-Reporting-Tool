@@ -129,6 +129,16 @@ class Logging extends \Google\Service
                   'required' => true,
                 ],
               ],
+            ],'getSettings' => [
+              'path' => 'v2/{+name}/settings',
+              'httpMethod' => 'GET',
+              'parameters' => [
+                'name' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+              ],
             ],
           ]
         ]
@@ -744,6 +754,30 @@ class Logging extends \Google\Service
                   'location' => 'path',
                   'type' => 'string',
                   'required' => true,
+                ],
+              ],
+            ],'getSettings' => [
+              'path' => 'v2/{+name}/settings',
+              'httpMethod' => 'GET',
+              'parameters' => [
+                'name' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+              ],
+            ],'updateSettings' => [
+              'path' => 'v2/{+name}/settings',
+              'httpMethod' => 'PATCH',
+              'parameters' => [
+                'name' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+                'updateMask' => [
+                  'location' => 'query',
+                  'type' => 'string',
                 ],
               ],
             ],
@@ -1557,8 +1591,32 @@ class Logging extends \Google\Service
                   'required' => true,
                 ],
               ],
+            ],'getSettings' => [
+              'path' => 'v2/{+name}/settings',
+              'httpMethod' => 'GET',
+              'parameters' => [
+                'name' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+              ],
             ],'updateCmekSettings' => [
               'path' => 'v2/{+name}/cmekSettings',
+              'httpMethod' => 'PATCH',
+              'parameters' => [
+                'name' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+                'updateMask' => [
+                  'location' => 'query',
+                  'type' => 'string',
+                ],
+              ],
+            ],'updateSettings' => [
+              'path' => 'v2/{+name}/settings',
               'httpMethod' => 'PATCH',
               'parameters' => [
                 'name' => [
@@ -2052,6 +2110,16 @@ class Logging extends \Google\Service
           'methods' => [
             'getCmekSettings' => [
               'path' => 'v2/{+name}/cmekSettings',
+              'httpMethod' => 'GET',
+              'parameters' => [
+                'name' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+              ],
+            ],'getSettings' => [
+              'path' => 'v2/{+name}/settings',
               'httpMethod' => 'GET',
               'parameters' => [
                 'name' => [
@@ -2697,8 +2765,32 @@ class Logging extends \Google\Service
                   'required' => true,
                 ],
               ],
+            ],'getSettings' => [
+              'path' => 'v2/{+name}/settings',
+              'httpMethod' => 'GET',
+              'parameters' => [
+                'name' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+              ],
             ],'updateCmekSettings' => [
               'path' => 'v2/{+name}/cmekSettings',
+              'httpMethod' => 'PATCH',
+              'parameters' => [
+                'name' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+                'updateMask' => [
+                  'location' => 'query',
+                  'type' => 'string',
+                ],
+              ],
+            ],'updateSettings' => [
+              'path' => 'v2/{+name}/settings',
               'httpMethod' => 'PATCH',
               'parameters' => [
                 'name' => [

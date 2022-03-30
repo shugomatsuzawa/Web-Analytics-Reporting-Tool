@@ -19,17 +19,44 @@ namespace Google\Service\Dialogflow;
 
 class GoogleCloudDialogflowCxV3PageInfo extends \Google\Model
 {
+  /**
+   * @var string
+   */
   public $currentPage;
+  /**
+   * @var string
+   */
+  public $displayName;
   protected $formInfoType = GoogleCloudDialogflowCxV3PageInfoFormInfo::class;
   protected $formInfoDataType = '';
 
+  /**
+   * @param string
+   */
   public function setCurrentPage($currentPage)
   {
     $this->currentPage = $currentPage;
   }
+  /**
+   * @return string
+   */
   public function getCurrentPage()
   {
     return $this->currentPage;
+  }
+  /**
+   * @param string
+   */
+  public function setDisplayName($displayName)
+  {
+    $this->displayName = $displayName;
+  }
+  /**
+   * @return string
+   */
+  public function getDisplayName()
+  {
+    return $this->displayName;
   }
   /**
    * @param GoogleCloudDialogflowCxV3PageInfoFormInfo

@@ -19,57 +19,129 @@ namespace Google\Service\Firestore;
 
 class GoogleFirestoreAdminV1Database extends \Google\Model
 {
+  /**
+   * @var string
+   */
+  public $appEngineIntegrationMode;
+  /**
+   * @var string
+   */
   public $concurrencyMode;
-  public $earliestVersionTime;
+  /**
+   * @var string
+   */
   public $etag;
+  /**
+   * @var string
+   */
+  public $keyPrefix;
+  /**
+   * @var string
+   */
   public $locationId;
+  /**
+   * @var string
+   */
   public $name;
+  /**
+   * @var string
+   */
   public $type;
 
+  /**
+   * @param string
+   */
+  public function setAppEngineIntegrationMode($appEngineIntegrationMode)
+  {
+    $this->appEngineIntegrationMode = $appEngineIntegrationMode;
+  }
+  /**
+   * @return string
+   */
+  public function getAppEngineIntegrationMode()
+  {
+    return $this->appEngineIntegrationMode;
+  }
+  /**
+   * @param string
+   */
   public function setConcurrencyMode($concurrencyMode)
   {
     $this->concurrencyMode = $concurrencyMode;
   }
+  /**
+   * @return string
+   */
   public function getConcurrencyMode()
   {
     return $this->concurrencyMode;
   }
-  public function setEarliestVersionTime($earliestVersionTime)
-  {
-    $this->earliestVersionTime = $earliestVersionTime;
-  }
-  public function getEarliestVersionTime()
-  {
-    return $this->earliestVersionTime;
-  }
+  /**
+   * @param string
+   */
   public function setEtag($etag)
   {
     $this->etag = $etag;
   }
+  /**
+   * @return string
+   */
   public function getEtag()
   {
     return $this->etag;
   }
+  /**
+   * @param string
+   */
+  public function setKeyPrefix($keyPrefix)
+  {
+    $this->keyPrefix = $keyPrefix;
+  }
+  /**
+   * @return string
+   */
+  public function getKeyPrefix()
+  {
+    return $this->keyPrefix;
+  }
+  /**
+   * @param string
+   */
   public function setLocationId($locationId)
   {
     $this->locationId = $locationId;
   }
+  /**
+   * @return string
+   */
   public function getLocationId()
   {
     return $this->locationId;
   }
+  /**
+   * @param string
+   */
   public function setName($name)
   {
     $this->name = $name;
   }
+  /**
+   * @return string
+   */
   public function getName()
   {
     return $this->name;
   }
+  /**
+   * @param string
+   */
   public function setType($type)
   {
     $this->type = $type;
   }
+  /**
+   * @return string
+   */
   public function getType()
   {
     return $this->type;

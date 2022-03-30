@@ -19,42 +19,60 @@ namespace Google\Service\CloudSupport;
 
 class Actor extends \Google\Model
 {
+  /**
+   * @var string
+   */
   public $displayName;
+  /**
+   * @var string
+   */
   public $email;
+  /**
+   * @var bool
+   */
   public $googleSupport;
-  public $principalId;
 
+  /**
+   * @param string
+   */
   public function setDisplayName($displayName)
   {
     $this->displayName = $displayName;
   }
+  /**
+   * @return string
+   */
   public function getDisplayName()
   {
     return $this->displayName;
   }
+  /**
+   * @param string
+   */
   public function setEmail($email)
   {
     $this->email = $email;
   }
+  /**
+   * @return string
+   */
   public function getEmail()
   {
     return $this->email;
   }
+  /**
+   * @param bool
+   */
   public function setGoogleSupport($googleSupport)
   {
     $this->googleSupport = $googleSupport;
   }
+  /**
+   * @return bool
+   */
   public function getGoogleSupport()
   {
     return $this->googleSupport;
-  }
-  public function setPrincipalId($principalId)
-  {
-    $this->principalId = $principalId;
-  }
-  public function getPrincipalId()
-  {
-    return $this->principalId;
   }
 }
 

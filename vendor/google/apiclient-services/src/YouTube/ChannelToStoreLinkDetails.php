@@ -19,21 +19,57 @@ namespace Google\Service\YouTube;
 
 class ChannelToStoreLinkDetails extends \Google\Model
 {
+  /**
+   * @var string
+   */
+  public $merchantId;
+  /**
+   * @var string
+   */
   public $storeName;
+  /**
+   * @var string
+   */
   public $storeUrl;
 
+  /**
+   * @param string
+   */
+  public function setMerchantId($merchantId)
+  {
+    $this->merchantId = $merchantId;
+  }
+  /**
+   * @return string
+   */
+  public function getMerchantId()
+  {
+    return $this->merchantId;
+  }
+  /**
+   * @param string
+   */
   public function setStoreName($storeName)
   {
     $this->storeName = $storeName;
   }
+  /**
+   * @return string
+   */
   public function getStoreName()
   {
     return $this->storeName;
   }
+  /**
+   * @param string
+   */
   public function setStoreUrl($storeUrl)
   {
     $this->storeUrl = $storeUrl;
   }
+  /**
+   * @return string
+   */
   public function getStoreUrl()
   {
     return $this->storeUrl;

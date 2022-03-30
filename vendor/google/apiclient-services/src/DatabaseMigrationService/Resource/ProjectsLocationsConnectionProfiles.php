@@ -106,12 +106,16 @@ class ProjectsLocationsConnectionProfiles extends \Google\Service\Resource
    * field.
    * @param array $optParams Optional parameters.
    *
-   * @opt_param int options.requestedPolicyVersion Optional. The policy format
-   * version to be returned. Valid values are 0, 1, and 3. Requests specifying an
-   * invalid value will be rejected. Requests for policies with any conditional
-   * bindings must specify version 3. Policies without any conditional bindings
-   * may specify any valid value or leave the field unset. To learn which
-   * resources support conditions in their IAM policies, see the [IAM
+   * @opt_param int options.requestedPolicyVersion Optional. The maximum policy
+   * version that will be used to format the policy. Valid values are 0, 1, and 3.
+   * Requests specifying an invalid value will be rejected. Requests for policies
+   * with any conditional role bindings must specify version 3. Policies with no
+   * conditional role bindings may specify any valid value or leave the field
+   * unset. The policy in the response might use the policy version that you
+   * specified, or it might use a lower policy version. For example, if you
+   * specify version 3, but the policy has no conditional role bindings, the
+   * response uses version 1. To learn which resources support conditions in their
+   * IAM policies, see the [IAM
    * documentation](https://cloud.google.com/iam/help/conditions/resource-
    * policies).
    * @return Policy
@@ -123,7 +127,7 @@ class ProjectsLocationsConnectionProfiles extends \Google\Service\Resource
     return $this->call('getIamPolicy', [$params], Policy::class);
   }
   /**
-   * Retrieve a list of all connection profiles in a given project and location.
+   * Retrieves a list of all connection profiles in a given project and location.
    * (connectionProfiles.listProjectsLocationsConnectionProfiles)
    *
    * @param string $parent Required. The parent, which owns this collection of
@@ -139,7 +143,8 @@ class ProjectsLocationsConnectionProfiles extends \Google\Service\Resource
    * can also filter nested fields. For example, you could specify
    * **mySql.username = %lt;my_username%gt;** to list all connection profiles
    * configured to connect with a specific username.
-   * @opt_param string orderBy the order by fields for the result.
+   * @opt_param string orderBy A comma-separated list of fields to order results
+   * according to.
    * @opt_param int pageSize The maximum number of connection profiles to return.
    * The service may return fewer than this value. If unspecified, at most 50
    * connection profiles will be returned. The maximum value is 1000; values above

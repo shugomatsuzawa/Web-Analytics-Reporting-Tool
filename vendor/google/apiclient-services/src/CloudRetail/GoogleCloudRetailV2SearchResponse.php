@@ -20,30 +20,77 @@ namespace Google\Service\CloudRetail;
 class GoogleCloudRetailV2SearchResponse extends \Google\Collection
 {
   protected $collection_key = 'results';
+  /**
+   * @var string[]
+   */
+  public $appliedControls;
+  /**
+   * @var string
+   */
   public $attributionToken;
+  /**
+   * @var string
+   */
   public $correctedQuery;
   protected $facetsType = GoogleCloudRetailV2SearchResponseFacet::class;
   protected $facetsDataType = 'array';
+  protected $invalidConditionBoostSpecsType = GoogleCloudRetailV2SearchRequestBoostSpecConditionBoostSpec::class;
+  protected $invalidConditionBoostSpecsDataType = 'array';
+  /**
+   * @var string
+   */
   public $nextPageToken;
   protected $queryExpansionInfoType = GoogleCloudRetailV2SearchResponseQueryExpansionInfo::class;
   protected $queryExpansionInfoDataType = '';
+  /**
+   * @var string
+   */
   public $redirectUri;
   protected $resultsType = GoogleCloudRetailV2SearchResponseSearchResult::class;
   protected $resultsDataType = 'array';
+  /**
+   * @var int
+   */
   public $totalSize;
 
+  /**
+   * @param string[]
+   */
+  public function setAppliedControls($appliedControls)
+  {
+    $this->appliedControls = $appliedControls;
+  }
+  /**
+   * @return string[]
+   */
+  public function getAppliedControls()
+  {
+    return $this->appliedControls;
+  }
+  /**
+   * @param string
+   */
   public function setAttributionToken($attributionToken)
   {
     $this->attributionToken = $attributionToken;
   }
+  /**
+   * @return string
+   */
   public function getAttributionToken()
   {
     return $this->attributionToken;
   }
+  /**
+   * @param string
+   */
   public function setCorrectedQuery($correctedQuery)
   {
     $this->correctedQuery = $correctedQuery;
   }
+  /**
+   * @return string
+   */
   public function getCorrectedQuery()
   {
     return $this->correctedQuery;
@@ -62,10 +109,30 @@ class GoogleCloudRetailV2SearchResponse extends \Google\Collection
   {
     return $this->facets;
   }
+  /**
+   * @param GoogleCloudRetailV2SearchRequestBoostSpecConditionBoostSpec[]
+   */
+  public function setInvalidConditionBoostSpecs($invalidConditionBoostSpecs)
+  {
+    $this->invalidConditionBoostSpecs = $invalidConditionBoostSpecs;
+  }
+  /**
+   * @return GoogleCloudRetailV2SearchRequestBoostSpecConditionBoostSpec[]
+   */
+  public function getInvalidConditionBoostSpecs()
+  {
+    return $this->invalidConditionBoostSpecs;
+  }
+  /**
+   * @param string
+   */
   public function setNextPageToken($nextPageToken)
   {
     $this->nextPageToken = $nextPageToken;
   }
+  /**
+   * @return string
+   */
   public function getNextPageToken()
   {
     return $this->nextPageToken;
@@ -84,10 +151,16 @@ class GoogleCloudRetailV2SearchResponse extends \Google\Collection
   {
     return $this->queryExpansionInfo;
   }
+  /**
+   * @param string
+   */
   public function setRedirectUri($redirectUri)
   {
     $this->redirectUri = $redirectUri;
   }
+  /**
+   * @return string
+   */
   public function getRedirectUri()
   {
     return $this->redirectUri;
@@ -106,10 +179,16 @@ class GoogleCloudRetailV2SearchResponse extends \Google\Collection
   {
     return $this->results;
   }
+  /**
+   * @param int
+   */
   public function setTotalSize($totalSize)
   {
     $this->totalSize = $totalSize;
   }
+  /**
+   * @return int
+   */
   public function getTotalSize()
   {
     return $this->totalSize;

@@ -22,7 +22,12 @@ class ClusterConfig extends \Google\Collection
   protected $collection_key = 'initializationActions';
   protected $autoscalingConfigType = AutoscalingConfig::class;
   protected $autoscalingConfigDataType = '';
+  /**
+   * @var string
+   */
   public $configBucket;
+  protected $dataprocMetricConfigType = DataprocMetricConfig::class;
+  protected $dataprocMetricConfigDataType = '';
   protected $encryptionConfigType = EncryptionConfig::class;
   protected $encryptionConfigDataType = '';
   protected $endpointConfigType = EndpointConfig::class;
@@ -45,6 +50,9 @@ class ClusterConfig extends \Google\Collection
   protected $securityConfigDataType = '';
   protected $softwareConfigType = SoftwareConfig::class;
   protected $softwareConfigDataType = '';
+  /**
+   * @var string
+   */
   public $tempBucket;
   protected $workerConfigType = InstanceGroupConfig::class;
   protected $workerConfigDataType = '';
@@ -63,13 +71,33 @@ class ClusterConfig extends \Google\Collection
   {
     return $this->autoscalingConfig;
   }
+  /**
+   * @param string
+   */
   public function setConfigBucket($configBucket)
   {
     $this->configBucket = $configBucket;
   }
+  /**
+   * @return string
+   */
   public function getConfigBucket()
   {
     return $this->configBucket;
+  }
+  /**
+   * @param DataprocMetricConfig
+   */
+  public function setDataprocMetricConfig(DataprocMetricConfig $dataprocMetricConfig)
+  {
+    $this->dataprocMetricConfig = $dataprocMetricConfig;
+  }
+  /**
+   * @return DataprocMetricConfig
+   */
+  public function getDataprocMetricConfig()
+  {
+    return $this->dataprocMetricConfig;
   }
   /**
    * @param EncryptionConfig
@@ -225,10 +253,16 @@ class ClusterConfig extends \Google\Collection
   {
     return $this->softwareConfig;
   }
+  /**
+   * @param string
+   */
   public function setTempBucket($tempBucket)
   {
     $this->tempBucket = $tempBucket;
   }
+  /**
+   * @return string
+   */
   public function getTempBucket()
   {
     return $this->tempBucket;

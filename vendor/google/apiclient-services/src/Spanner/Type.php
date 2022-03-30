@@ -21,9 +21,16 @@ class Type extends \Google\Model
 {
   protected $arrayElementTypeType = Type::class;
   protected $arrayElementTypeDataType = '';
+  /**
+   * @var string
+   */
   public $code;
   protected $structTypeType = StructType::class;
   protected $structTypeDataType = '';
+  /**
+   * @var string
+   */
+  public $typeAnnotation;
 
   /**
    * @param Type
@@ -39,10 +46,16 @@ class Type extends \Google\Model
   {
     return $this->arrayElementType;
   }
+  /**
+   * @param string
+   */
   public function setCode($code)
   {
     $this->code = $code;
   }
+  /**
+   * @return string
+   */
   public function getCode()
   {
     return $this->code;
@@ -60,6 +73,20 @@ class Type extends \Google\Model
   public function getStructType()
   {
     return $this->structType;
+  }
+  /**
+   * @param string
+   */
+  public function setTypeAnnotation($typeAnnotation)
+  {
+    $this->typeAnnotation = $typeAnnotation;
+  }
+  /**
+   * @return string
+   */
+  public function getTypeAnnotation()
+  {
+    return $this->typeAnnotation;
   }
 }
 

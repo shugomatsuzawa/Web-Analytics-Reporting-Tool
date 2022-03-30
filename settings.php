@@ -30,7 +30,6 @@ if ( isset($_POST['keyFile']) && isset($_POST['sqlServer']) && isset($_POST['sql
     $config['publisherAddress'] = str_replace('\n', '', $publisherAddressRaw);
 
     // configファイル上書き保存
-    $configFile = 'user/config.php';
     file_put_contents($configFile, '<?php return ' . var_export($config, true) . ';');
 }
 

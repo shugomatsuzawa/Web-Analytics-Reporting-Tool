@@ -20,66 +20,163 @@ namespace Google\Service\ShoppingContent;
 class FreeListingsProgramStatusRegionStatus extends \Google\Collection
 {
   protected $collection_key = 'reviewIssues';
+  /**
+   * @var string
+   */
   public $disapprovalDate;
+  /**
+   * @var string
+   */
   public $eligibilityStatus;
-  public $enhancedEligibilityStatus;
-  public $ineligibilityReason;
+  /**
+   * @var string[]
+   */
+  public $onboardingIssues;
+  /**
+   * @var string[]
+   */
   public $regionCodes;
+  /**
+   * @var string
+   */
   public $reviewEligibilityStatus;
+  /**
+   * @var string
+   */
+  public $reviewIneligibilityReason;
+  /**
+   * @var string
+   */
+  public $reviewIneligibilityReasonDescription;
+  protected $reviewIneligibilityReasonDetailsType = FreeListingsProgramStatusReviewIneligibilityReasonDetails::class;
+  protected $reviewIneligibilityReasonDetailsDataType = '';
+  /**
+   * @var string[]
+   */
   public $reviewIssues;
 
+  /**
+   * @param string
+   */
   public function setDisapprovalDate($disapprovalDate)
   {
     $this->disapprovalDate = $disapprovalDate;
   }
+  /**
+   * @return string
+   */
   public function getDisapprovalDate()
   {
     return $this->disapprovalDate;
   }
+  /**
+   * @param string
+   */
   public function setEligibilityStatus($eligibilityStatus)
   {
     $this->eligibilityStatus = $eligibilityStatus;
   }
+  /**
+   * @return string
+   */
   public function getEligibilityStatus()
   {
     return $this->eligibilityStatus;
   }
-  public function setEnhancedEligibilityStatus($enhancedEligibilityStatus)
+  /**
+   * @param string[]
+   */
+  public function setOnboardingIssues($onboardingIssues)
   {
-    $this->enhancedEligibilityStatus = $enhancedEligibilityStatus;
+    $this->onboardingIssues = $onboardingIssues;
   }
-  public function getEnhancedEligibilityStatus()
+  /**
+   * @return string[]
+   */
+  public function getOnboardingIssues()
   {
-    return $this->enhancedEligibilityStatus;
+    return $this->onboardingIssues;
   }
-  public function setIneligibilityReason($ineligibilityReason)
-  {
-    $this->ineligibilityReason = $ineligibilityReason;
-  }
-  public function getIneligibilityReason()
-  {
-    return $this->ineligibilityReason;
-  }
+  /**
+   * @param string[]
+   */
   public function setRegionCodes($regionCodes)
   {
     $this->regionCodes = $regionCodes;
   }
+  /**
+   * @return string[]
+   */
   public function getRegionCodes()
   {
     return $this->regionCodes;
   }
+  /**
+   * @param string
+   */
   public function setReviewEligibilityStatus($reviewEligibilityStatus)
   {
     $this->reviewEligibilityStatus = $reviewEligibilityStatus;
   }
+  /**
+   * @return string
+   */
   public function getReviewEligibilityStatus()
   {
     return $this->reviewEligibilityStatus;
   }
+  /**
+   * @param string
+   */
+  public function setReviewIneligibilityReason($reviewIneligibilityReason)
+  {
+    $this->reviewIneligibilityReason = $reviewIneligibilityReason;
+  }
+  /**
+   * @return string
+   */
+  public function getReviewIneligibilityReason()
+  {
+    return $this->reviewIneligibilityReason;
+  }
+  /**
+   * @param string
+   */
+  public function setReviewIneligibilityReasonDescription($reviewIneligibilityReasonDescription)
+  {
+    $this->reviewIneligibilityReasonDescription = $reviewIneligibilityReasonDescription;
+  }
+  /**
+   * @return string
+   */
+  public function getReviewIneligibilityReasonDescription()
+  {
+    return $this->reviewIneligibilityReasonDescription;
+  }
+  /**
+   * @param FreeListingsProgramStatusReviewIneligibilityReasonDetails
+   */
+  public function setReviewIneligibilityReasonDetails(FreeListingsProgramStatusReviewIneligibilityReasonDetails $reviewIneligibilityReasonDetails)
+  {
+    $this->reviewIneligibilityReasonDetails = $reviewIneligibilityReasonDetails;
+  }
+  /**
+   * @return FreeListingsProgramStatusReviewIneligibilityReasonDetails
+   */
+  public function getReviewIneligibilityReasonDetails()
+  {
+    return $this->reviewIneligibilityReasonDetails;
+  }
+  /**
+   * @param string[]
+   */
   public function setReviewIssues($reviewIssues)
   {
     $this->reviewIssues = $reviewIssues;
   }
+  /**
+   * @return string[]
+   */
   public function getReviewIssues()
   {
     return $this->reviewIssues;

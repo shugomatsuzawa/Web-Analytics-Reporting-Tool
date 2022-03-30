@@ -19,24 +19,61 @@ namespace Google\Service\DataprocMetastore;
 
 class HiveMetastoreConfig extends \Google\Model
 {
+  protected $auxiliaryVersionsType = AuxiliaryVersionConfig::class;
+  protected $auxiliaryVersionsDataType = 'map';
+  /**
+   * @var string[]
+   */
   public $configOverrides;
+  /**
+   * @var string
+   */
   public $endpointProtocol;
   protected $kerberosConfigType = KerberosConfig::class;
   protected $kerberosConfigDataType = '';
+  /**
+   * @var string
+   */
   public $version;
 
+  /**
+   * @param AuxiliaryVersionConfig[]
+   */
+  public function setAuxiliaryVersions($auxiliaryVersions)
+  {
+    $this->auxiliaryVersions = $auxiliaryVersions;
+  }
+  /**
+   * @return AuxiliaryVersionConfig[]
+   */
+  public function getAuxiliaryVersions()
+  {
+    return $this->auxiliaryVersions;
+  }
+  /**
+   * @param string[]
+   */
   public function setConfigOverrides($configOverrides)
   {
     $this->configOverrides = $configOverrides;
   }
+  /**
+   * @return string[]
+   */
   public function getConfigOverrides()
   {
     return $this->configOverrides;
   }
+  /**
+   * @param string
+   */
   public function setEndpointProtocol($endpointProtocol)
   {
     $this->endpointProtocol = $endpointProtocol;
   }
+  /**
+   * @return string
+   */
   public function getEndpointProtocol()
   {
     return $this->endpointProtocol;
@@ -55,10 +92,16 @@ class HiveMetastoreConfig extends \Google\Model
   {
     return $this->kerberosConfig;
   }
+  /**
+   * @param string
+   */
   public function setVersion($version)
   {
     $this->version = $version;
   }
+  /**
+   * @return string
+   */
   public function getVersion()
   {
     return $this->version;

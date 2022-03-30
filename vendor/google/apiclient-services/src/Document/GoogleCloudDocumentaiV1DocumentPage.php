@@ -34,11 +34,16 @@ class GoogleCloudDocumentaiV1DocumentPage extends \Google\Collection
   protected $layoutDataType = '';
   protected $linesType = GoogleCloudDocumentaiV1DocumentPageLine::class;
   protected $linesDataType = 'array';
+  /**
+   * @var int
+   */
   public $pageNumber;
   protected $paragraphsType = GoogleCloudDocumentaiV1DocumentPageParagraph::class;
   protected $paragraphsDataType = 'array';
   protected $provenanceType = GoogleCloudDocumentaiV1DocumentProvenance::class;
   protected $provenanceDataType = '';
+  protected $symbolsType = GoogleCloudDocumentaiV1DocumentPageSymbol::class;
+  protected $symbolsDataType = 'array';
   protected $tablesType = GoogleCloudDocumentaiV1DocumentPageTable::class;
   protected $tablesDataType = 'array';
   protected $tokensType = GoogleCloudDocumentaiV1DocumentPageToken::class;
@@ -146,10 +151,16 @@ class GoogleCloudDocumentaiV1DocumentPage extends \Google\Collection
   {
     return $this->lines;
   }
+  /**
+   * @param int
+   */
   public function setPageNumber($pageNumber)
   {
     $this->pageNumber = $pageNumber;
   }
+  /**
+   * @return int
+   */
   public function getPageNumber()
   {
     return $this->pageNumber;
@@ -181,6 +192,20 @@ class GoogleCloudDocumentaiV1DocumentPage extends \Google\Collection
   public function getProvenance()
   {
     return $this->provenance;
+  }
+  /**
+   * @param GoogleCloudDocumentaiV1DocumentPageSymbol[]
+   */
+  public function setSymbols($symbols)
+  {
+    $this->symbols = $symbols;
+  }
+  /**
+   * @return GoogleCloudDocumentaiV1DocumentPageSymbol[]
+   */
+  public function getSymbols()
+  {
+    return $this->symbols;
   }
   /**
    * @param GoogleCloudDocumentaiV1DocumentPageTable[]

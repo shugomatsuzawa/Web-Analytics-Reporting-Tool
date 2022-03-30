@@ -19,12 +19,55 @@ namespace Google\Service\Dialogflow;
 
 class GoogleCloudDialogflowV2KnowledgeOperationMetadata extends \Google\Model
 {
+  protected $exportOperationMetadataType = GoogleCloudDialogflowV2ExportOperationMetadata::class;
+  protected $exportOperationMetadataDataType = '';
+  /**
+   * @var string
+   */
+  public $knowledgeBase;
+  /**
+   * @var string
+   */
   public $state;
 
+  /**
+   * @param GoogleCloudDialogflowV2ExportOperationMetadata
+   */
+  public function setExportOperationMetadata(GoogleCloudDialogflowV2ExportOperationMetadata $exportOperationMetadata)
+  {
+    $this->exportOperationMetadata = $exportOperationMetadata;
+  }
+  /**
+   * @return GoogleCloudDialogflowV2ExportOperationMetadata
+   */
+  public function getExportOperationMetadata()
+  {
+    return $this->exportOperationMetadata;
+  }
+  /**
+   * @param string
+   */
+  public function setKnowledgeBase($knowledgeBase)
+  {
+    $this->knowledgeBase = $knowledgeBase;
+  }
+  /**
+   * @return string
+   */
+  public function getKnowledgeBase()
+  {
+    return $this->knowledgeBase;
+  }
+  /**
+   * @param string
+   */
   public function setState($state)
   {
     $this->state = $state;
   }
+  /**
+   * @return string
+   */
   public function getState()
   {
     return $this->state;

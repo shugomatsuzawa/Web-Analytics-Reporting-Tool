@@ -19,39 +19,93 @@ namespace Google\Service\Dataflow;
 
 class MemInfo extends \Google\Model
 {
+  /**
+   * @var string
+   */
   public $currentLimitBytes;
+  /**
+   * @var string
+   */
+  public $currentOoms;
+  /**
+   * @var string
+   */
   public $currentRssBytes;
+  /**
+   * @var string
+   */
   public $timestamp;
+  /**
+   * @var string
+   */
   public $totalGbMs;
 
+  /**
+   * @param string
+   */
   public function setCurrentLimitBytes($currentLimitBytes)
   {
     $this->currentLimitBytes = $currentLimitBytes;
   }
+  /**
+   * @return string
+   */
   public function getCurrentLimitBytes()
   {
     return $this->currentLimitBytes;
   }
+  /**
+   * @param string
+   */
+  public function setCurrentOoms($currentOoms)
+  {
+    $this->currentOoms = $currentOoms;
+  }
+  /**
+   * @return string
+   */
+  public function getCurrentOoms()
+  {
+    return $this->currentOoms;
+  }
+  /**
+   * @param string
+   */
   public function setCurrentRssBytes($currentRssBytes)
   {
     $this->currentRssBytes = $currentRssBytes;
   }
+  /**
+   * @return string
+   */
   public function getCurrentRssBytes()
   {
     return $this->currentRssBytes;
   }
+  /**
+   * @param string
+   */
   public function setTimestamp($timestamp)
   {
     $this->timestamp = $timestamp;
   }
+  /**
+   * @return string
+   */
   public function getTimestamp()
   {
     return $this->timestamp;
   }
+  /**
+   * @param string
+   */
   public function setTotalGbMs($totalGbMs)
   {
     $this->totalGbMs = $totalGbMs;
   }
+  /**
+   * @return string
+   */
   public function getTotalGbMs()
   {
     return $this->totalGbMs;

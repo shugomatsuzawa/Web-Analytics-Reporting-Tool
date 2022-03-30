@@ -17,35 +17,99 @@
 
 namespace Google\Service\CloudHealthcare;
 
-class ValidationConfig extends \Google\Model
+class ValidationConfig extends \Google\Collection
 {
+  protected $collection_key = 'enabledImplementationGuides';
+  /**
+   * @var bool
+   */
   public $disableFhirpathValidation;
+  /**
+   * @var bool
+   */
+  public $disableProfileValidation;
+  /**
+   * @var bool
+   */
   public $disableReferenceTypeValidation;
+  /**
+   * @var bool
+   */
   public $disableRequiredFieldValidation;
+  /**
+   * @var string[]
+   */
+  public $enabledImplementationGuides;
 
+  /**
+   * @param bool
+   */
   public function setDisableFhirpathValidation($disableFhirpathValidation)
   {
     $this->disableFhirpathValidation = $disableFhirpathValidation;
   }
+  /**
+   * @return bool
+   */
   public function getDisableFhirpathValidation()
   {
     return $this->disableFhirpathValidation;
   }
+  /**
+   * @param bool
+   */
+  public function setDisableProfileValidation($disableProfileValidation)
+  {
+    $this->disableProfileValidation = $disableProfileValidation;
+  }
+  /**
+   * @return bool
+   */
+  public function getDisableProfileValidation()
+  {
+    return $this->disableProfileValidation;
+  }
+  /**
+   * @param bool
+   */
   public function setDisableReferenceTypeValidation($disableReferenceTypeValidation)
   {
     $this->disableReferenceTypeValidation = $disableReferenceTypeValidation;
   }
+  /**
+   * @return bool
+   */
   public function getDisableReferenceTypeValidation()
   {
     return $this->disableReferenceTypeValidation;
   }
+  /**
+   * @param bool
+   */
   public function setDisableRequiredFieldValidation($disableRequiredFieldValidation)
   {
     $this->disableRequiredFieldValidation = $disableRequiredFieldValidation;
   }
+  /**
+   * @return bool
+   */
   public function getDisableRequiredFieldValidation()
   {
     return $this->disableRequiredFieldValidation;
+  }
+  /**
+   * @param string[]
+   */
+  public function setEnabledImplementationGuides($enabledImplementationGuides)
+  {
+    $this->enabledImplementationGuides = $enabledImplementationGuides;
+  }
+  /**
+   * @return string[]
+   */
+  public function getEnabledImplementationGuides()
+  {
+    return $this->enabledImplementationGuides;
   }
 }
 

@@ -21,8 +21,21 @@ class RunQueryResponse extends \Google\Model
 {
   protected $documentType = Document::class;
   protected $documentDataType = '';
+  /**
+   * @var bool
+   */
+  public $done;
+  /**
+   * @var string
+   */
   public $readTime;
+  /**
+   * @var int
+   */
   public $skippedResults;
+  /**
+   * @var string
+   */
   public $transaction;
 
   /**
@@ -39,26 +52,58 @@ class RunQueryResponse extends \Google\Model
   {
     return $this->document;
   }
+  /**
+   * @param bool
+   */
+  public function setDone($done)
+  {
+    $this->done = $done;
+  }
+  /**
+   * @return bool
+   */
+  public function getDone()
+  {
+    return $this->done;
+  }
+  /**
+   * @param string
+   */
   public function setReadTime($readTime)
   {
     $this->readTime = $readTime;
   }
+  /**
+   * @return string
+   */
   public function getReadTime()
   {
     return $this->readTime;
   }
+  /**
+   * @param int
+   */
   public function setSkippedResults($skippedResults)
   {
     $this->skippedResults = $skippedResults;
   }
+  /**
+   * @return int
+   */
   public function getSkippedResults()
   {
     return $this->skippedResults;
   }
+  /**
+   * @param string
+   */
   public function setTransaction($transaction)
   {
     $this->transaction = $transaction;
   }
+  /**
+   * @return string
+   */
   public function getTransaction()
   {
     return $this->transaction;

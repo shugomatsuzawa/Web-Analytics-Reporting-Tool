@@ -19,21 +19,57 @@ namespace Google\Service\Eventarc;
 
 class EventFilter extends \Google\Model
 {
+  /**
+   * @var string
+   */
   public $attribute;
+  /**
+   * @var string
+   */
+  public $operator;
+  /**
+   * @var string
+   */
   public $value;
 
+  /**
+   * @param string
+   */
   public function setAttribute($attribute)
   {
     $this->attribute = $attribute;
   }
+  /**
+   * @return string
+   */
   public function getAttribute()
   {
     return $this->attribute;
   }
+  /**
+   * @param string
+   */
+  public function setOperator($operator)
+  {
+    $this->operator = $operator;
+  }
+  /**
+   * @return string
+   */
+  public function getOperator()
+  {
+    return $this->operator;
+  }
+  /**
+   * @param string
+   */
   public function setValue($value)
   {
     $this->value = $value;
   }
+  /**
+   * @return string
+   */
   public function getValue()
   {
     return $this->value;

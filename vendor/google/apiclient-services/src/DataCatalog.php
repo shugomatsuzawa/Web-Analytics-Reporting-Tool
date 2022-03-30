@@ -294,6 +294,26 @@ class DataCatalog extends \Google\Service
                   'type' => 'string',
                 ],
               ],
+            ],'modifyEntryContacts' => [
+              'path' => 'v1/{+name}:modifyEntryContacts',
+              'httpMethod' => 'POST',
+              'parameters' => [
+                'name' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+              ],
+            ],'modifyEntryOverview' => [
+              'path' => 'v1/{+name}:modifyEntryOverview',
+              'httpMethod' => 'POST',
+              'parameters' => [
+                'name' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+              ],
             ],'patch' => [
               'path' => 'v1/{+name}',
               'httpMethod' => 'PATCH',
@@ -308,11 +328,31 @@ class DataCatalog extends \Google\Service
                   'type' => 'string',
                 ],
               ],
+            ],'star' => [
+              'path' => 'v1/{+name}:star',
+              'httpMethod' => 'POST',
+              'parameters' => [
+                'name' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+              ],
             ],'testIamPermissions' => [
               'path' => 'v1/{+resource}:testIamPermissions',
               'httpMethod' => 'POST',
               'parameters' => [
                 'resource' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+              ],
+            ],'unstar' => [
+              'path' => 'v1/{+name}:unstar',
+              'httpMethod' => 'POST',
+              'parameters' => [
+                'name' => [
                   'location' => 'path',
                   'type' => 'string',
                   'required' => true,
