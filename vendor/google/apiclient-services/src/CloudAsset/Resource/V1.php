@@ -338,12 +338,12 @@ class V1 extends \Google\Service\Resource
    * that the query string is compared against each Cloud IAM policy binding,
    * including its principals, roles, and Cloud IAM conditions. The returned Cloud
    * IAM policies will only contain the bindings that match your query. To learn
-   * more about the IAM policy structure, see [IAM policy
-   * doc](https://cloud.google.com/iam/docs/policies#structure). Examples: *
-   * `policy:amy@gmail.com` to find IAM policy bindings that specify user
-   * "amy@gmail.com". * `policy:roles/compute.admin` to find IAM policy bindings
-   * that specify the Compute Admin role. * `policy:comp*` to find IAM policy
-   * bindings that contain "comp" as a prefix of any word in the binding. *
+   * more about the IAM policy structure, see the [IAM policy
+   * documentation](https://cloud.google.com/iam/help/allow-policies/structure).
+   * Examples: * `policy:amy@gmail.com` to find IAM policy bindings that specify
+   * user "amy@gmail.com". * `policy:roles/compute.admin` to find IAM policy
+   * bindings that specify the Compute Admin role. * `policy:comp*` to find IAM
+   * policy bindings that contain "comp" as a prefix of any word in the binding. *
    * `policy.role.permissions:storage.buckets.update` to find IAM policy bindings
    * that specify a role containing "storage.buckets.update" permission. Note that
    * if callers don't have `iam.roles.get` access to a role's included
@@ -450,12 +450,12 @@ class V1 extends \Google\Service\Resource
    * snake_case and camelCase are supported. Examples: `"*"`, `"name,location"`,
    * `"name,versionedResources"`. The read_mask paths must be valid field paths
    * listed but not limited to (both snake_case and camelCase are supported): *
-   * name * assetType * project * displayName * description * location * labels *
-   * networkTags * kmsKey * createTime * updateTime * state * additionalAttributes
-   * * versionedResources If read_mask is not specified, all fields except
-   * versionedResources will be returned. If only '*' is specified, all fields
-   * including versionedResources will be returned. Any invalid field path will
-   * trigger INVALID_ARGUMENT error.
+   * name * assetType * project * displayName * description * location * tagKeys *
+   * tagValues * tagValueIds * labels * networkTags * kmsKey * createTime *
+   * updateTime * state * additionalAttributes * versionedResources If read_mask
+   * is not specified, all fields except versionedResources will be returned. If
+   * only '*' is specified, all fields including versionedResources will be
+   * returned. Any invalid field path will trigger INVALID_ARGUMENT error.
    * @return SearchAllResourcesResponse
    */
   public function searchAllResources($scope, $optParams = [])

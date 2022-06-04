@@ -46,7 +46,6 @@ class CloudRetail extends \Google\Service
   public $projects_locations_catalogs_completionData;
   public $projects_locations_catalogs_operations;
   public $projects_locations_catalogs_placements;
-  public $projects_locations_catalogs_servingConfigs;
   public $projects_locations_catalogs_userEvents;
   public $projects_locations_operations;
   public $projects_operations;
@@ -200,6 +199,16 @@ class CloudRetail extends \Google\Service
                   'required' => true,
                 ],
               ],
+            ],'addLocalInventories' => [
+              'path' => 'v2/{+product}:addLocalInventories',
+              'httpMethod' => 'POST',
+              'parameters' => [
+                'product' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+              ],
             ],'create' => [
               'path' => 'v2/{+parent}/products',
               'httpMethod' => 'POST',
@@ -298,6 +307,16 @@ class CloudRetail extends \Google\Service
                   'required' => true,
                 ],
               ],
+            ],'removeLocalInventories' => [
+              'path' => 'v2/{+product}:removeLocalInventories',
+              'httpMethod' => 'POST',
+              'parameters' => [
+                'product' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+              ],
             ],'setInventory' => [
               'path' => 'v2/{+name}:setInventory',
               'httpMethod' => 'POST',
@@ -378,36 +397,6 @@ class CloudRetail extends \Google\Service
         $this,
         $this->serviceName,
         'placements',
-        [
-          'methods' => [
-            'predict' => [
-              'path' => 'v2/{+placement}:predict',
-              'httpMethod' => 'POST',
-              'parameters' => [
-                'placement' => [
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ],
-              ],
-            ],'search' => [
-              'path' => 'v2/{+placement}:search',
-              'httpMethod' => 'POST',
-              'parameters' => [
-                'placement' => [
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ],
-              ],
-            ],
-          ]
-        ]
-    );
-    $this->projects_locations_catalogs_servingConfigs = new CloudRetail\Resource\ProjectsLocationsCatalogsServingConfigs(
-        $this,
-        $this->serviceName,
-        'servingConfigs',
         [
           'methods' => [
             'predict' => [

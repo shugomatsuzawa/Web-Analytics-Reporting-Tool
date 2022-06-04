@@ -74,12 +74,12 @@ class ProjectsLocationsDatasetsFhirStoresFhir extends \Google\Service\Resource
    * must be specified to the second and include a time zone.
    * @opt_param string _type String of comma-delimited FHIR resource types. If
    * provided, only resources of the specified resource type(s) are returned.
-   * @opt_param string end The response includes records prior to the end date. If
-   * no end date is provided, all records subsequent to the start date are in
-   * scope.
+   * @opt_param string end The response includes records prior to the end date.
+   * The date uses the format YYYY-MM-DD. If no end date is provided, all records
+   * subsequent to the start date are in scope.
    * @opt_param string start The response includes records subsequent to the start
-   * date. If no start date is provided, all records prior to the end date are in
-   * scope.
+   * date. The date uses the format YYYY-MM-DD. If no start date is provided, all
+   * records prior to the end date are in scope.
    * @return HttpBody
    */
   public function PatientEverything($name, $optParams = [])
@@ -136,8 +136,11 @@ class ProjectsLocationsDatasetsFhirStoresFhir extends \Google\Service\Resource
    * @param HttpBody $postBody
    * @param array $optParams Optional parameters.
    *
-   * @opt_param string profile A profile that this resource should be validated
-   * against.
+   * @opt_param string profile The canonical URL of a profile that this resource
+   * should be validated against. For example, to validate a Patient resource
+   * against the US Core Patient profile this parameter would be
+   * `http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient`. A
+   * StructureDefinition with this canonical URL must exist in the FHIR store.
    * @return HttpBody
    */
   public function ResourceValidate($parent, $type, HttpBody $postBody, $optParams = [])

@@ -19,7 +19,7 @@ namespace Google\Service\CloudRedis;
 
 class Instance extends \Google\Collection
 {
-  protected $collection_key = 'serverCaCerts';
+  protected $collection_key = 'suspensionReasons';
   /**
    * @var string
    */
@@ -44,6 +44,10 @@ class Instance extends \Google\Collection
    * @var string
    */
   public $currentLocationId;
+  /**
+   * @var string
+   */
+  public $customerManagedKey;
   /**
    * @var string
    */
@@ -126,6 +130,10 @@ class Instance extends \Google\Collection
    * @var string
    */
   public $statusMessage;
+  /**
+   * @var string[]
+   */
+  public $suspensionReasons;
   /**
    * @var string
    */
@@ -218,6 +226,20 @@ class Instance extends \Google\Collection
   public function getCurrentLocationId()
   {
     return $this->currentLocationId;
+  }
+  /**
+   * @param string
+   */
+  public function setCustomerManagedKey($customerManagedKey)
+  {
+    $this->customerManagedKey = $customerManagedKey;
+  }
+  /**
+   * @return string
+   */
+  public function getCustomerManagedKey()
+  {
+    return $this->customerManagedKey;
   }
   /**
    * @param string
@@ -540,6 +562,20 @@ class Instance extends \Google\Collection
   public function getStatusMessage()
   {
     return $this->statusMessage;
+  }
+  /**
+   * @param string[]
+   */
+  public function setSuspensionReasons($suspensionReasons)
+  {
+    $this->suspensionReasons = $suspensionReasons;
+  }
+  /**
+   * @return string[]
+   */
+  public function getSuspensionReasons()
+  {
+    return $this->suspensionReasons;
   }
   /**
    * @param string

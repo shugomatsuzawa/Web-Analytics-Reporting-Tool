@@ -17,6 +17,11 @@
 
 namespace Google\Service\Dns\Resource;
 
+use Google\Service\Dns\GoogleIamV1GetIamPolicyRequest;
+use Google\Service\Dns\GoogleIamV1Policy;
+use Google\Service\Dns\GoogleIamV1SetIamPolicyRequest;
+use Google\Service\Dns\GoogleIamV1TestIamPermissionsRequest;
+use Google\Service\Dns\GoogleIamV1TestIamPermissionsResponse;
 use Google\Service\Dns\ManagedZone;
 use Google\Service\Dns\ManagedZonesListResponse;
 use Google\Service\Dns\Operation;
@@ -35,8 +40,6 @@ class ManagedZones extends \Google\Service\Resource
    * Creates a new ManagedZone. (managedZones.create)
    *
    * @param string $project Identifies the project addressed by this request.
-   * @param string $location Specifies the location of the resource. This
-   * information will be used for routing and will be part of the resource name.
    * @param ManagedZone $postBody
    * @param array $optParams Optional parameters.
    *
@@ -45,9 +48,9 @@ class ManagedZones extends \Google\Service\Resource
    * resources in the Operations collection.
    * @return ManagedZone
    */
-  public function create($project, $location, ManagedZone $postBody, $optParams = [])
+  public function create($project, ManagedZone $postBody, $optParams = [])
   {
-    $params = ['project' => $project, 'location' => $location, 'postBody' => $postBody];
+    $params = ['project' => $project, 'postBody' => $postBody];
     $params = array_merge($params, $optParams);
     return $this->call('create', [$params], ManagedZone::class);
   }
@@ -55,8 +58,6 @@ class ManagedZones extends \Google\Service\Resource
    * Deletes a previously created ManagedZone. (managedZones.delete)
    *
    * @param string $project Identifies the project addressed by this request.
-   * @param string $location Specifies the location of the resource. This
-   * information will be used for routing and will be part of the resource name.
    * @param string $managedZone Identifies the managed zone addressed by this
    * request. Can be the managed zone name or ID.
    * @param array $optParams Optional parameters.
@@ -65,9 +66,9 @@ class ManagedZones extends \Google\Service\Resource
    * optional identifier specified by the client. Must be unique for operation
    * resources in the Operations collection.
    */
-  public function delete($project, $location, $managedZone, $optParams = [])
+  public function delete($project, $managedZone, $optParams = [])
   {
-    $params = ['project' => $project, 'location' => $location, 'managedZone' => $managedZone];
+    $params = ['project' => $project, 'managedZone' => $managedZone];
     $params = array_merge($params, $optParams);
     return $this->call('delete', [$params]);
   }
@@ -75,8 +76,6 @@ class ManagedZones extends \Google\Service\Resource
    * Fetches the representation of an existing ManagedZone. (managedZones.get)
    *
    * @param string $project Identifies the project addressed by this request.
-   * @param string $location Specifies the location of the resource. This
-   * information will be used for routing and will be part of the resource name.
    * @param string $managedZone Identifies the managed zone addressed by this
    * request. Can be the managed zone name or ID.
    * @param array $optParams Optional parameters.
@@ -86,19 +85,35 @@ class ManagedZones extends \Google\Service\Resource
    * resources in the Operations collection.
    * @return ManagedZone
    */
-  public function get($project, $location, $managedZone, $optParams = [])
+  public function get($project, $managedZone, $optParams = [])
   {
-    $params = ['project' => $project, 'location' => $location, 'managedZone' => $managedZone];
+    $params = ['project' => $project, 'managedZone' => $managedZone];
     $params = array_merge($params, $optParams);
     return $this->call('get', [$params], ManagedZone::class);
+  }
+  /**
+   * Gets the access control policy for a resource. Returns an empty policy if the
+   * resource exists and does not have a policy set. (managedZones.getIamPolicy)
+   *
+   * @param string $resource REQUIRED: The resource for which the policy is being
+   * requested. See [Resource
+   * names](https://cloud.google.com/apis/design/resource_names) for the
+   * appropriate value for this field.
+   * @param GoogleIamV1GetIamPolicyRequest $postBody
+   * @param array $optParams Optional parameters.
+   * @return GoogleIamV1Policy
+   */
+  public function getIamPolicy($resource, GoogleIamV1GetIamPolicyRequest $postBody, $optParams = [])
+  {
+    $params = ['resource' => $resource, 'postBody' => $postBody];
+    $params = array_merge($params, $optParams);
+    return $this->call('getIamPolicy', [$params], GoogleIamV1Policy::class);
   }
   /**
    * Enumerates ManagedZones that have been created but not yet deleted.
    * (managedZones.listManagedZones)
    *
    * @param string $project Identifies the project addressed by this request.
-   * @param string $location Specifies the location of the resource. This
-   * information will be used for routing and will be part of the resource name.
    * @param array $optParams Optional parameters.
    *
    * @opt_param string dnsName Restricts the list to return only zones with this
@@ -110,9 +125,9 @@ class ManagedZones extends \Google\Service\Resource
    * request.
    * @return ManagedZonesListResponse
    */
-  public function listManagedZones($project, $location, $optParams = [])
+  public function listManagedZones($project, $optParams = [])
   {
-    $params = ['project' => $project, 'location' => $location];
+    $params = ['project' => $project];
     $params = array_merge($params, $optParams);
     return $this->call('list', [$params], ManagedZonesListResponse::class);
   }
@@ -120,8 +135,6 @@ class ManagedZones extends \Google\Service\Resource
    * Applies a partial update to an existing ManagedZone. (managedZones.patch)
    *
    * @param string $project Identifies the project addressed by this request.
-   * @param string $location Specifies the location of the resource. This
-   * information will be used for routing and will be part of the resource name.
    * @param string $managedZone Identifies the managed zone addressed by this
    * request. Can be the managed zone name or ID.
    * @param ManagedZone $postBody
@@ -132,18 +145,57 @@ class ManagedZones extends \Google\Service\Resource
    * resources in the Operations collection.
    * @return Operation
    */
-  public function patch($project, $location, $managedZone, ManagedZone $postBody, $optParams = [])
+  public function patch($project, $managedZone, ManagedZone $postBody, $optParams = [])
   {
-    $params = ['project' => $project, 'location' => $location, 'managedZone' => $managedZone, 'postBody' => $postBody];
+    $params = ['project' => $project, 'managedZone' => $managedZone, 'postBody' => $postBody];
     $params = array_merge($params, $optParams);
     return $this->call('patch', [$params], Operation::class);
+  }
+  /**
+   * Sets the access control policy on the specified resource. Replaces any
+   * existing policy. Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and
+   * `PERMISSION_DENIED` errors. (managedZones.setIamPolicy)
+   *
+   * @param string $resource REQUIRED: The resource for which the policy is being
+   * specified. See [Resource
+   * names](https://cloud.google.com/apis/design/resource_names) for the
+   * appropriate value for this field.
+   * @param GoogleIamV1SetIamPolicyRequest $postBody
+   * @param array $optParams Optional parameters.
+   * @return GoogleIamV1Policy
+   */
+  public function setIamPolicy($resource, GoogleIamV1SetIamPolicyRequest $postBody, $optParams = [])
+  {
+    $params = ['resource' => $resource, 'postBody' => $postBody];
+    $params = array_merge($params, $optParams);
+    return $this->call('setIamPolicy', [$params], GoogleIamV1Policy::class);
+  }
+  /**
+   * Returns permissions that a caller has on the specified resource. If the
+   * resource does not exist, this will return an empty set of permissions, not a
+   * `NOT_FOUND` error. Note: This operation is designed to be used for building
+   * permission-aware UIs and command-line tools, not for authorization checking.
+   * This operation may "fail open" without warning.
+   * (managedZones.testIamPermissions)
+   *
+   * @param string $resource REQUIRED: The resource for which the policy detail is
+   * being requested. See [Resource
+   * names](https://cloud.google.com/apis/design/resource_names) for the
+   * appropriate value for this field.
+   * @param GoogleIamV1TestIamPermissionsRequest $postBody
+   * @param array $optParams Optional parameters.
+   * @return GoogleIamV1TestIamPermissionsResponse
+   */
+  public function testIamPermissions($resource, GoogleIamV1TestIamPermissionsRequest $postBody, $optParams = [])
+  {
+    $params = ['resource' => $resource, 'postBody' => $postBody];
+    $params = array_merge($params, $optParams);
+    return $this->call('testIamPermissions', [$params], GoogleIamV1TestIamPermissionsResponse::class);
   }
   /**
    * Updates an existing ManagedZone. (managedZones.update)
    *
    * @param string $project Identifies the project addressed by this request.
-   * @param string $location Specifies the location of the resource. This
-   * information will be used for routing and will be part of the resource name.
    * @param string $managedZone Identifies the managed zone addressed by this
    * request. Can be the managed zone name or ID.
    * @param ManagedZone $postBody
@@ -154,9 +206,9 @@ class ManagedZones extends \Google\Service\Resource
    * resources in the Operations collection.
    * @return Operation
    */
-  public function update($project, $location, $managedZone, ManagedZone $postBody, $optParams = [])
+  public function update($project, $managedZone, ManagedZone $postBody, $optParams = [])
   {
-    $params = ['project' => $project, 'location' => $location, 'managedZone' => $managedZone, 'postBody' => $postBody];
+    $params = ['project' => $project, 'managedZone' => $managedZone, 'postBody' => $postBody];
     $params = array_merge($params, $optParams);
     return $this->call('update', [$params], Operation::class);
   }

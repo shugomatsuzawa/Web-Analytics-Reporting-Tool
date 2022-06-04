@@ -17,8 +17,9 @@
 
 namespace Google\Service\SecurityCommandCenter;
 
-class Finding extends \Google\Model
+class Finding extends \Google\Collection
 {
+  protected $collection_key = 'processes';
   protected $accessType = Access::class;
   protected $accessDataType = '';
   /**
@@ -29,6 +30,12 @@ class Finding extends \Google\Model
    * @var string
    */
   public $category;
+  protected $compliancesType = Compliance::class;
+  protected $compliancesDataType = 'array';
+  protected $connectionsType = Connection::class;
+  protected $connectionsDataType = 'array';
+  protected $contactsType = ContactDetails::class;
+  protected $contactsDataType = 'map';
   /**
    * @var string
    */
@@ -36,7 +43,13 @@ class Finding extends \Google\Model
   /**
    * @var string
    */
+  public $description;
+  /**
+   * @var string
+   */
   public $eventTime;
+  protected $exfiltrationType = Exfiltration::class;
+  protected $exfiltrationDataType = '';
   protected $externalSystemsType = GoogleCloudSecuritycenterV1ExternalSystem::class;
   protected $externalSystemsDataType = 'map';
   /**
@@ -47,6 +60,8 @@ class Finding extends \Google\Model
    * @var string
    */
   public $findingClass;
+  protected $iamBindingsType = IamBinding::class;
+  protected $iamBindingsDataType = 'array';
   protected $indicatorType = Indicator::class;
   protected $indicatorDataType = '';
   protected $mitreAttackType = MitreAttack::class;
@@ -70,7 +85,13 @@ class Finding extends \Google\Model
   /**
    * @var string
    */
+  public $nextSteps;
+  /**
+   * @var string
+   */
   public $parent;
+  protected $processesType = Process::class;
+  protected $processesDataType = 'array';
   /**
    * @var string
    */
@@ -135,6 +156,48 @@ class Finding extends \Google\Model
     return $this->category;
   }
   /**
+   * @param Compliance[]
+   */
+  public function setCompliances($compliances)
+  {
+    $this->compliances = $compliances;
+  }
+  /**
+   * @return Compliance[]
+   */
+  public function getCompliances()
+  {
+    return $this->compliances;
+  }
+  /**
+   * @param Connection[]
+   */
+  public function setConnections($connections)
+  {
+    $this->connections = $connections;
+  }
+  /**
+   * @return Connection[]
+   */
+  public function getConnections()
+  {
+    return $this->connections;
+  }
+  /**
+   * @param ContactDetails[]
+   */
+  public function setContacts($contacts)
+  {
+    $this->contacts = $contacts;
+  }
+  /**
+   * @return ContactDetails[]
+   */
+  public function getContacts()
+  {
+    return $this->contacts;
+  }
+  /**
    * @param string
    */
   public function setCreateTime($createTime)
@@ -151,6 +214,20 @@ class Finding extends \Google\Model
   /**
    * @param string
    */
+  public function setDescription($description)
+  {
+    $this->description = $description;
+  }
+  /**
+   * @return string
+   */
+  public function getDescription()
+  {
+    return $this->description;
+  }
+  /**
+   * @param string
+   */
   public function setEventTime($eventTime)
   {
     $this->eventTime = $eventTime;
@@ -161,6 +238,20 @@ class Finding extends \Google\Model
   public function getEventTime()
   {
     return $this->eventTime;
+  }
+  /**
+   * @param Exfiltration
+   */
+  public function setExfiltration(Exfiltration $exfiltration)
+  {
+    $this->exfiltration = $exfiltration;
+  }
+  /**
+   * @return Exfiltration
+   */
+  public function getExfiltration()
+  {
+    return $this->exfiltration;
   }
   /**
    * @param GoogleCloudSecuritycenterV1ExternalSystem[]
@@ -203,6 +294,20 @@ class Finding extends \Google\Model
   public function getFindingClass()
   {
     return $this->findingClass;
+  }
+  /**
+   * @param IamBinding[]
+   */
+  public function setIamBindings($iamBindings)
+  {
+    $this->iamBindings = $iamBindings;
+  }
+  /**
+   * @return IamBinding[]
+   */
+  public function getIamBindings()
+  {
+    return $this->iamBindings;
   }
   /**
    * @param Indicator
@@ -291,6 +396,20 @@ class Finding extends \Google\Model
   /**
    * @param string
    */
+  public function setNextSteps($nextSteps)
+  {
+    $this->nextSteps = $nextSteps;
+  }
+  /**
+   * @return string
+   */
+  public function getNextSteps()
+  {
+    return $this->nextSteps;
+  }
+  /**
+   * @param string
+   */
   public function setParent($parent)
   {
     $this->parent = $parent;
@@ -301,6 +420,20 @@ class Finding extends \Google\Model
   public function getParent()
   {
     return $this->parent;
+  }
+  /**
+   * @param Process[]
+   */
+  public function setProcesses($processes)
+  {
+    $this->processes = $processes;
+  }
+  /**
+   * @return Process[]
+   */
+  public function getProcesses()
+  {
+    return $this->processes;
   }
   /**
    * @param string
