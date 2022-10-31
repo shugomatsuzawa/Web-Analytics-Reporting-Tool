@@ -50,6 +50,24 @@ class Users extends \Google\Service\Resource
     return $this->call('delete', [$params], Operation::class);
   }
   /**
+   * Retrieves a resource containing information about a user. (users.get)
+   *
+   * @param string $project Project ID of the project that contains the instance.
+   * @param string $instance Database instance ID. This does not include the
+   * project ID.
+   * @param string $name User of the instance.
+   * @param array $optParams Optional parameters.
+   *
+   * @opt_param string host Host of a user of the instance.
+   * @return User
+   */
+  public function get($project, $instance, $name, $optParams = [])
+  {
+    $params = ['project' => $project, 'instance' => $instance, 'name' => $name];
+    $params = array_merge($params, $optParams);
+    return $this->call('get', [$params], User::class);
+  }
+  /**
    * Creates a new user in a Cloud SQL instance. (users.insert)
    *
    * @param string $project Project ID of the project that contains the instance.

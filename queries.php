@@ -20,13 +20,14 @@ $queryChartResponse = json_decode($queryChartResponseRaw,true);
 
 function queryChart($reports) {
     $rows = $reports['rows'];
-    for ($index = 0; $index < count($rows); $index++) {
-        $dateRaw[$index] = $rows[$index]['keys'][0];
-        $date[$index] = date('n月j日',strtotime($dateRaw[$index]));
-        $clicks[$index] = $rows[$index]['clicks'];
-    }
-    $dateJson = json_encode($date);
-    $clicksJson = json_encode($clicks);
+    if ( $rows == !0 ) {
+        for ($index = 0; $index < count($rows); $index++) {
+            $dateRaw[$index] = $rows[$index]['keys'][0];
+            $date[$index] = date('n月j日',strtotime($dateRaw[$index]));
+            $clicks[$index] = $rows[$index]['clicks'];
+        }
+        $dateJson = json_encode($date);
+        $clicksJson = json_encode($clicks);
 
     echo <<<EOF
     <section class="mainChart">
@@ -58,6 +59,7 @@ function queryChart($reports) {
         </script>
     </section>
     EOF;
+    }
 }
 queryChart($queryChartResponse);
 ?>

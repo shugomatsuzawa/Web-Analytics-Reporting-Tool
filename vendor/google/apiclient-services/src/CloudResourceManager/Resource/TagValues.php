@@ -39,7 +39,7 @@ class TagValues extends \Google\Service\Resource
   /**
    * Creates a TagValue as a child of the specified TagKey. If a another request
    * with the same parameters is sent while the original request is in process the
-   * second request will receive an error. A maximum of 300 TagValues can exist
+   * second request will receive an error. A maximum of 1000 TagValues can exist
    * under a TagKey at any given time. (tagValues.create)
    *
    * @param TagValue $postBody
@@ -77,9 +77,9 @@ class TagValues extends \Google\Service\Resource
     return $this->call('delete', [$params], Operation::class);
   }
   /**
-   * Retrieves TagValue. If the TagValue or namespaced name does not exist, or if
-   * the user does not have permission to view it, this method will return
-   * `PERMISSION_DENIED`. (tagValues.get)
+   * Retrieves a TagValue. This method will return `PERMISSION_DENIED` if the
+   * value does not exist or the user does not have permission to view it.
+   * (tagValues.get)
    *
    * @param string $name Required. Resource name for TagValue to be fetched in the
    * format `tagValues/456`.

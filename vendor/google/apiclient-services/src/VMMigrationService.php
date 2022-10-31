@@ -23,11 +23,12 @@ use Google\Client;
  * Service definition for VMMigrationService (v1).
  *
  * <p>
- * Use the Migrate for Compute Engine API to programmatically migrate workloads.</p>
+ * Use the Migrate to Virtual Machines API to programmatically migrate
+ * workloads.</p>
  *
  * <p>
  * For more information about this service, see the API
- * <a href="https://cloud.google.com/migrate/compute-engine" target="_blank">Documentation</a>
+ * <a href="https://cloud.google.com/migrate/virtual-machines" target="_blank">Documentation</a>
  * </p>
  *
  * @author Google, Inc.

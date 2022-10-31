@@ -21,6 +21,10 @@ class AttachedDisk extends \Google\Collection
 {
   protected $collection_key = 'licenses';
   /**
+   * @var string
+   */
+  public $architecture;
+  /**
    * @var bool
    */
   public $autoDelete;
@@ -38,6 +42,10 @@ class AttachedDisk extends \Google\Collection
    * @var string
    */
   public $diskSizeGb;
+  /**
+   * @var bool
+   */
+  public $forceAttach;
   protected $guestOsFeaturesType = GuestOsFeature::class;
   protected $guestOsFeaturesDataType = 'array';
   /**
@@ -73,6 +81,20 @@ class AttachedDisk extends \Google\Collection
    */
   public $type;
 
+  /**
+   * @param string
+   */
+  public function setArchitecture($architecture)
+  {
+    $this->architecture = $architecture;
+  }
+  /**
+   * @return string
+   */
+  public function getArchitecture()
+  {
+    return $this->architecture;
+  }
   /**
    * @param bool
    */
@@ -142,6 +164,20 @@ class AttachedDisk extends \Google\Collection
   public function getDiskSizeGb()
   {
     return $this->diskSizeGb;
+  }
+  /**
+   * @param bool
+   */
+  public function setForceAttach($forceAttach)
+  {
+    $this->forceAttach = $forceAttach;
+  }
+  /**
+   * @return bool
+   */
+  public function getForceAttach()
+  {
+    return $this->forceAttach;
   }
   /**
    * @param GuestOsFeature[]

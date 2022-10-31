@@ -20,6 +20,8 @@ namespace Google\Service\Connectors;
 class ConfigVariableTemplate extends \Google\Collection
 {
   protected $collection_key = 'enumOptions';
+  protected $authorizationCodeLinkType = AuthorizationCodeLink::class;
+  protected $authorizationCodeLinkDataType = '';
   /**
    * @var string
    */
@@ -43,12 +45,30 @@ class ConfigVariableTemplate extends \Google\Collection
   /**
    * @var string
    */
+  public $state;
+  /**
+   * @var string
+   */
   public $validationRegex;
   /**
    * @var string
    */
   public $valueType;
 
+  /**
+   * @param AuthorizationCodeLink
+   */
+  public function setAuthorizationCodeLink(AuthorizationCodeLink $authorizationCodeLink)
+  {
+    $this->authorizationCodeLink = $authorizationCodeLink;
+  }
+  /**
+   * @return AuthorizationCodeLink
+   */
+  public function getAuthorizationCodeLink()
+  {
+    return $this->authorizationCodeLink;
+  }
   /**
    * @param string
    */
@@ -132,6 +152,20 @@ class ConfigVariableTemplate extends \Google\Collection
   public function getRoleGrant()
   {
     return $this->roleGrant;
+  }
+  /**
+   * @param string
+   */
+  public function setState($state)
+  {
+    $this->state = $state;
+  }
+  /**
+   * @return string
+   */
+  public function getState()
+  {
+    return $this->state;
   }
   /**
    * @param string

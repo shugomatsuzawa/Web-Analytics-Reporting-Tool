@@ -17,8 +17,10 @@
 
 namespace Google\Service\CloudRetail\Resource;
 
+use Google\Service\CloudRetail\GoogleCloudRetailV2AttributesConfig;
 use Google\Service\CloudRetail\GoogleCloudRetailV2Catalog;
 use Google\Service\CloudRetail\GoogleCloudRetailV2CompleteQueryResponse;
+use Google\Service\CloudRetail\GoogleCloudRetailV2CompletionConfig;
 use Google\Service\CloudRetail\GoogleCloudRetailV2GetDefaultBranchResponse;
 use Google\Service\CloudRetail\GoogleCloudRetailV2ListCatalogsResponse;
 use Google\Service\CloudRetail\GoogleCloudRetailV2SetDefaultBranchRequest;
@@ -36,8 +38,8 @@ class ProjectsLocationsCatalogs extends \Google\Service\Resource
 {
   /**
    * Completes the specified prefix with keyword suggestions. This feature is only
-   * available for users who have Retail Search enabled. Please enable Retail
-   * Search on Cloud Console before using this feature. (catalogs.completeQuery)
+   * available for users who have Retail Search enabled. Enable Retail Search on
+   * Cloud Console before using this feature. (catalogs.completeQuery)
    *
    * @param string $catalog Required. Catalog for which the completion is
    * performed. Full resource name of catalog, such as
@@ -53,16 +55,19 @@ class ProjectsLocationsCatalogs extends \Google\Service\Resource
    * [guidelines](https://cloud.google.com/retail/docs/completion-overview
    * #generated-completion-dataset).
    * @opt_param string deviceType The device type context for completion
-   * suggestions. It is useful to apply different suggestions on different device
-   * types, e.g. `DESKTOP`, `MOBILE`. If it is empty, the suggestions are across
-   * all device types. Supported formats: * `UNKNOWN_DEVICE_TYPE` * `DESKTOP` *
-   * `MOBILE` * A customized string starts with `OTHER_`, e.g. `OTHER_IPHONE`.
-   * @opt_param string languageCodes The language filters applied to the output
-   * suggestions. If set, it should contain the language of the query. If not set,
-   * suggestions are returned without considering language restrictions. This is
-   * the BCP-47 language code, such as "en-US" or "sr-Latn". For more information,
-   * see [Tags for Identifying Languages](https://tools.ietf.org/html/bcp47). The
-   * maximum number of language codes is 3.
+   * suggestions. We recommend that you leave this field empty. It can apply
+   * different suggestions on different device types, e.g. `DESKTOP`, `MOBILE`. If
+   * it is empty, the suggestions are across all device types. Supported formats:
+   * * `UNKNOWN_DEVICE_TYPE` * `DESKTOP` * `MOBILE` * A customized string starts
+   * with `OTHER_`, e.g. `OTHER_IPHONE`.
+   * @opt_param string languageCodes Note that this field applies for `user-data`
+   * dataset only. For requests with `cloud-retail` dataset, setting this field
+   * has no effect. The language filters applied to the output suggestions. If
+   * set, it should contain the language of the query. If not set, suggestions are
+   * returned without considering language restrictions. This is the BCP-47
+   * language code, such as "en-US" or "sr-Latn". For more information, see [Tags
+   * for Identifying Languages](https://tools.ietf.org/html/bcp47). The maximum
+   * number of language codes is 3.
    * @opt_param int maxSuggestions Completion max suggestions. If left unset or
    * set to 0, then will fallback to the configured value
    * CompletionConfig.max_suggestions. The maximum allowed max suggestions is 20.
@@ -82,6 +87,36 @@ class ProjectsLocationsCatalogs extends \Google\Service\Resource
     $params = ['catalog' => $catalog];
     $params = array_merge($params, $optParams);
     return $this->call('completeQuery', [$params], GoogleCloudRetailV2CompleteQueryResponse::class);
+  }
+  /**
+   * Gets an AttributesConfig. (catalogs.getAttributesConfig)
+   *
+   * @param string $name Required. Full AttributesConfig resource name. Format: `p
+   * rojects/{project_number}/locations/{location_id}/catalogs/{catalog_id}/attrib
+   * utesConfig`
+   * @param array $optParams Optional parameters.
+   * @return GoogleCloudRetailV2AttributesConfig
+   */
+  public function getAttributesConfig($name, $optParams = [])
+  {
+    $params = ['name' => $name];
+    $params = array_merge($params, $optParams);
+    return $this->call('getAttributesConfig', [$params], GoogleCloudRetailV2AttributesConfig::class);
+  }
+  /**
+   * Gets a CompletionConfig. (catalogs.getCompletionConfig)
+   *
+   * @param string $name Required. Full CompletionConfig resource name. Format: `p
+   * rojects/{project_number}/locations/{location_id}/catalogs/{catalog_id}/comple
+   * tionConfig`
+   * @param array $optParams Optional parameters.
+   * @return GoogleCloudRetailV2CompletionConfig
+   */
+  public function getCompletionConfig($name, $optParams = [])
+  {
+    $params = ['name' => $name];
+    $params = array_merge($params, $optParams);
+    return $this->call('getCompletionConfig', [$params], GoogleCloudRetailV2CompletionConfig::class);
   }
   /**
    * Get which branch is currently default branch set by
@@ -177,6 +212,53 @@ class ProjectsLocationsCatalogs extends \Google\Service\Resource
     $params = ['catalog' => $catalog, 'postBody' => $postBody];
     $params = array_merge($params, $optParams);
     return $this->call('setDefaultBranch', [$params], GoogleProtobufEmpty::class);
+  }
+  /**
+   * Updates the AttributesConfig. The catalog attributes in the request will be
+   * updated in the catalog, or inserted if they do not exist. Existing catalog
+   * attributes not included in the request will remain unchanged. Attributes that
+   * are assigned to products, but do not exist at the catalog level, are always
+   * included in the response. The product attribute is assigned default values
+   * for missing catalog attribute fields, e.g., searchable and dynamic facetable
+   * options. (catalogs.updateAttributesConfig)
+   *
+   * @param string $name Required. Immutable. The fully qualified resource name of
+   * the attribute config. Format: `projects/locations/catalogs/attributesConfig`
+   * @param GoogleCloudRetailV2AttributesConfig $postBody
+   * @param array $optParams Optional parameters.
+   *
+   * @opt_param string updateMask Indicates which fields in the provided
+   * AttributesConfig to update. The following is the only supported field: *
+   * AttributesConfig.catalog_attributes If not set, all supported fields are
+   * updated.
+   * @return GoogleCloudRetailV2AttributesConfig
+   */
+  public function updateAttributesConfig($name, GoogleCloudRetailV2AttributesConfig $postBody, $optParams = [])
+  {
+    $params = ['name' => $name, 'postBody' => $postBody];
+    $params = array_merge($params, $optParams);
+    return $this->call('updateAttributesConfig', [$params], GoogleCloudRetailV2AttributesConfig::class);
+  }
+  /**
+   * Updates the CompletionConfigs. (catalogs.updateCompletionConfig)
+   *
+   * @param string $name Required. Immutable. Fully qualified name
+   * `projects/locations/catalogs/completionConfig`
+   * @param GoogleCloudRetailV2CompletionConfig $postBody
+   * @param array $optParams Optional parameters.
+   *
+   * @opt_param string updateMask Indicates which fields in the provided
+   * CompletionConfig to update. The following are the only supported fields: *
+   * CompletionConfig.matching_order * CompletionConfig.max_suggestions *
+   * CompletionConfig.min_prefix_length * CompletionConfig.auto_learning If not
+   * set, all supported fields are updated.
+   * @return GoogleCloudRetailV2CompletionConfig
+   */
+  public function updateCompletionConfig($name, GoogleCloudRetailV2CompletionConfig $postBody, $optParams = [])
+  {
+    $params = ['name' => $name, 'postBody' => $postBody];
+    $params = array_merge($params, $optParams);
+    return $this->call('updateCompletionConfig', [$params], GoogleCloudRetailV2CompletionConfig::class);
   }
 }
 

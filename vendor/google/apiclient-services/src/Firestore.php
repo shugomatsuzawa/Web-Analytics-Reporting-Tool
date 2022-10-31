@@ -84,10 +84,6 @@ class Firestore extends \Google\Service
                   'location' => 'query',
                   'type' => 'string',
                 ],
-                'validateOnly' => [
-                  'location' => 'query',
-                  'type' => 'boolean',
-                ],
               ],
             ],'exportDocuments' => [
               'path' => 'v1/{+name}:exportDocuments',
@@ -527,6 +523,16 @@ class Firestore extends \Google\Service
               'httpMethod' => 'POST',
               'parameters' => [
                 'database' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+              ],
+            ],'runAggregationQuery' => [
+              'path' => 'v1/{+parent}:runAggregationQuery',
+              'httpMethod' => 'POST',
+              'parameters' => [
+                'parent' => [
                   'location' => 'path',
                   'type' => 'string',
                   'required' => true,

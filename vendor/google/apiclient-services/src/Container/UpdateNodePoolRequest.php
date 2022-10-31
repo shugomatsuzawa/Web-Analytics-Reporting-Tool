@@ -44,10 +44,14 @@ class UpdateNodePoolRequest extends \Google\Collection
    * @var string[]
    */
   public $locations;
+  protected $loggingConfigType = NodePoolLoggingConfig::class;
+  protected $loggingConfigDataType = '';
   /**
    * @var string
    */
   public $name;
+  protected $nodeNetworkConfigType = NodeNetworkConfig::class;
+  protected $nodeNetworkConfigDataType = '';
   /**
    * @var string
    */
@@ -200,6 +204,20 @@ class UpdateNodePoolRequest extends \Google\Collection
     return $this->locations;
   }
   /**
+   * @param NodePoolLoggingConfig
+   */
+  public function setLoggingConfig(NodePoolLoggingConfig $loggingConfig)
+  {
+    $this->loggingConfig = $loggingConfig;
+  }
+  /**
+   * @return NodePoolLoggingConfig
+   */
+  public function getLoggingConfig()
+  {
+    return $this->loggingConfig;
+  }
+  /**
    * @param string
    */
   public function setName($name)
@@ -212,6 +230,20 @@ class UpdateNodePoolRequest extends \Google\Collection
   public function getName()
   {
     return $this->name;
+  }
+  /**
+   * @param NodeNetworkConfig
+   */
+  public function setNodeNetworkConfig(NodeNetworkConfig $nodeNetworkConfig)
+  {
+    $this->nodeNetworkConfig = $nodeNetworkConfig;
+  }
+  /**
+   * @return NodeNetworkConfig
+   */
+  public function getNodeNetworkConfig()
+  {
+    return $this->nodeNetworkConfig;
   }
   /**
    * @param string

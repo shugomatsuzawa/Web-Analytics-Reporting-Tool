@@ -19,7 +19,7 @@ namespace Google\Service\DLP;
 
 class GooglePrivacyDlpV2InfoTypeDescription extends \Google\Collection
 {
-  protected $collection_key = 'supportedBy';
+  protected $collection_key = 'versions';
   protected $categoriesType = GooglePrivacyDlpV2InfoTypeCategory::class;
   protected $categoriesDataType = 'array';
   /**
@@ -34,10 +34,14 @@ class GooglePrivacyDlpV2InfoTypeDescription extends \Google\Collection
    * @var string
    */
   public $name;
+  protected $sensitivityScoreType = GooglePrivacyDlpV2SensitivityScore::class;
+  protected $sensitivityScoreDataType = '';
   /**
    * @var string[]
    */
   public $supportedBy;
+  protected $versionsType = GooglePrivacyDlpV2VersionDescription::class;
+  protected $versionsDataType = 'array';
 
   /**
    * @param GooglePrivacyDlpV2InfoTypeCategory[]
@@ -96,6 +100,20 @@ class GooglePrivacyDlpV2InfoTypeDescription extends \Google\Collection
     return $this->name;
   }
   /**
+   * @param GooglePrivacyDlpV2SensitivityScore
+   */
+  public function setSensitivityScore(GooglePrivacyDlpV2SensitivityScore $sensitivityScore)
+  {
+    $this->sensitivityScore = $sensitivityScore;
+  }
+  /**
+   * @return GooglePrivacyDlpV2SensitivityScore
+   */
+  public function getSensitivityScore()
+  {
+    return $this->sensitivityScore;
+  }
+  /**
    * @param string[]
    */
   public function setSupportedBy($supportedBy)
@@ -108,6 +126,20 @@ class GooglePrivacyDlpV2InfoTypeDescription extends \Google\Collection
   public function getSupportedBy()
   {
     return $this->supportedBy;
+  }
+  /**
+   * @param GooglePrivacyDlpV2VersionDescription[]
+   */
+  public function setVersions($versions)
+  {
+    $this->versions = $versions;
+  }
+  /**
+   * @return GooglePrivacyDlpV2VersionDescription[]
+   */
+  public function getVersions()
+  {
+    return $this->versions;
   }
 }
 

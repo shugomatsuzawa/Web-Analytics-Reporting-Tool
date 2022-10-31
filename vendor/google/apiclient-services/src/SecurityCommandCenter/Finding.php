@@ -36,10 +36,14 @@ class Finding extends \Google\Collection
   protected $connectionsDataType = 'array';
   protected $contactsType = ContactDetails::class;
   protected $contactsDataType = 'map';
+  protected $containersType = Container::class;
+  protected $containersDataType = 'array';
   /**
    * @var string
    */
   public $createTime;
+  protected $databaseType = Database::class;
+  protected $databaseDataType = '';
   /**
    * @var string
    */
@@ -64,6 +68,8 @@ class Finding extends \Google\Collection
   protected $iamBindingsDataType = 'array';
   protected $indicatorType = Indicator::class;
   protected $indicatorDataType = '';
+  protected $kubernetesType = Kubernetes::class;
+  protected $kubernetesDataType = '';
   protected $mitreAttackType = MitreAttack::class;
   protected $mitreAttackDataType = '';
   /**
@@ -90,6 +96,10 @@ class Finding extends \Google\Collection
    * @var string
    */
   public $parent;
+  /**
+   * @var string
+   */
+  public $parentDisplayName;
   protected $processesType = Process::class;
   protected $processesDataType = 'array';
   /**
@@ -198,6 +208,20 @@ class Finding extends \Google\Collection
     return $this->contacts;
   }
   /**
+   * @param Container[]
+   */
+  public function setContainers($containers)
+  {
+    $this->containers = $containers;
+  }
+  /**
+   * @return Container[]
+   */
+  public function getContainers()
+  {
+    return $this->containers;
+  }
+  /**
    * @param string
    */
   public function setCreateTime($createTime)
@@ -210,6 +234,20 @@ class Finding extends \Google\Collection
   public function getCreateTime()
   {
     return $this->createTime;
+  }
+  /**
+   * @param Database
+   */
+  public function setDatabase(Database $database)
+  {
+    $this->database = $database;
+  }
+  /**
+   * @return Database
+   */
+  public function getDatabase()
+  {
+    return $this->database;
   }
   /**
    * @param string
@@ -324,6 +362,20 @@ class Finding extends \Google\Collection
     return $this->indicator;
   }
   /**
+   * @param Kubernetes
+   */
+  public function setKubernetes(Kubernetes $kubernetes)
+  {
+    $this->kubernetes = $kubernetes;
+  }
+  /**
+   * @return Kubernetes
+   */
+  public function getKubernetes()
+  {
+    return $this->kubernetes;
+  }
+  /**
    * @param MitreAttack
    */
   public function setMitreAttack(MitreAttack $mitreAttack)
@@ -420,6 +472,20 @@ class Finding extends \Google\Collection
   public function getParent()
   {
     return $this->parent;
+  }
+  /**
+   * @param string
+   */
+  public function setParentDisplayName($parentDisplayName)
+  {
+    $this->parentDisplayName = $parentDisplayName;
+  }
+  /**
+   * @return string
+   */
+  public function getParentDisplayName()
+  {
+    return $this->parentDisplayName;
   }
   /**
    * @param Process[]

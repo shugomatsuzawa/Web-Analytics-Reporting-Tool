@@ -22,6 +22,8 @@ class GoogleCloudDocumentaiV1beta2DocumentPage extends \Google\Collection
   protected $collection_key = 'visualElements';
   protected $blocksType = GoogleCloudDocumentaiV1beta2DocumentPageBlock::class;
   protected $blocksDataType = 'array';
+  protected $detectedBarcodesType = GoogleCloudDocumentaiV1beta2DocumentPageDetectedBarcode::class;
+  protected $detectedBarcodesDataType = 'array';
   protected $detectedLanguagesType = GoogleCloudDocumentaiV1beta2DocumentPageDetectedLanguage::class;
   protected $detectedLanguagesDataType = 'array';
   protected $dimensionType = GoogleCloudDocumentaiV1beta2DocumentPageDimension::class;
@@ -30,6 +32,8 @@ class GoogleCloudDocumentaiV1beta2DocumentPage extends \Google\Collection
   protected $formFieldsDataType = 'array';
   protected $imageType = GoogleCloudDocumentaiV1beta2DocumentPageImage::class;
   protected $imageDataType = '';
+  protected $imageQualityScoresType = GoogleCloudDocumentaiV1beta2DocumentPageImageQualityScores::class;
+  protected $imageQualityScoresDataType = '';
   protected $layoutType = GoogleCloudDocumentaiV1beta2DocumentPageLayout::class;
   protected $layoutDataType = '';
   protected $linesType = GoogleCloudDocumentaiV1beta2DocumentPageLine::class;
@@ -66,6 +70,20 @@ class GoogleCloudDocumentaiV1beta2DocumentPage extends \Google\Collection
   public function getBlocks()
   {
     return $this->blocks;
+  }
+  /**
+   * @param GoogleCloudDocumentaiV1beta2DocumentPageDetectedBarcode[]
+   */
+  public function setDetectedBarcodes($detectedBarcodes)
+  {
+    $this->detectedBarcodes = $detectedBarcodes;
+  }
+  /**
+   * @return GoogleCloudDocumentaiV1beta2DocumentPageDetectedBarcode[]
+   */
+  public function getDetectedBarcodes()
+  {
+    return $this->detectedBarcodes;
   }
   /**
    * @param GoogleCloudDocumentaiV1beta2DocumentPageDetectedLanguage[]
@@ -122,6 +140,20 @@ class GoogleCloudDocumentaiV1beta2DocumentPage extends \Google\Collection
   public function getImage()
   {
     return $this->image;
+  }
+  /**
+   * @param GoogleCloudDocumentaiV1beta2DocumentPageImageQualityScores
+   */
+  public function setImageQualityScores(GoogleCloudDocumentaiV1beta2DocumentPageImageQualityScores $imageQualityScores)
+  {
+    $this->imageQualityScores = $imageQualityScores;
+  }
+  /**
+   * @return GoogleCloudDocumentaiV1beta2DocumentPageImageQualityScores
+   */
+  public function getImageQualityScores()
+  {
+    return $this->imageQualityScores;
   }
   /**
    * @param GoogleCloudDocumentaiV1beta2DocumentPageLayout

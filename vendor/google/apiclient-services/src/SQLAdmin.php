@@ -912,6 +912,30 @@ class SQLAdmin extends \Google\Service
                   'type' => 'string',
                 ],
               ],
+            ],'get' => [
+              'path' => 'v1/projects/{project}/instances/{instance}/users/{name}',
+              'httpMethod' => 'GET',
+              'parameters' => [
+                'project' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+                'instance' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+                'name' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+                'host' => [
+                  'location' => 'query',
+                  'type' => 'string',
+                ],
+              ],
             ],'insert' => [
               'path' => 'v1/projects/{project}/instances/{instance}/users',
               'httpMethod' => 'POST',

@@ -27,6 +27,10 @@ class ProvisioningConfig extends \Google\Collection
   /**
    * @var string
    */
+  public $customId;
+  /**
+   * @var string
+   */
   public $email;
   /**
    * @var string
@@ -48,6 +52,10 @@ class ProvisioningConfig extends \Google\Collection
    * @var string
    */
   public $state;
+  /**
+   * @var string
+   */
+  public $statusMessage;
   /**
    * @var string
    */
@@ -76,6 +84,20 @@ class ProvisioningConfig extends \Google\Collection
   public function getCloudConsoleUri()
   {
     return $this->cloudConsoleUri;
+  }
+  /**
+   * @param string
+   */
+  public function setCustomId($customId)
+  {
+    $this->customId = $customId;
+  }
+  /**
+   * @return string
+   */
+  public function getCustomId()
+  {
+    return $this->customId;
   }
   /**
    * @param string
@@ -174,6 +196,20 @@ class ProvisioningConfig extends \Google\Collection
   public function getState()
   {
     return $this->state;
+  }
+  /**
+   * @param string
+   */
+  public function setStatusMessage($statusMessage)
+  {
+    $this->statusMessage = $statusMessage;
+  }
+  /**
+   * @return string
+   */
+  public function getStatusMessage()
+  {
+    return $this->statusMessage;
   }
   /**
    * @param string

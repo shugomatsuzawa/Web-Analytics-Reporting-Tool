@@ -97,7 +97,7 @@ class Chromeosdevices extends \Google\Service\Resource
    * @param array $optParams Optional parameters.
    *
    * @opt_param bool includeChildOrgunits Return devices from all child orgunits,
-   * as well as the specified org unit. If this is set to true 'orgUnitPath' must
+   * as well as the specified org unit. If this is set to true, 'orgUnitPath' must
    * be provided.
    * @opt_param int maxResults Maximum number of results to return.
    * @opt_param string orderBy Device property to use for sorting results.
@@ -124,7 +124,7 @@ class Chromeosdevices extends \Google\Service\Resource
    * Moves or inserts multiple Chrome OS devices to an organizational unit. You
    * can move up to 50 devices at once. (chromeosdevices.moveDevicesToOu)
    *
-   * @param string $customerId Immutable ID of the Google Workspace account
+   * @param string $customerId Immutable. ID of the Google Workspace account
    * @param string $orgUnitPath Full path of the target organizational unit or its
    * ID
    * @param ChromeOsMoveDevicesToOu $postBody

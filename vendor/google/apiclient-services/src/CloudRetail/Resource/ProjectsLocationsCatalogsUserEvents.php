@@ -47,6 +47,12 @@ class ProjectsLocationsCatalogsUserEvents extends \Google\Service\Resource
    * @opt_param string ets The event timestamp in milliseconds. This prevents
    * browser caching of otherwise identical get requests. The name is abbreviated
    * to reduce the payload bytes.
+   * @opt_param string prebuiltRule The prebuilt rule name that can convert a
+   * specific type of raw_json. For example: "default_schema/v1.0"
+   * @opt_param string rawJson An arbitrary serialized JSON string that contains
+   * necessary information that can comprise a user event. When this field is
+   * specified, the user_event field will be ignored. Note: line-delimited JSON is
+   * not supported, a single JSON only.
    * @opt_param string uri The URL including cgi-parameters but excluding the hash
    * fragment with a length limit of 5,000 characters. This is often more useful
    * than the referer URL, because many browsers only send the domain for 3rd
@@ -64,9 +70,9 @@ class ProjectsLocationsCatalogsUserEvents extends \Google\Service\Resource
   /**
    * Bulk import of User events. Request processing might be synchronous. Events
    * that already exist are skipped. Use this method for backfilling historical
-   * user events. Operation.response is of type ImportResponse. Note that it is
-   * possible for a subset of the items to be successfully inserted.
-   * Operation.metadata is of type ImportMetadata. (userEvents.import)
+   * user events. `Operation.response` is of type `ImportResponse`. Note that it
+   * is possible for a subset of the items to be successfully inserted.
+   * `Operation.metadata` is of type `ImportMetadata`. (userEvents.import)
    *
    * @param string $parent Required.
    * `projects/1234/locations/global/catalogs/default_catalog`
@@ -100,13 +106,13 @@ class ProjectsLocationsCatalogsUserEvents extends \Google\Service\Resource
     return $this->call('purge', [$params], GoogleLongrunningOperation::class);
   }
   /**
-   * Starts a user event rejoin operation with latest product catalog. Events will
-   * not be annotated with detailed product information if product is missing from
-   * the catalog at the time the user event is ingested, and these events are
-   * stored as unjoined events with a limited usage on training and serving. This
-   * method can be used to start a join operation on specified events with latest
-   * version of product catalog. It can also be used to correct events joined with
-   * the wrong product catalog. A rejoin operation can take hours or days to
+   * Starts a user-event rejoin operation with latest product catalog. Events are
+   * not annotated with detailed product information for products that are missing
+   * from the catalog when the user event is ingested. These events are stored as
+   * unjoined events with limited usage on training and serving. You can use this
+   * method to start a join operation on specified events with the latest version
+   * of product catalog. You can also use this method to correct events joined
+   * with the wrong product catalog. A rejoin operation can take hours or days to
    * complete. (userEvents.rejoin)
    *
    * @param string $parent Required. The parent catalog resource name, such as

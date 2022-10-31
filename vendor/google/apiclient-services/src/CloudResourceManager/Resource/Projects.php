@@ -229,7 +229,7 @@ class Projects extends \Google\Service\Resource
    * NAME:howl | Equivalent to above. | | labels.color:* | The project has the
    * label `color`. | | labels.color:red | The project's label `color` has the
    * value `red`. | | labels.color:red labels.size:big | The project's label
-   * `color` has the value `red` and its label `size` has the value `big`.| ``` If
+   * `color` has the value `red` or its label `size` has the value `big`. | ``` If
    * no query is specified, the call will return projects for which the user has
    * the `resourcemanager.projects.get` permission.
    * @return SearchProjectsResponse
@@ -267,8 +267,7 @@ class Projects extends \Google\Service\Resource
    * that no longer have owners who have accepted the ToS. Edits to IAM policies
    * will be rejected until the lack of a ToS-accepting owner is rectified. If the
    * project is part of an organization, you can remove all owners, potentially
-   * making the organization inaccessible. + Calling this method requires enabling
-   * the App Engine Admin API. (projects.setIamPolicy)
+   * making the organization inaccessible. (projects.setIamPolicy)
    *
    * @param string $resource REQUIRED: The resource for which the policy is being
    * specified. See [Resource
